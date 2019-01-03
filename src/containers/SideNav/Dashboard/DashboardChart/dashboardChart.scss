@@ -1,0 +1,132 @@
+.chart_dashboard {
+  padding: 42px 42px 21px 42px;
+  display: flex;
+  .chart_dashboard_elem {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 187px;
+    padding-right: 2vw;
+    width: auto;
+    min-width: 0;
+  }
+  .zero_count {
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+  }
+  .chart_dashboard_elem-title {
+    height: 30px;
+    position: relative;
+    margin-top: 19px;
+    .changeWidth {
+      height: 30px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      right: auto;
+      bottom: auto;
+      margin-right: -50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      svg{
+        width: 113px;
+      }
+    }
+  }
+  .chart_dashboard_elem_bg {
+    position: relative;
+    height: 356px;
+    border-radius: 5px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .chart_dashboard_elem_block_count {
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+    align-items: center;
+    height: 0;
+    //transition:height 1s ease-out;
+    width: 100%;
+  }
+}
+.chart_dashboard_elem_count {
+  color: white;
+}
+.changeWidthNum {
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  span {
+    //height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-52%, -50%) rotate(90deg);
+    svg{
+      //width: 200px;
+      text {
+        font-size: 50px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .chart_dashboard {
+    padding-left: 5px;
+    padding-right: 5px;
+
+    .chart_dashboard_elem {
+      &:last-child {
+        padding-right: 0;
+      }
+
+    }
+
+    .chart_dashboard_elem-title .changeWidth svg text{
+      font-size: 28px !important;
+    }
+
+    .chart_dashboard_elem-title {
+      margin-top: 5px;
+    }
+
+    .changeWidthNum span {
+      font-size: 8px;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      transform-origin: center top;
+
+      svg{
+        height: 35px;
+
+        text {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  .dashboard .dashboard_chart .chart_dashboard-select {
+    text-align: center;
+    font-size: 18px;
+
+    span {
+      padding: 0 20px;
+    }
+  }
+
+
+}

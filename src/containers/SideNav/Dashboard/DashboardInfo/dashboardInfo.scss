@@ -1,0 +1,188 @@
+.dashboard_blog {
+  display: flex;
+  .dashboard_blog-buttons {
+    margin-right: auto;
+    padding-right: 35px;
+  }
+  .dashboard_blog_info {
+    min-width: 329px;
+    padding: 34px;
+    height: 100%;
+    max-height: 428px;
+    border-radius: 5px;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
+    .dashboard_blog_info_head {
+      margin-bottom: 35px;
+      align-items: center;
+      display: flex;
+      .dashboard_blog_info-imgpopup {
+        cursor: pointer;
+        width: 19px;
+        height: 19px;
+      }
+      .dashboard_blog_info-imgName {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.07);
+        margin-right: 17px;
+      }
+      .dashboard_blog_info_head_info {
+        display: flex;
+        flex-direction: column;
+        margin-right: auto;
+        padding-right: 20px;
+        font-size: 14px;
+        font-weight: normal;
+        color: #aaaaaa;
+        .dashboard_blog_info_head_info-title {
+          font-size: 18px;
+          margin-bottom: 5px;
+          color: #636c6e;
+        }
+      }
+    }
+    .dashboard_blog_date {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      .dashboard_blog_date-block-modife {
+        min-width: 100px;
+      }
+      .dashboard_blog_date-block {
+        flex-direction: column;
+        display: flex;
+        font-size: 16px;
+        color: #636c6e;
+        font-weight: normal;
+        width: 50%;
+        .dashboard_blog_date-block-title {
+          font-size: 14px;
+          color: #aaaaaa;
+          margin-bottom: 6px;
+        }
+      }
+    }
+  }
+}
+.Modal {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  position: absolute;
+  outline: none;
+}
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.6)!important;
+}
+.modal {
+  max-width: 733px;
+  width: 100%;
+  //min-height: 470px;
+  padding: 53px;
+  border-radius: 5px;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.07);
+  background-color: #ffffff;
+  .modal-back {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    cursor: pointer;
+  }
+  .modal-head {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    .dashboard_blog_info-imgName {
+      width: 40px;
+      height: 40px;
+      border-radius: 5px;
+      box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.07);
+      margin-right: 17px;
+    }
+    .dashboard_blog_info_head_info {
+      display: flex;
+      flex-direction: column;
+      margin-right: auto;
+      padding-right: 20px;
+      font-size: 14px;
+      font-weight: normal;
+      color: #aaaaaa;
+      .dashboard_blog_info_head_info-title {
+        font-size: 18px;
+        margin-bottom: 5px;
+        color: #636c6e;
+      }
+    }
+  }
+  .modal-desc {
+    max-width: 631px;
+    .modal-desc-title {
+      font-size: 14px;
+      font-weight: normal;
+      color: #aaaaaa;
+      margin-bottom: 13px;
+    }
+    .modal-desc-content {
+      font-size: 14px;
+      font-weight: normal;
+      color: #636c6e;
+      margin-bottom: 36px;
+    }
+  }
+  .modal-content {
+    .dashboard_blog_date {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 0;
+      min-width: 600px;
+      .dashboard_blog_date-block-modife {
+        min-width: 100px;
+      }
+      .dashboard_blog_date-block {
+        flex-direction: column;
+        display: flex;
+        font-size: 16px;
+        color: #636c6e;
+        font-weight: normal;
+        width: 25%;
+        padding-right: 30px;
+        padding-bottom: 30px;
+        .dashboard_blog_date-block-title {
+          font-size: 14px;
+          color: #aaaaaa;
+          margin-bottom: 6px;
+        }
+      }
+    }
+  }
+}
+
+.dashboard_blog_date-block-plan {
+  max-width: 100px;
+}
+
+@media screen and (max-width: 660px) {
+  .modal {
+    padding: 20px;
+
+    .modal-desc .modal-desc-content {
+      font-size: 12px;
+    }
+
+    .modal-content {
+      .dashboard_blog_date .dashboard_blog_date-block {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+
