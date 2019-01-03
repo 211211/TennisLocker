@@ -7,7 +7,7 @@ const Footer = () => {
             <footer className="app-footer">
                 <div className="d-flex flex-row justify-content-between">
                     <div>
-                        <span> Copyright Company Name &copy; 2018</span>
+                        <span> Tennis Locker Internal Portal &copy; {(new Date()).getFullYear()}</span>
 
                     </div>
                     <div>
