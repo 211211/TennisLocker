@@ -1,0 +1,73 @@
+@import '~react-datepicker/dist/react-datepicker.css';
+.app-wrapper-select {
+  .my-select__menu {
+    top: 50px;
+    z-index: 115222!important;
+  }
+  .my-select__control {
+    border-color: hsl(0,0%,80%)!important;
+    overflow: hidden;
+    font-size: 14px;
+    color: #a8abb3;
+    padding-left: 24px;
+    height: 53px;
+    background-color: #f6f6f6;
+  }
+  .css-44bf2q {
+    box-shadow: none!important;
+  }
+  .my-select__placeholder {
+    font-size: 14px;
+    color: #a8abb3;
+  }
+  .my-select__multi-value {
+    align-items: center;
+    color: white!important;
+  }
+  .my-select__indicators {
+    background-color: #e4e4e4;
+    cursor: pointer;
+    &:hover .svgSelect svg path{
+    fill: #2f80ed;
+  }
+  }
+  .svgSelect {
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .loaded {
+      height: 18px;
+    }
+  }
+  .my-select__indicator-separator {
+    display: none;
+  }
+  .my-select__multi-value:before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .my-select__option {
+    display: flex;
+    height: 43px;
+    align-items: center;
+  }
+  .my-select__option:active {
+    background: #bbbdbf;
+  }
+  .my-select__option:before{
+    content: '';
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    display: block;
+    border-radius: 50%;
+  }
+}
+
+
+.my-selectDate--is-disabled {
+  min-width: 156px;
+}

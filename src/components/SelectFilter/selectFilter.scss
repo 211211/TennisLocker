@@ -1,0 +1,145 @@
+.datePicker-selectDate {
+  .css-10nd86i {
+    width: 156px;
+  }
+  .my-selectDate__menu {
+    top: 50px;
+    z-index: 115222!important;
+  }
+  .my-selectDate__control {
+    border-color: hsl(0,0%,80%)!important;
+    overflow: hidden;
+    font-size: 14px;
+    color: #a8abb3;
+    padding-left: 22px;
+    height: 53px;
+    cursor: pointer;
+  }
+  .my-selectDate__single-value {
+    font-size: 14px;
+    font-weight: normal;
+    color: #636c6e;
+  }
+  .my-selectDate__control:hover {
+    .svgselectDate svg path{
+      fill: #2f80ed;
+    }
+  }
+  .css-44bf2q {
+    box-shadow: none!important;
+  }
+  .my-selectDate__placeholder {
+    font-size: 18px;
+    color: #a8abb3;
+  }
+  .my-selectDate__multi-value {
+    align-items: center;
+    color: white!important;
+  }
+  .my-selectDate__indicators {
+    padding-right: 8px;
+    cursor: pointer;
+  }
+  .svgselectDate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .my-selectDate__indicator-separator {
+    display: none;
+  }
+  .my-selectDate__multi-value:before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .my-selectDate__option {
+    display: flex;
+    height: 43px;
+    align-items: center;
+  }
+  .my-selectDate__option:active {
+    background: #bbbdbf;
+  }
+}
+.datePicker {
+  display: flex;
+  height: 53px;
+}
+.datePicker_block-start {
+  display: flex;
+  margin-left: 16px;
+  margin-right: 16px;
+  .datePicker_block-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: normal;
+    width: 53px;
+    border-radius: 3px;
+    height: 53px;
+    margin-left: 10px;
+    background-color: #2f80ed;
+    border-color: #3f51b5;
+    color: #fff;
+  }
+  .datePicker_block-button:hover {
+    background-color: #1b6cd6;
+    border-color: #1b6cd6;
+    color: #fff;
+  }
+  .datePicker_block-start-custom {
+    position: relative;
+    .datePicker_block-start-custom-img {
+      position: absolute;
+      top: 17px;
+      right: 19px;
+    }
+  }
+  .datePicker_block-start-custom-input {
+    width: 188px;
+    height: 53px;
+    font-size: 16px;
+    font-weight: normal;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    color: #6a707e;
+    padding-left: 30px;
+    border: solid 1px #c8c8c8;
+  }
+  .datePicker_block-end-custom-input {
+    width: 188px;
+    height: 53px;
+    font-size: 16px;
+    font-weight: normal;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #6a707e;
+    padding-left: 30px;
+    border: solid 1px #c8c8c8;
+  }
+}
+@media screen and (max-width: 1700px) {
+  .datePicker-selectDate {
+    width: 30%;
+    min-width: 200px;
+    .my-selectDate__control {
+      padding-left: 7px
+    }
+    .css-10nd86i {
+      width: auto;
+    }
+  }
+  .react-datepicker-wrapper, .react-datepicker__input-container {
+    min-width: 159px;
+  }
+  .datePicker_block-start{
+    .datePicker_block-start-custom-input, .datePicker_block-end-custom-input {
+      padding-left: 10px;
+      width: 100%;
+    }
+  }
+}
