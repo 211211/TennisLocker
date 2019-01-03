@@ -26,8 +26,8 @@ import { connect } from "react-redux";
 import "./selectFilter.scss";
 import SVG from "react-inlinesvg";
 import searchIcon from "../../assets/images/seacrch.svg";
-import { addSelectFacility } from "../../redux/action/facilityFilter";
-import { getFacilityAll } from "../../redux/action/facility";
+import { addSelectFacility } from "../../actions/redux/facilityFilter";
+import { getFacilityAll } from "../../actions/redux/facility";
 
 const mapStateToProps = ({ facilityFilter, facility }) => ({
   facilityFilter,

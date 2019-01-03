@@ -1,6 +1,6 @@
 import axios from "axios";
 // import helpers from "../helpers";
-// import { getNewToken } from "../redux/action/login";
+// import { getNewToken } from "../actions/redux/login";
 // let pending = false;
 axios.interceptors.request.use(
   config => {

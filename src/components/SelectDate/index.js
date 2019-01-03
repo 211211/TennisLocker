@@ -30,7 +30,7 @@ import calendarIcon from "../../assets/images/calendar.svg";
 // import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import moment from "moment";
-import { addFacilitySelectDate } from "../../redux/action/facilityFilter";
+import { addFacilitySelectDate } from "../../actions/redux/facilityFilter";
 
 const mapStateToProps = ({ facilityFilter }) => ({
   facilityFilter
