@@ -85,7 +85,7 @@ class WebpackBaseConfig {
                 historyApiFallback: true,
                 hot: true,
                 inline: true,
-                port: 3000
+                port: 9000
             },
             entry: './index.js',
             module: {
