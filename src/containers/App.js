@@ -11,7 +11,8 @@ import 'styles/app-rtl.scss';
 import AppLocale from '../lngProvider';
 
 import MainApp from 'app/index';
-import SignIn from './SignIn';
+import SignIn from './SignIn/index';
+// import SignIn from './SignIn';
 import SignUp from './SignUp';
 import {setInitUrl} from '../actions/Auth';
 import asyncComponent from "util/asyncComponent";
@@ -42,13 +43,16 @@ class App extends Component {
     render() {
         const {match, location, locale, authUser, initURL, isDirectionRTL} = this.props;
         if (location.pathname === '/') {
-            if (authUser === null) {
+            if(authUser === null) {
                 return ( <Redirect to={'/signin'}/> );
-            } else if (initURL === '' || initURL === '/' || initURL === '/signin') {
-                return ( <Redirect to={'/app/sample-page'}/> );
-            } else {
-                return ( <Redirect to={initURL}/> );
             }
+
+            // if user is authenticated then redirect to main page
+            if (initURL === '' || initURL === '/' || initURL === '/signin') {
+                return ( <Redirect to={'/app/sample-page'}/> );
+            }
+
+            return ( <Redirect to={initURL}/> );
         }
 
         // for RTL Support

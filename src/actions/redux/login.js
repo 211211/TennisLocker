@@ -5,7 +5,7 @@ import {
   GET_REFRESH_TOKEN_ERROR,
   LOGOUT
 } from "../../constants/ActionTypes";
-import api from "../../api/index";
+import api from "../../helpers/api/AxiosHelper";
 import helpers from "../../helpers/index";
 import config from "../../config";
 
