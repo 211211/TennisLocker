@@ -1,8 +1,8 @@
 import React from "react";
 import moment from "moment";
 import "./dashboardInfo.scss";
-import imgPopup from "../../../../assets/images/popupImg.png";
-import back from "../../../../assets/images/icons/back.svg";
+import imgPopup from "../../../../assets/images/TennisLockerInternalPortal/popupImg.png";
+import back from "../../../../assets/images/TennisLockerInternalPortal/icons/back.svg";
 import ReactModal from "react-modal";
 
 class DashboardInfo extends React.Component {

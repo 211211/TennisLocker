@@ -2,18 +2,19 @@ import React from "react";
 import { find } from "lodash"
 import "./dashboardButtons.scss";
 import FilterBtn from "./FilterBtn";
-import { connect } from "react-redux";
-import { activeFacilityArray } from "../../../../redux/action/facilityActive";
+import data from '../data' // TODO REMOVE
+// import { connect } from "react-redux";
+// import { activeFacilityArray } from "../../../../redux/action/facilityActive";
 
-const mapStateToProps = ({ facility, facilityActive, facilityFilter }) => ({
-  facility,
-  facilityActive,
-  facilityFilter
-});
+// const mapStateToProps = ({ facility, facilityActive, facilityFilter }) => ({
+//   facility,
+//   facilityActive,
+//   facilityFilter
+// });
 
-const mapDispatchToProps = dispatch => ({
-  activeFacilityArray: arrayActive => dispatch(activeFacilityArray(arrayActive))
-});
+// const mapDispatchToProps = dispatch => ({
+//   activeFacilityArray: arrayActive => dispatch(activeFacilityArray(arrayActive))
+// });
 
 class DashboardButtons extends React.Component {
   constructor(props) {
@@ -28,7 +29,8 @@ class DashboardButtons extends React.Component {
       facilityFilter: { flagFilter }
     } = nextProps;
 
-    const { facilityFilter } = this.props;
+    // const { facilityFilter } = this.props;
+    const {facilityFilter} = data;
 
     if (facilityFilter.flagFilter && !flagFilter) {
       this.facilityButtonsActive = activeFacilityArray;
@@ -46,8 +48,8 @@ class DashboardButtons extends React.Component {
       });
       this.facilityButtonsActive = newArrayActive;
     }
-    console.log("activeFacilityArray", this.facilityButtonsActive);
-    this.props.activeFacilityArray(this.facilityButtonsActive);
+    // console.log("activeFacilityArray", this.facilityButtonsActive);
+    // this.props.activeFacilityArray(this.facilityButtonsActive);
   };
   render() {
     // this.facilityButtonsActive = [];
@@ -93,7 +95,9 @@ class DashboardButtons extends React.Component {
     );
   }
 }
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DashboardButtons);
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(DashboardButtons);
+
+export default DashboardButtons

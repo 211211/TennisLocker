@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {NavLink, withRouter} from 'react-router-dom';
+import React, { Component } from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import IntlMessages from 'util/IntlMessages';
 
@@ -7,7 +7,7 @@ import IntlMessages from 'util/IntlMessages';
 class Menu extends Component {
 
     componentDidMount() {
-        const {history} = this.props;
+        const { history } = this.props;
 
         const pathname = `#${history.location.pathname}`;// get current path
         const mainMenu = document.getElementsByClassName('nav-item');
@@ -87,9 +87,26 @@ class Menu extends Component {
                 <ul className="navbar-nav navbar-nav-mega">
 
                     <li className="nav-item">
-                        <NavLink to="/app/sample-page">
-                            <span className="nav-text"><IntlMessages id="pages.samplePage"/> </span>
-                        </NavLink>
+                        <a href="javascript:void(0)"><IntlMessages id="sidebar.main" /></a>
+                        <ul className="sub-menu">
+
+                            <li className="nav-arrow">
+                                <a role="button" href="javascript:void(0)">
+                                    <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
+                                    <span className="nav-text">
+                                        <IntlMessages id="sidebar.dashboard" />
+                                    </span>
+                                </a>
+                                <ul className="sub-menu ">
+                                    <li>
+                                        <NavLink className="prepend-icon" to="/app/dashboard/default">
+                                            <span className="nav-text"><IntlMessages
+                                                id="sidebar.dashboard.default" /></span>
+                                        </NavLink>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
 
                 </ul>

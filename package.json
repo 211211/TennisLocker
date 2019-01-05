@@ -79,9 +79,7 @@
     "typeface-roboto": "^0.0.45",
     "formik": "^1.4.1",
     "axios": "^0.18.0",
-    "jwt-decode": "^2.2.0",
-    "react-modal": "^3.6.1",
-    "chroma-js": "^1.4.0"
+    "jwt-decode": "^2.2.0"
   },
   "scripts": {
     "clean": "rimraf dist/*",
@@ -98,6 +96,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "chroma-js": "^1.4.1",
     "css-loader": "^0.28.5",
     "eslint": "^4.6.0",
     "eslint-config-airbnb": "^15.0.1",
@@ -112,6 +111,7 @@
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "postcss-loader": "^2.0.8",
+    "react-modal": "^3.8.1",
     "sass-lint": "^1.11.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",

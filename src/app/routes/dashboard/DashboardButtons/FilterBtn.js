@@ -1,23 +1,23 @@
 import React from "react";
 import "./dashboardButtons.scss";
-import checkImg from "../../../../assets/images/chech.svg";
+import checkImg from "../../../../assets/images/TennisLockerInternalPortal/chech.svg";
 import NumberFormat from "react-number-format";
-import {
-  activeFacilityAddButtons,
-  activeFacilityRemoveButtons
-} from "../../../../redux/action/facilityActiveButtons";
-import { connect } from "react-redux";
+// import {
+//   activeFacilityAddButtons,
+//   activeFacilityRemoveButtons
+// } from "../../../../redux/action/facilityActiveButtons";
+// import { connect } from "react-redux";
 
-const mapStateToProps = ({ facilityActiveButton }) => ({
-  facilityActiveButton
-});
+// const mapStateToProps = ({ facilityActiveButton }) => ({
+//   facilityActiveButton
+// });
 
-const mapDispatchToProps = dispatch => ({
-  activeFacilityAddButtons: btnObj =>
-    dispatch(activeFacilityAddButtons(btnObj)),
-  activeFacilityRemoveButtons: btnObj =>
-    dispatch(activeFacilityRemoveButtons(btnObj))
-});
+// const mapDispatchToProps = dispatch => ({
+//   activeFacilityAddButtons: btnObj =>
+//     dispatch(activeFacilityAddButtons(btnObj)),
+//   activeFacilityRemoveButtons: btnObj =>
+//     dispatch(activeFacilityRemoveButtons(btnObj))
+// });
 
 class FilterBtn extends React.Component {
   constructor(props) {
@@ -75,7 +75,9 @@ class FilterBtn extends React.Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FilterBtn);
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(FilterBtn);
+
+export default FilterBtn
