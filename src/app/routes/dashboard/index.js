@@ -1,5 +1,5 @@
 import React from "react";
-import "./index.js";
+import "./dashboard.scss";
 import DashboardInfo from "./DashboardInfo";
 import DashboardButtons from "./DashboardButtons";
 import DashboardChart from "./DashboardChart";
