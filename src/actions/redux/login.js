@@ -6,7 +6,7 @@ import {
   LOGOUT
 } from "../../constants/ActionTypes";
 import api from "../../helpers/api/AxiosHelper";
-import helpers from "../../helpers/index";
+import AuthHelper from "../../helpers/AuthHelper";
 import config from "../../config";
 
 // export function loginUsers(username, password) {
@@ -54,7 +54,7 @@ export function loginUser(username, password) {
     formBody.push(encodedKey + "=" + encodedValue);
   }
   formBody = formBody.join("&");
-  return async dispatch => {
+  return async (dispatch) => {
     function onSuccess(success) {
       dispatch({ type: LOGINING, isAuthenticated: true });
       return success;
@@ -66,8 +66,8 @@ export function loginUser(username, password) {
     }
     try {
       const success = await api.post(`${config.baseUrl}/oauth/token`, formBody);
-      const checkStatus = await helpers.checkStatus(success);
-      const saveToken = await helpers.saveToken(checkStatus);
+      const checkStatus = await AuthHelper.checkStatus(success);
+      const saveToken = await AuthHelper.saveToken(checkStatus);
       return onSuccess(saveToken);
     } catch (error) {
       return onError(error);
@@ -77,7 +77,7 @@ export function loginUser(username, password) {
 export function getRefreshToken(refresh_token) {
   // const remember_Me = localStorage.getItem("remember_Me");
   if (!refresh_token) {
-    helpers.removeToken();
+    AuthHelper.removeToken();
     return dispatch => {
       return dispatch({
         type: GET_REFRESH_TOKEN_ERROR,
@@ -102,8 +102,8 @@ export function getRefreshToken(refresh_token) {
   return dispatch => {
     return api
       .post(`${config.baseUrl}/oauth/token`, formBody.toString())
-      .then(helpers.checkStatus)
-      .then(helpers.saveToken)
+      .then(AuthHelper.checkStatus)
+      .then(AuthHelper.saveToken)
       .then(() => {
         dispatch({
           type: GET_REFRESH_TOKEN,
@@ -120,7 +120,7 @@ export function getRefreshToken(refresh_token) {
 }
 export function logoutUser(tokenFlag) {
   if (tokenFlag) {
-    helpers.removeToken();
+    AuthHelper.removeToken();
   }
   return dispatch => {
     return dispatch({

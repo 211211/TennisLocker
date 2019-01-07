@@ -5,7 +5,7 @@ import {
   ADD_SELECT_FACILITY
 } from "../../constants/ActionTypes";
 import api from "../../api/index";
-import helpers from "../../helpers/index";
+import AuthHelper from "../../helpers/AuthHelper";
 import helpersColor from "../../helpers/colorDashboardSelect";
 import helpersSplit from "../../helpers/dashboardSplitFilter";
 import config from "../../config";
@@ -16,7 +16,7 @@ export function getFacilityToday(id) {
     let facilityArrayActive = [];
     return api
       .get(`${config.baseUrl}/analytics/metrics/facility/${id}`)
-      .then(helpers.checkStatus)
+      .then(AuthHelper.checkStatus)
       .then(helpersColor.colorButtons)
       .then(helpersSplit.split)
       .then(helpersSplit.filterAll)
@@ -54,7 +54,7 @@ export function getFacilitySelectDate(id, startDay, endDay) {
           config.baseUrl
         }/analytics/metricsByDate/facility/${id}/${startDay}/${endDay}`
       )
-      .then(helpers.checkStatus)
+      .then(AuthHelper.checkStatus)
       .then(helpersColor.colorButtons)
       .then(helpersSplit.split)
       .then(helpersSplit.filterAll, activeButtons)

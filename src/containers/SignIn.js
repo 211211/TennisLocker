@@ -7,11 +7,7 @@
 // import {
 //     hideMessage,
 //     showAuthLoader,
-//     userFacebookSignIn,
-//     userGithubSignIn,
-//     userGoogleSignIn,
 //     userSignIn,
-//     userTwitterSignIn
 // } from 'actions/Auth';
 // import CircularProgress from 'components/CircularProgress'
 
@@ -90,53 +86,6 @@
 //                                         <IntlMessages id="signIn.signUp" />
 //                                     </Link>
 //                                 </div>
-
-//                                 <div className="app-social-block my-1 my-sm-3">
-//                                     <IntlMessages
-//                                         id="signIn.connectWith" />
-//                                     <ul className="social-link">
-//                                         <li>
-//                                                 <span className="icon-btn icon"
-//                                                       onClick={() => {
-//                                                           this.props.showAuthLoader ();
-//                                                           this.props.userFacebookSignIn ();
-//                                                       }}>
-//                                                     <i className="zmdi zmdi-facebook zmdi-hc-lg" />
-//                                                 </span>
-//                                         </li>
-
-//                                         <li>
-//                                                 <span className="icon-btn icon"
-//                                                       onClick={() => {
-//                                                           this.props.showAuthLoader ();
-//                                                           this.props.userTwitterSignIn ();
-//                                                       }}>
-//                                                     <i className="zmdi zmdi-twitter zmdi-hc-lg" />
-//                                                 </span>
-//                                         </li>
-
-//                                         <li>
-//                                                 <span className="icon-btn icon"
-//                                                       onClick={() => {
-//                                                           this.props.showAuthLoader ();
-//                                                           this.props.userGoogleSignIn ();
-
-//                                                       }}>
-//                                                     <i className="zmdi zmdi-google-plus zmdi-hc-lg" />
-//                                                 </span>
-//                                         </li>
-
-//                                         <li>
-//                                                 <span className="icon-btn icon"
-//                                                       onClick={() => {
-//                                                           this.props.showAuthLoader ();
-//                                                           this.props.userGithubSignIn ();
-//                                                       }}>
-//                                                     <i className="zmdi zmdi-github zmdi-hc-lg" />
-//                                                 </span>
-//                                         </li>
-//                                     </ul>
-//                                 </div>
 //                             </form>
 //                         </div>
 //                     </div>
@@ -164,8 +113,4 @@
 //     userSignIn,
 //     hideMessage,
 //     showAuthLoader,
-//     userFacebookSignIn,
-//     userGoogleSignIn,
-//     userGithubSignIn,
-//     userTwitterSignIn
 // }) (SignIn);

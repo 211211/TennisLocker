@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { loginUser } from "../../actions/redux/login";
 import classnames from "classnames";
 import "./SignIn.scss";
 import { Formik } from "formik";
@@ -9,20 +8,21 @@ import logo from "../../assets/images/TennisLockerInternalPortal/logo.svg";
 import Vector from "../../assets/images/TennisLockerInternalPortal/Vector.svg";
 // import helpers from "../../helpers";
 
-// const mapStateToProps = ({ login }) => ({
-//   login
-// });
-// const mapDispatchToProps = dispatch => ({
-//   loginUser: (login, password) => dispatch(loginUser(login, password))
-// });
-// async function onSubmitLogin(func, setSubmitting) {
-//   await func;
-//   await setSubmitting(false);
-// }
+import {
+  hideMessage,
+  showAuthLoader,
+  userSignIn,
+} from '../../actions/Auth';
+import CircularProgress from '../../components/CircularProgress'
+
+async function onSubmitLogin(func, setSubmitting) {
+  await func;
+  await setSubmitting(false);
+}
 
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 
-class Login extends React.Component {
+class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,119 +33,135 @@ class Login extends React.Component {
     this.setState({ img: !this.state.img });
   };
   render() {
-    // if (this.props.login.isAuthenticated) {
-    //   return <Redirect to="/" />;
-    // }
     const imgChech = this.state.img ? <img src={Vector} alt="Vector" /> : "";
+    const { showMessage, loader, alertMessage } = this.props;
     // helpers.saveRememberMe(String(this.state.img));
     return (
-      <div className="login">
-        <div className="login-block">
-          <img className="login-block_logo" src={logo} alt="logo" />
-          <Formik
-            initialValues={{ email: "", password: "" }}
-            validate={values => {
-              let errors = {};
-              if (!values.email) {
-                errors.email = "";
-              } else if (!EMAIL_REGEX.test(values.email)) {
-                errors.email = "Invalid email address";
-              }
-              return errors;
-            }}
-            onSubmit={(values, { setSubmitting }) => {
-              console.log('values: ', values)
-              // onSubmitLogin(
-              //   this.props.loginUser(values.email, values.password),
-              //   setSubmitting
-              // );
-            }}
-          >
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              isSubmitting
-            }) => (
-                <form onSubmit={handleSubmit}>
-                  <div
-                    className={errors.email && touched.email ? "errorImg" : "blockImg"}
-                  >
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.email}
-                    />
-                  </div>
-                  <div className={errors.password && touched.password? "errorImg": "blockImg"} >
-                    <input
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.password}
-                    />
-                    {errors.password && touched.password ? errors.password : null}
-                  </div>
-                  {
-                    // this.props.login.errorFlag && (
-                    //   <p className={classnames("error_login")}>
-                    //     Invalid login or password
-                    // </p>
-                    // )
-                  }
+      <React.Fragment>
+        {showMessage && NotificationManager.error(alertMessage)}
+        <NotificationContainer />
 
-                  <div className="checkbox-block">
-                    <span
-                      onClick={this.changeStateCheckbox}
-                      className="checkbox-block-input"
+        <div className="login">
+          <div className="login-block">
+            <img className="login-block_logo" src={logo} alt="logo" />
+            <Formik
+              initialValues={{ email: "", password: "" }}
+              validate={values => {
+                let errors = {};
+                if (!values.email) {
+                  errors.email = "";
+                } else if (!EMAIL_REGEX.test(values.email)) {
+                  errors.email = "Invalid email address";
+                }
+                return errors;
+              }}
+              onSubmit={({email, password}, { setSubmitting }) => {
+                console.log('email: ', email)
+                console.log('password: ', password)
+
+                this.props.showAuthLoader()
+                onSubmitLogin(
+                  this.props.userSignIn({email, password}),
+                  setSubmitting
+                );
+
+                // onSubmitLogin(
+                //   this.props.loginUser(values.email, values.password),
+                //   setSubmitting
+                // );
+              }}
+            >
+              {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isSubmitting
+              }) => (
+                  <form onSubmit={handleSubmit}>
+                    <div
+                      className={errors.email && touched.email ? "errorImg" : "blockImg"}
                     >
-                      {imgChech}
-                    </span>
-                    <span className="checkbox-block-title">Remember me</span>
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.email}
+                      />
+                    </div>
+                    <div className={errors.password && touched.password ? "errorImg" : "blockImg"} >
+                      <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.password}
+                      />
+                      {errors.password && touched.password ? errors.password : null}
+                    </div>
                     {
-                      // <div className={isSubmitting ? "loader" : ""}>
-                      //   <svg
-                      //     className={isSubmitting ? "circular-loader" : "circular"}
-                      //     viewBox="25 25 50 50"
-                      //   >
-                      //     <circle
-                      //       className="path"
-                      //       cx="50"
-                      //       cy="50"
-                      //       r="20"
-                      //       fill="none"
-                      //       strokeWidth="2"
-                      //       strokeMiterlimit="10"
-                      //     />
-                      //   </svg>
-                      // </div>
+                      // this.props.login.errorFlag && (
+                      //   <p className={classnames("error_login")}>
+                      //     Invalid login or password
+                      // </p>
+                      // )
                     }
-                  </div>
-                  <button type="submit" disabled={isSubmitting}>
-                    SIGN IN
+
+                    <div className="checkbox-block">
+                      <span
+                        onClick={this.changeStateCheckbox}
+                        className="checkbox-block-input"
+                      >
+                        {imgChech}
+                      </span>
+                      <span className="checkbox-block-title">Remember me</span>
+                      {
+                        // <div className={isSubmitting ? "loader" : ""}>
+                        //   <svg
+                        //     className={isSubmitting ? "circular-loader" : "circular"}
+                        //     viewBox="25 25 50 50"
+                        //   >
+                        //     <circle
+                        //       className="path"
+                        //       cx="50"
+                        //       cy="50"
+                        //       r="20"
+                        //       fill="none"
+                        //       strokeWidth="2"
+                        //       strokeMiterlimit="10"
+                        //     />
+                        //   </svg>
+                        // </div>
+                      }
+                    </div>
+                    <button type="submit" disabled={isSubmitting}>
+                      SIGN IN
                 </button>
-                </form>
-              )}
-          </Formik>
-          <div className="login__forgotPass">
-            <span>Forgot password?</span>
+                  </form>
+                )}
+            </Formik>
+            <div className="login__forgotPass">
+              <span>Forgot password?</span>
+            </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(Login);
 
-export default Login
+const mapStateToProps = ({ auth }) => {
+  const { loader, alertMessage, showMessage, authUser } = auth;
+  return { loader, alertMessage, showMessage, authUser }
+};
+
+export default connect(mapStateToProps, {
+  userSignIn,
+  hideMessage,
+  showAuthLoader,
+})(SignIn);

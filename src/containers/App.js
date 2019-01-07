@@ -13,11 +13,24 @@ import AppLocale from '../lngProvider';
 import MainApp from 'app/index';
 import SignIn from './SignIn/index';
 // import SignIn from './SignIn';
-import SignUp from './SignUp';
+// import SignUp from './SignUp';
 import {setInitUrl} from '../actions/Auth';
 import asyncComponent from "util/asyncComponent";
 
-const RestrictedRoute = ({component: Component, ...rest}) => <Route {...rest} render={props => <Component {...props} />}/>;
+const RestrictedRoute = ({component: Component, ...rest, authUser}) =>
+    <Route
+        {...rest}
+        render={props =>
+            authUser
+                ? <Component {...props} />
+                : <Redirect
+                    to={{
+                        pathname: '/signin',
+                        state: {from: props.location}
+                    }}
+                />}
+    />;
+
 
 class App extends Component {
 
@@ -30,9 +43,9 @@ class App extends Component {
     render() {
         const {match, location, locale, authUser, initURL, isDirectionRTL} = this.props;
         if (location.pathname === '/') {
-            // if(authUser === null) {
-            //     return ( <Redirect to={'/signin'}/> );
-            // }
+            if(authUser === null) {
+                return ( <Redirect to={'/signin'}/> );
+            }
 
             // if user is authenticated then redirect to main page
             if (initURL === '' || initURL === '/' || initURL === '/signin') {
@@ -54,14 +67,7 @@ class App extends Component {
             <IntlProvider locale={currentAppLocale.locale} messages={currentAppLocale.messages}>
                 <div className="app-main">
                     <Switch>
-                        {
-                            // <RestrictedRoute path={`${match.url}app`} authUser={authUser} component={MainApp}/>
-                        }
-                        <RestrictedRoute path={`${match.url}app`} component={MainApp}/>
-                        {
-                            // <Route path='/signin' component={SignIn}/>
-                            // <Route path='/signup' component={SignUp}/>
-                        }
+                        <RestrictedRoute path={`${match.url}app`} authUser={authUser} component={MainApp}/>
                         <Route component={asyncComponent(() => import('components/Error404'))}/>
                     </Switch>
                 </div>
