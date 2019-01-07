@@ -12,8 +12,6 @@ import AppLocale from '../lngProvider';
 
 import MainApp from 'app/index';
 import SignIn from './SignIn/index';
-// import SignIn from './SignIn';
-// import SignUp from './SignUp';
 import {setInitUrl} from '../actions/Auth';
 import asyncComponent from "util/asyncComponent";
 
@@ -68,6 +66,7 @@ class App extends Component {
                 <div className="app-main">
                     <Switch>
                         <RestrictedRoute path={`${match.url}app`} authUser={authUser} component={MainApp}/>
+                        <Route path='/signin' component={SignIn}/>
                         <Route component={asyncComponent(() => import('components/Error404'))}/>
                     </Switch>
                 </div>
