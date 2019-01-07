@@ -1,7 +1,6 @@
 import decode from "jwt-decode";
 class helper {
   checkStatus = response => {
-    console.log('check status: ', response)
     if (response.status >= 200 && response.status < 300) {
       return response;
     }
@@ -10,7 +9,6 @@ class helper {
     throw error;
   };
   saveToken = response => {
-    console.log('save token: ', response)
     localStorage.setItem(
       "access_token",
       JSON.stringify(response.data.access_token)
@@ -22,7 +20,6 @@ class helper {
     return response;
   };
   isTokenExpired = () => {
-    console.log('is token expired')
     const token = localStorage.getItem("access_token");
     try {
       const date = new Date(0);
@@ -34,11 +31,9 @@ class helper {
     }
   };
   saveRememberMe = flag => {
-    console.log('saveRememberMe')
     localStorage.setItem("remember_Me", flag);
   };
   removeToken = () => {
-    console.log('removeToken')
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
   };

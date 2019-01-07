@@ -39,9 +39,6 @@ export function getFacilityToday(id) {
           flagFilter: false
         })
       )
-      .catch(error => {
-        console.log("error getFacilityAll", error);
-      });
   };
 }
 export function getFacilitySelectDate(id, startDay, endDay) {
@@ -78,9 +75,6 @@ export function getFacilitySelectDate(id, startDay, endDay) {
           flagFilter: false
         })
       )
-      .catch(error => {
-        console.log("error getFacilityAll", error);
-      });
   };
 }
 export function addFacilitySelectDate(start, end) {

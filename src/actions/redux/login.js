@@ -10,7 +10,6 @@ import AuthHelper from "../../helpers/AuthHelper";
 import config from "../../config";
 
 // export function loginUsers(username, password) {
-//   console.log(username, password);
 //   const data = {
 //     username: "portaladmin-tl@mailinator.com",
 //     password: "Password123$",
@@ -35,9 +34,6 @@ import config from "../../config";
 //           isAuthenticated: true
 //         })
 //       )
-//       .catch(error => {
-//         console.log("error loginUser", error);
-//       });
 //   };
 // }
 export function loginUser(username, password) {
@@ -61,7 +57,6 @@ export function loginUser(username, password) {
     }
     function onError(error) {
       dispatch(loginFail());
-      console.log("error loginUsers", error);
       return error;
     }
     try {
@@ -167,7 +162,4 @@ export function loginFail() {
 //     .then(response => {
 //       return response.data.access_token;
 //     })
-//     .catch(e => {
-//       console.log("error getNewToken", e);
-//     });
 // }

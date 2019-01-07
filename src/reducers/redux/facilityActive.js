@@ -16,7 +16,6 @@ const facilityActive = (state = initial, action) => {
         activeFacilityArray: action.activeFacilityArray
       };
     case GET_FACILITY_SELECT_DATE:
-      console.log(action);
       return {
         ...state,
         activeFacilityArray: action.activeFacilityArray

@@ -30,9 +30,23 @@ class SignIn extends React.Component {
       img: false
     };
   }
+
+  componentDidUpdate() {
+    if (this.props.showMessage) {
+      setTimeout(() => {
+        this.props.hideMessage();
+      }, 100);
+    }
+
+    if (this.props.authUser !== null) {
+      this.props.history.push('/');
+    }
+  }
+
   changeStateCheckbox = () => {
     this.setState({ img: !this.state.img });
   };
+
   render() {
     const imgChech = this.state.img ? <img src={Vector} alt="Vector" /> : "";
     const { showMessage, loader, alertMessage } = this.props;
@@ -56,13 +70,10 @@ class SignIn extends React.Component {
                 }
                 return errors;
               }}
-              onSubmit={({email, password}, { setSubmitting }) => {
-                console.log('email: ', email)
-                console.log('password: ', password)
-
+              onSubmit={({ email, password }, { setSubmitting }) => {
                 this.props.showAuthLoader()
                 onSubmitLogin(
-                  this.props.userSignIn({email, password}),
+                  this.props.userSignIn({ email, password }),
                   setSubmitting
                 );
 

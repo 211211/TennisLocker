@@ -14,8 +14,5 @@ export function getFacilityAll() {
           facilityArr: response.data
         })
       )
-      .catch(error => {
-        console.log("error getFacilityAll", error);
-      });
   };
 }

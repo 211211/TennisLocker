@@ -13,12 +13,11 @@ const INIT_STATE = {
     alertMessage: '',
     showMessage: false,
     initURL: '',
-    authUser: localStorage.getItem ('user_id'),
+    authUser: localStorage.getItem ('access_token'),
 };
 
 
 export default (state = INIT_STATE, action) => {
-    console.log('action: ', action)
     switch (action.type) {
         case SIGNIN_USER_SUCCESS: {
             return {
