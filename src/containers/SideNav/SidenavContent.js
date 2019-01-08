@@ -96,7 +96,114 @@ class SidenavContent extends Component {
                                 </NavLink>
                             </li>
                         </ul>
+                    </li>
 
+                    <li className="menu no-arrow">
+                        <a role="button" href="javascript:void(0)">
+                            <i className="zmdi zmdi-accounts-outline zmdi-hc-fw"/>
+                            <span className="nav-text">
+                            <IntlMessages id="sidebar.users"/>
+                        </span>
+                        </a>
+                    </li>
+
+                    <li className="menu no-arrow">
+                        <a role="button" href="javascript:void(0)">
+                            <i className="zmdi zmdi-account zmdi-hc-fw"/>
+                            <span className="nav-text">
+                            <IntlMessages id="sidebar.players"/>
+                        </span>
+                        </a>
+                    </li>
+
+                    <li className="menu no-arrow">
+                        <a role="button" href="javascript:void(0)">
+                            <i className="zmdi zmdi-accounts zmdi-hc-fw"/>
+                            <span className="nav-text">
+                            <IntlMessages id="sidebar.coaches"/>
+                        </span>
+                        </a>
+                    </li>
+
+                    <li className="menu no-arrow">
+                        <a role="button" href="javascript:void(0)">
+                            <i className="zmdi zmdi-male-female zmdi-hc-fw"/>
+                            <span className="nav-text">
+                            <IntlMessages id="sidebar.parents"/>
+                        </span>
+                        </a>
+                    </li>
+
+                    <li className="menu no-arrow">
+                        <a role="button" href="javascript:void(0)">
+                            <i className="zmdi zmdi-group zmdi-hc-fw"/>
+                            <span className="nav-text">
+                            <IntlMessages id="sidebar.groups"/>
+                        </span>
+                        </a>
+                    </li>
+
+                    <li className="menu no-arrow">
+                        <a role="button" href="javascript:void(0)">
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <span className="nav-text">
+                            <IntlMessages id="sidebar.events"/>
+                        </span>
+                        </a>
+                    </li>
+
+                    <li className="menu no-arrow">
+                        <a role="button" href="javascript:void(0)">
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <span className="nav-text">
+                            <IntlMessages id="sidebar.fitnessTest"/>
+                        </span>
+                        </a>
+                    </li>
+
+                    <li className="menu no-arrow">
+                        <a role="button" href="javascript:void(0)">
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <span className="nav-text">
+                            <IntlMessages id="sidebar.practiceMatches"/>
+                        </span>
+                        </a>
+                    </li>
+
+                    <li className="menu no-arrow">
+                        <a role="button" href="javascript:void(0)">
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <span className="nav-text">
+                            <IntlMessages id="sidebar.goals"/>
+                        </span>
+                        </a>
+                    </li>
+
+                    <li className="menu no-arrow">
+                        <a role="button" href="javascript:void(0)">
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <span className="nav-text">
+                            <IntlMessages id="sidebar.files"/>
+                        </span>
+                        </a>
+                    </li>
+
+                    <li className="menu no-arrow">
+                        <a role="button" href="javascript:void(0)">
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <span className="nav-text">
+                            <IntlMessages id="sidebar.pushNotifications"/>
+                        </span>
+                        </a>
+                    </li>
+
+                    <li className="menu no-arrow">
+                        <a role="button" href="javascript:void(0)">
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <span className="nav-text">
+                            <IntlMessages id="sidebar.about"/>
+                        </span>
+                        </a>
                     </li>
                 </ul>
             </CustomScrollbars>
