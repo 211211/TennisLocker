@@ -2,6 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Dropdown, DropdownMenu, DropdownToggle} from 'reactstrap';
+import classnames from 'classnames'
 
 import {COLLAPSED_DRAWER, FIXED_DRAWER, HORIZONTAL_NAVIGATION, INSIDE_THE_HEADER} from '../../constants/ActionTypes';
 import SearchBox from '../../components/SearchBox';
@@ -15,6 +16,9 @@ import UserInfo from '../../components/UserInfo';
 import Menu from "../../components/Header/Menu";
 
 import logo from "../../assets/images/TennisLockerInternalPortal/logo.svg";
+
+import SelectFilter from "../../components/SelectFilter";
+// import SelectDate from "../../components/SelectDate";
 
 class Header extends React.Component {
 
@@ -73,6 +77,21 @@ class Header extends React.Component {
         });
     }
 
+    renderSearchFacilityBox = () => {
+        return (
+            <React.Fragment>
+                <div className="header_search">
+                    <SelectFilter />
+                </div>
+                {
+                    // <div>
+                    //     <SelectDate />
+                    // </div>
+                }
+            </React.Fragment>
+        )
+    }
+
     render() {
         const {drawerType, locale, navigationStyle, horizontalNavPosition} = this.props;
         const drawerStyle = drawerType.includes(FIXED_DRAWER) ? 'd-flex d-xl-none' : drawerType.includes(COLLAPSED_DRAWER) ? 'd-flex' : 'd-none';
@@ -103,6 +122,11 @@ class Header extends React.Component {
                     <SearchBox styleName="d-none d-lg-block"
                                onChange={this.updateSearchText.bind(this)}
                                value={this.state.searchText}/>
+
+                    {
+                        this.renderSearchFacilityBox()
+                    }
+
                     {(navigationStyle === HORIZONTAL_NAVIGATION && horizontalNavPosition === INSIDE_THE_HEADER) &&
                     <Menu/>}
 
