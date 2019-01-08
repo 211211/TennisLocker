@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {userSignOut} from 'actions/Auth';
+import {userSignOut} from '../../actions/Auth';
 import IntlMessages from 'util/IntlMessages';
 
 class UserInfo extends React.Component {

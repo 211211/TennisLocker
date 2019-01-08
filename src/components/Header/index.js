@@ -2,16 +2,19 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Dropdown, DropdownMenu, DropdownToggle} from 'reactstrap';
-import {COLLAPSED_DRAWER, FIXED_DRAWER, HORIZONTAL_NAVIGATION, INSIDE_THE_HEADER} from 'constants/ActionTypes';
-import SearchBox from 'components/SearchBox';
+
+import {COLLAPSED_DRAWER, FIXED_DRAWER, HORIZONTAL_NAVIGATION, INSIDE_THE_HEADER} from '../../constants/ActionTypes';
+import SearchBox from '../../components/SearchBox';
 import MailNotification from '../MailNotification/index';
 import AppNotification from '../AppNotification/index';
-import CardHeader from 'components/dashboard/Common/CardHeader/index';
-import {switchLanguage, toggleCollapsedNav} from 'actions/Setting';
-import IntlMessages from 'util/IntlMessages';
-import LanguageSwitcher from 'components/LanguageSwitcher/index';
-import UserInfo from 'components/UserInfo';
-import Menu from "components/Header/Menu";
+import CardHeader from '../../components/dashboard/Common/CardHeader/index';
+import {switchLanguage, toggleCollapsedNav} from '../../actions/Setting';
+import IntlMessages from '../../util/IntlMessages';
+import LanguageSwitcher from '../../components/LanguageSwitcher/index';
+import UserInfo from '../../components/UserInfo';
+import Menu from "../../components/Header/Menu";
+
+import logo from "../../assets/images/TennisLockerInternalPortal/logo.svg";
 
 class Header extends React.Component {
 
@@ -86,9 +89,8 @@ class Header extends React.Component {
                                 </span>
                             </div>
                             <div className="app-logo pointer d-none d-md-block">
-                                <img className="d-none d-lg-block" alt='...' src='http://via.placeholder.com/105x36'/>
-                                <img className="d-block d-lg-none mr-3" alt='...'
-                                     src='http://via.placeholder.com/32x32'/>
+                            <img className="d-none d-lg-block" alt='logo105x36' src={logo} />
+                            <img className="d-block d-lg-none mr-3" alt='logo32x32' src={logo} />
                             </div>
                         </div>
                         :

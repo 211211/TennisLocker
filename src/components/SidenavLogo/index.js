@@ -1,6 +1,8 @@
 import React from 'react';
 import {MINI_DRAWER} from "constants/ActionTypes";
 
+import logo from '../../assets/images/TennisLockerInternalPortal/logo.svg'
+
 const SidenavLogo = ({drawerType}) => {
 
     const showMini = drawerType.includes(MINI_DRAWER);
@@ -9,9 +11,9 @@ const SidenavLogo = ({drawerType}) => {
         <div className="sidebar-header d-flex align-items-center">
             {showMini ?
                 <div className="mini-logo">
-                    <img className="mini-logo-img" alt='...' src='http://via.placeholder.com/32x32'/>
-                    <img className="mini-logo-img-hover" alt='...' src='http://via.placeholder.com/105x36'/>
-                </div> : <img alt='...' src='http://via.placeholder.com/105x36'/>
+                    <img className="mini-logo-img" alt='logo32x32' src={logo}/>
+                    <img className="mini-logo-img-hover" alt='logo105x36' src={logo}/>
+                </div> : <img alt='logo105x36' src={logo}/>
             }
         </div>
     );

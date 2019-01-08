@@ -10,7 +10,7 @@ import 'styles/app.scss';
 import 'styles/app-rtl.scss';
 import AppLocale from '../lngProvider';
 
-import MainApp from 'app/index';
+import MainApp from '../app/index';
 import SignIn from './SignIn/index';
 import {setInitUrl} from '../actions/Auth';
 import asyncComponent from "util/asyncComponent";
