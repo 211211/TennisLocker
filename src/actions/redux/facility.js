@@ -1,5 +1,5 @@
 import { GET_FACILITY_ALL } from "../../constants/ActionTypes";
-import api from "../../api/index";
+import api from "../../helpers/api/AxiosHelper";
 import AuthHelper from "../../helpers/AuthHelper";
 import config from "../../config";
 

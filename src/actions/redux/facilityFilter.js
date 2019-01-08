@@ -4,7 +4,7 @@ import {
   ADD_FACILITY_SELECT_DATE,
   ADD_SELECT_FACILITY
 } from "../../constants/ActionTypes";
-import api from "../../api/index";
+import api from "../../helpers/api/AxiosHelper";
 import AuthHelper from "../../helpers/AuthHelper";
 import helpersColor from "../../helpers/colorDashboardSelect";
 import helpersSplit from "../../helpers/dashboardSplitFilter";
