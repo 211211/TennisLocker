@@ -24,7 +24,6 @@ class UserInfo extends React.Component {
                         <IntlMessages id="popup.setting"/>
                     </a>
                     <a className="dropdown-item text-muted" href="javascript:void(0)" onClick={() => {
-                        console.log("Try to logoput");
                         this.props.userSignOut()
                     }}>
                         <i className="zmdi zmdi-sign-in zmdi-hc-fw mr-1"/>

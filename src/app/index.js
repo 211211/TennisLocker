@@ -11,10 +11,10 @@ import {
     COLLAPSED_DRAWER,
     FIXED_DRAWER,
     HORIZONTAL_NAVIGATION
-} from 'constants/ActionTypes';
+} from '../constants/ActionTypes';
 import {isIOS, isMobile} from 'react-device-detect';
 import asyncComponent from '../util/asyncComponent';
-import TopNav from 'components/TopNav';
+import TopNav from '../components/TopNav';
 
 
 class App extends React.Component {
@@ -62,4 +62,5 @@ const mapStateToProps = ({settings}) => {
     const {drawerType, navigationStyle, horizontalNavPosition} = settings;
     return {drawerType, navigationStyle, horizontalNavPosition}
 };
+
 export default withRouter(connect(mapStateToProps)(App));

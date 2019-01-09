@@ -46,14 +46,6 @@ export const HIDE_CONTACT_LOADER = 'hide_contact_loader';
 //Auth const
 export const SIGNUP_USER = 'signup_user';
 export const SIGNUP_USER_SUCCESS = 'signup_user_success';
-export const SIGNIN_GOOGLE_USER = 'signin_google_user';
-export const SIGNIN_GOOGLE_USER_SUCCESS = 'signin_google_user_success';
-export const SIGNIN_FACEBOOK_USER = 'signin_facebook_user';
-export const SIGNIN_FACEBOOK_USER_SUCCESS = 'signin_facebook_user_success';
-export const SIGNIN_TWITTER_USER = 'signin_twitter_user';
-export const SIGNIN_TWITTER_USER_SUCCESS = 'signin_twitter_user_success';
-export const SIGNIN_GITHUB_USER = 'signin_github_user';
-export const SIGNIN_GITHUB_USER_SUCCESS = 'signin_github_user_SUCCESS';
 export const SIGNIN_USER = 'signin_user';
 export const SIGNIN_USER_SUCCESS = 'signin_user_success';
 export const SIGNOUT_USER = 'signout_user';
@@ -137,6 +129,12 @@ export const SET_CURRENT_TODO_NULL = 'set_current_todo_null';
 export const REMOVE_LABEL = 'remove_label';
 export const UPDATE_SEARCH = 'update_search';
 
+export const GET_FACILITIES = "GET_FACILITIES";
+export const GET_FACILITIES_SUCCESS = "GET_FACILITIES_SUCCESS";
+export const GET_FACILITIES_SELECT_DATE = "GET_FACILITIES_SELECT_DATE";
+export const GET_FACILITIES_SELECT_DATE_SUCCESS = "GET_FACILITIES_SELECT_DATE_SUCCESS";
+export const ADD_FACILITIES_SELECT_DATE = "ADD_FACILITIES_SELECT_DATE";
+export const ADD_FACILITIES_SELECT_DATE_SUCCESS = "ADD_FACILITIES_SELECT_DATE_SUCCESS";
 
 // REACT BOILERPLATE - TENNIS LOCKER INTERNAL PORTAL
 export const LOGINING = "LOGINING";

@@ -21,7 +21,6 @@ class MailDetail extends React.Component {
 
     render() {
         const {mail, onStartSelect, onImportantSelect, width} = this.props;
-        console.log(width);
         const {open} = this.state;
         const options = [
             'Reply',

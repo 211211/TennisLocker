@@ -32,7 +32,6 @@ class App extends React.Component {
   };
 
   toggleMenuShow = (ctx, isHide) => {
-    console.log("isHide", isHide);
     if (isHide) {
       this.setState({ isMenuShow: false });
     } else {

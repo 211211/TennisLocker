@@ -10,7 +10,6 @@ axios.interceptors.request.use(
       // if (helpers.isTokenExpired() && !pending) {
       //   const res = getNewToken(ref_token);
       //   pending = true;
-      //   console.log("222", res[1]);
       // }
       newConfig.headers.Authorization = `Bearer ${localStorage
         .getItem("access_token")
@@ -27,7 +26,6 @@ axios.interceptors.request.use(
 //     return response;
 //   },
 //   function(error) {
-//     console.log(error);
 //     const originalRequest = error.config;
 //     if (error.code !== "ECONNABORTED" && error.response.status === 401) {
 //       if (!originalRequest._retry) {
@@ -46,7 +44,6 @@ axios.interceptors.request.use(
 //       } else {
 //         localStorage.removeItem("access_token");
 //         localStorage.removeItem("refresh_token");
-//         console.log("go to login!!");
 //       }
 //     }
 //     return Promise.reject(error);

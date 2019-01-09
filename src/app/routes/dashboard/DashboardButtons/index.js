@@ -38,7 +38,6 @@ class DashboardButtons extends React.Component {
   }
 
   activeButtons = (item, flag) => {
-    console.log("item", item);
     let newArrayActive = [];
     if (flag) {
       this.facilityButtonsActive.push(item);
@@ -48,7 +47,6 @@ class DashboardButtons extends React.Component {
       });
       this.facilityButtonsActive = newArrayActive;
     }
-    // console.log("activeFacilityArray", this.facilityButtonsActive);
     // this.props.activeFacilityArray(this.facilityButtonsActive);
   };
   render() {
@@ -58,7 +56,6 @@ class DashboardButtons extends React.Component {
     // }
 
     const buttons = this.props.facilityBtn;
-    console.log('buttons', buttons)
     let arrButtons = [];
     let topArrButtons = [];
     if (buttons.length > 0) {

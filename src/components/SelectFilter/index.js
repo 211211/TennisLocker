@@ -4,18 +4,8 @@ import { connect } from "react-redux";
 import "./selectFilter.scss";
 import SVG from "react-inlinesvg";
 import searchIcon from "../../assets/images/TennisLockerInternalPortal/seacrch.svg";
-import { addSelectFacility } from "../../actions/redux/facilityFilter";
-import { getFacilityAll } from "../../actions/redux/facility";
-
-const mapStateToProps = ({ facilityFilter, facility }) => ({
-  facilityFilter,
-  facility
-});
-
-const mapDispatchToProps = dispatch => ({
-  addSelectFacility: (id, active) => dispatch(addSelectFacility(id, active)),
-  getFacilityAll: () => dispatch(getFacilityAll())
-});
+// import { addSelectFacility } from "../../actions/redux/facilityFilter";
+import { getFacilities } from "../../actions/Facility";
 
 const colourStyles = {
   control: styles => ({ ...styles, backgroundColor: "white" }),
@@ -72,43 +62,47 @@ class SelectFilter extends React.Component {
       selectedOption: null,
       facilityActive: {}
     };
-    this.convertFasility = [];
-    this.hashMapFasility = {};
+    this.convertFacility = [];
+    this.hashMapFacility = {};
   }
+
   componentDidMount() {
-    this.props.getFacilityAll();
+    this.props.getFacilities();
   }
-  filterFasilityAll = fasility => {
+
+  filterFacilityAll = facility => {
     if (Object.keys(this.state.facilityActive).length === 0) {
-      const convertFasilitys = [];
-      const hashMapFasilitys = {};
-      fasility.forEach(item => {
+      const convertFacilitys = [];
+      const hashMapFacilitys = {};
+      facility.forEach(item => {
         const convertEvent = {
           value: item.facilityName,
           id: item.facilityId,
           label: item.facilityName
         };
-        convertFasilitys.push(convertEvent);
-        hashMapFasilitys[item.facilityId] = item;
+        convertFacilitys.push(convertEvent);
+        hashMapFacilitys[item.facilityId] = item;
       });
-      this.convertFasility = convertFasilitys;
-      this.hashMapFasility = hashMapFasilitys;
+      this.convertFacility = convertFacilitys;
+      this.hashMapFacility = hashMapFacilitys;
     }
   };
+
   handleChangeSelect = selectedOption => {
-    this.props.addSelectFacility(
-      selectedOption.id,
-      this.hashMapFasility[selectedOption.id]
-    );
+    // this.props.addSelectFacility(
+    //   selectedOption.id,
+    //   this.hashMapFacility[selectedOption.id]
+    // );
     this.setState({
       selectedOption,
-      facilityActive: this.hashMapFasility[selectedOption.id]
+      facilityActive: this.hashMapFacility[selectedOption.id]
     });
   };
+
   render() {
-    if (this.props.facility.facilityArr.length > 0) {
-      this.filterFasilityAll(this.props.facility.facilityArr);
-    }
+    // if (this.props.facilities.facilityArr.length > 0) {
+    //   this.filterFacilityAll(this.props.facilities.facilityArr);
+    // }
     const DropdownIndicator = props => {
       return (
         components.DropdownIndicator && (
@@ -125,11 +119,11 @@ class SelectFilter extends React.Component {
         <Select
           value={this.state.selectedOption}
           components={{ DropdownIndicator }}
-          onChange={this.handleChangeSelect}
+          // onChange={this.handleChangeSelect}
           placeholder="Type Facility Name"
           hideSelectedOptions={false}
           styles={colourStyles}
-          options={this.convertFasility}
+          options={this.convertFacility}
           classNamePrefix="my-select"
         />
       </div>
@@ -137,8 +131,12 @@ class SelectFilter extends React.Component {
   }
 }
 
-// export default SelectFilter;
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+const mapStateToProps = ({ facilities }) => ({
+  facilities
+});
+
+export default connect(mapStateToProps,
+  {
+    getFacilities,
+  }
 )(SelectFilter);

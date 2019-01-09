@@ -146,7 +146,7 @@ class AddColorButtons {
           });
           break;
         default:
-          console.log("new button need add color!!!", item);
+          return
       }
     });
     response.data = arrButtons;

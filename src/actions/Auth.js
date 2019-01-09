@@ -9,7 +9,7 @@ import {
     SIGNIN_USER_SUCCESS,
     SIGNOUT_USER,
     SIGNOUT_USER_SUCCESS,
-} from 'constants/ActionTypes';
+} from '../constants/ActionTypes';
 
 export const userSignIn = (user) => {
     return {
@@ -17,6 +17,7 @@ export const userSignIn = (user) => {
         payload: user
     };
 };
+
 export const userSignOut = () => {
     return {
         type: SIGNOUT_USER
@@ -29,6 +30,7 @@ export const userSignInSuccess = (authUser) => {
         payload: authUser
     }
 };
+
 export const userSignOutSuccess = () => {
     return {
         type: SIGNOUT_USER_SUCCESS,
@@ -60,6 +62,7 @@ export const hideMessage = () => {
         type: HIDE_MESSAGE,
     };
 };
+
 export const hideAuthLoader = () => {
     return {
         type: ON_HIDE_LOADER,
