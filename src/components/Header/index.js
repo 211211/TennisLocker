@@ -5,7 +5,7 @@ import {Dropdown, DropdownMenu, DropdownToggle} from 'reactstrap';
 import classnames from 'classnames'
 
 import {COLLAPSED_DRAWER, FIXED_DRAWER, HORIZONTAL_NAVIGATION, INSIDE_THE_HEADER} from '../../constants/ActionTypes';
-import SearchBox from '../../components/SearchBox';
+// import SearchBox from '../../components/SearchBox';
 import MailNotification from '../MailNotification/index';
 import AppNotification from '../AppNotification/index';
 import CardHeader from '../../components/dashboard/Common/CardHeader/index';
@@ -80,7 +80,7 @@ class Header extends React.Component {
     renderSearchFacilityBox = () => {
         return (
             <React.Fragment>
-                <div className="header_search">
+                <div className="header_search" style={{maxWidth: 400, minWidth: 300}}>
                     <SelectFilter />
                 </div>
                 {
@@ -119,9 +119,11 @@ class Header extends React.Component {
                         </span>
                     }
 
-                    <SearchBox styleName="d-none d-lg-block"
-                               onChange={this.updateSearchText.bind(this)}
-                               value={this.state.searchText}/>
+                    {
+                        // <SearchBox styleName="d-none d-lg-block"
+                        //        onChange={this.updateSearchText.bind(this)}
+                        //        value={this.state.searchText}/>
+                    }
 
                     {
                         this.renderSearchFacilityBox()
@@ -146,11 +148,13 @@ class Header extends React.Component {
                                     </span>
                                 </DropdownToggle>
 
-                                <DropdownMenu right className="p-0">
-                                    <SearchBox styleName="search-dropdown" placeholder=""
-                                               onChange={this.updateSearchText.bind(this)}
-                                               value={this.state.searchText}/>
-                                </DropdownMenu>
+                                {
+                                    // <DropdownMenu right className="p-0">
+                                    //     <SearchBox styleName="search-dropdown" placeholder=""
+                                    //             onChange={this.updateSearchText.bind(this)}
+                                    //             value={this.state.searchText}/>
+                                    // </DropdownMenu>
+                                }
                             </Dropdown>
                         </li>
                         <li className="list-inline-item">

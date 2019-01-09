@@ -100,9 +100,9 @@ class SelectFilter extends React.Component {
   };
 
   render() {
-    // if (this.props.facilities.facilityArr.length > 0) {
-    //   this.filterFacilityAll(this.props.facilities.facilityArr);
-    // }
+    if (this.props.facilities.facilityArr.length > 0) {
+      this.filterFacilityAll(this.props.facilities.facilityArr);
+    }
     const DropdownIndicator = props => {
       return (
         components.DropdownIndicator && (
