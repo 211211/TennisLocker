@@ -29,23 +29,26 @@ export const getFacilitiesSelectDate = () => {
   };
 };
 
-export const getFacilitiesSelectDateSuccess = (facilities) => {
+export const getFacilitiesSelectDateSuccess = (payload) => {
   return {
       type: GET_FACILITIES_SELECT_DATE_SUCCESS,
-      payload: facilities
+      payload,
   }
 };
 
-export const getFacilitiesToday = () => {
+export const userGetFacilitiesToday = (id) => {
   return {
       type: GET_FACILITIES_TODAY,
+      payload: {
+        id,
+      }
   };
 };
 
-export const getFacilitiesTodaySuccess = (facilities) => {
+export const getFacilitiesTodaySuccess = (payload) => {
   return {
       type: GET_FACILITIES_TODAY_SUCCESS,
-      payload: facilities
+      payload,
   }
 };
 
@@ -59,23 +62,23 @@ export const addSelectFacility = (id, active) => {
   }
 }
 
-export function activeFacilityArray(activeArray) {
+export function activeFacilityArray(payload) {
   return {
     type: ACTIVE_FACILITY_ARRAY,
-    activeFacilityArray: activeArray
+    payload,
   }
 }
 
-export function activeFacilityAddButtons(facilityActiveButtons) {
+export function activeFacilityAddButtons(payload) {
   return {
     type: FACILITY_ACTIVE_BUTTONS,
-    facilityActiveButtons,
+    payload,
   }
 }
 
-export function activeFacilityRemoveButtons(facilityActiveButtons) {
+export function activeFacilityRemoveButtons(payload) {
   return {
     type: FACILITY_ACTIVE_BUTTONS,
-    facilityActiveButtons,
+    payload,
   }
 }

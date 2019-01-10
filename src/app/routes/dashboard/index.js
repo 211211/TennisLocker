@@ -5,8 +5,8 @@ import DashboardButtons from "./DashboardButtons";
 import DashboardChart from "./DashboardChart";
 import { connect } from "react-redux";
 import {
-    getFacilitiesToday,
-    getFacilitiesSelectDate
+    userGetFacilitiesToday,
+    // getFacilitiesSelectDate
 } from "../../../actions/Facility";
 
 const mapStateToProps = ({ facilityFilter }) => ({
@@ -22,34 +22,35 @@ class Dashboard extends React.Component {
         const facility = this.props.facilityFilter;
         const facilityId = facility.facilityActive.id;
         const flag = facility.flagFilter;
-        const activeFacility = facility.activeDateSelect;
+        // const activeFacility = facility.activeDateSelect;
         const { facilityFilter: { flagFilter } } = this.props;
 
-        if (facilityId !== null) {
+        if (facilityId) {
             if (flag) {
                 if (facility.activeDateSelect) {
-                    this.props.getFacilitiesSelectDate(
-                        facilityId,
-                        activeFacility.startDay,
-                        activeFacility.endDay
-                    );
+                    // this.props.getFacilitiesSelectDate(
+                    //     facilityId,
+                    //     activeFacility.startDay,
+                    //     activeFacility.endDay
+                    // );
                 } else {
-                    this.props.getFacilitiesToday(facilityId);
+                    this.props.userGetFacilitiesToday(facilityId);
                 }
             }
         }
 
+        const {facilityActive, facilityDate} = facility
         return (
             <div className="dashboard">
                 {
                     <React.Fragment>
                     <div className="dashboard_blog">
                         {
-                            // <div className="dashboard_blog-buttons">
-                            //     <DashboardButtons facilityBtn={facility.facilityDate} />
-                            // </div>
+                            <div className="dashboard_blog-buttons">
+                                <DashboardButtons facilityBtn={facility.facilityDate} />
+                            </div>
                         }
-                        <DashboardInfo facilityActive={facility.facilityActive} />
+                        <DashboardInfo facilityActive={facilityActive} />
                     </div>
                     <p className="features_title chart_title">Usage comparison</p>
                     {
@@ -67,7 +68,7 @@ class Dashboard extends React.Component {
 export default connect(
     mapStateToProps,
     {
-        getFacilitiesToday: id => getFacilitiesToday(id),
-        getFacilitiesSelectDate: (id, startDay, endDay) => getFacilitiesSelectDate(id, startDay, endDay)
+        userGetFacilitiesToday: id => userGetFacilitiesToday(id),
+        // getFacilitiesSelectDate: (id, startDay, endDay) => getFacilitiesSelectDate(id, startDay, endDay)
     }
 )(Dashboard);
