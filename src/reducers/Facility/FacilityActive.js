@@ -23,4 +23,5 @@ const FacilityActive = (state = initial, action) => {
       return state;
   }
 };
+
 export default FacilityActive;

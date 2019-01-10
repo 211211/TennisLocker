@@ -41,7 +41,7 @@ class DashboardChart extends React.Component {
       }
     }, 0);
 
-    if (this.props.facilityActive.activeFacilityArray.length > 0) {
+    if (this.props.facilityActive.activeFacilityArray && this.props.facilityActive.activeFacilityArray.length > 0) {
       chartElem = this.props.facilityActive.activeFacilityArray.map(items => {
         return (
           <ColumnChart
