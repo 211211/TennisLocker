@@ -138,5 +138,6 @@ const mapStateToProps = ({ facilities }) => ({
 export default connect(mapStateToProps,
   {
     getFacilities,
+    addSelectFacility,
   }
 )(SelectFilter);

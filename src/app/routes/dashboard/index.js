@@ -42,16 +42,22 @@ class Dashboard extends React.Component {
         return (
             <div className="dashboard">
                 {
-                    //   <div className="dashboard_blog">
-                    //     <div className="dashboard_blog-buttons">
-                    //       <DashboardButtons facilityBtn={facility.facilityDate} />
-                    //     </div>
-                    //     <DashboardInfo facilityActive={facility.facilityActive} />
-                    //   </div>
-                    //   <p className="features_title chart_title">Usage comparison</p>
-                    //   <div className="dashboard_chart">
-                    //     <DashboardChart />
-                    //   </div>
+                    <React.Fragment>
+                    <div className="dashboard_blog">
+                        {
+                            // <div className="dashboard_blog-buttons">
+                            //     <DashboardButtons facilityBtn={facility.facilityDate} />
+                            // </div>
+                        }
+                        <DashboardInfo facilityActive={facility.facilityActive} />
+                    </div>
+                    <p className="features_title chart_title">Usage comparison</p>
+                    {
+                        // <div className="dashboard_chart">
+                        //     <DashboardChart />
+                        // </div>
+                    }
+                    </React.Fragment>
                 }
             </div>
         );
