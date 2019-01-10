@@ -1,20 +1,14 @@
 import React from "react";
-import { find } from "lodash"
 import "./dashboardButtons.scss";
 import FilterBtn from "./FilterBtn";
-import data from '../data' // TODO REMOVE
-// import { connect } from "react-redux";
-// import { activeFacilityArray } from "../../../../redux/action/facilityActive";
+import { connect } from "react-redux";
+import { activeFacilityArray } from "../../../../actions/Facility";
 
-// const mapStateToProps = ({ facility, facilityActive, facilityFilter }) => ({
-//   facility,
-//   facilityActive,
-//   facilityFilter
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   activeFacilityArray: arrayActive => dispatch(activeFacilityArray(arrayActive))
-// });
+const mapStateToProps = ({ facility, facilityActive, facilityFilter }) => ({
+  facility,
+  facilityActive,
+  facilityFilter
+});
 
 class DashboardButtons extends React.Component {
   constructor(props) {
@@ -29,8 +23,7 @@ class DashboardButtons extends React.Component {
       facilityFilter: { flagFilter }
     } = nextProps;
 
-    // const { facilityFilter } = this.props;
-    const {facilityFilter} = data;
+    const { facilityFilter } = this.props;
 
     if (facilityFilter.flagFilter && !flagFilter) {
       this.facilityButtonsActive = activeFacilityArray;
@@ -47,13 +40,14 @@ class DashboardButtons extends React.Component {
       });
       this.facilityButtonsActive = newArrayActive;
     }
-    // this.props.activeFacilityArray(this.facilityButtonsActive);
+    this.props.activeFacilityArray(this.facilityButtonsActive);
   };
+
   render() {
-    // this.facilityButtonsActive = [];
-    // if (this.facilityButtonsActive.length === 0) {
-    //   this.props.activeFacilityArray(this.facilityButtonsActive);
-    // }
+    this.facilityButtonsActive = [];
+    if (this.facilityButtonsActive.length === 0) {
+      this.props.activeFacilityArray(this.facilityButtonsActive);
+    }
 
     const buttons = this.props.facilityBtn;
     let arrButtons = [];
@@ -92,9 +86,10 @@ class DashboardButtons extends React.Component {
     );
   }
 }
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(DashboardButtons);
 
-export default DashboardButtons
+export default connect(
+  mapStateToProps,
+  {
+    activeFacilityArray: payload => activeFacilityArray(payload)
+  }
+)(DashboardButtons);

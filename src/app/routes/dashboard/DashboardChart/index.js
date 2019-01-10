@@ -1,15 +1,12 @@
 import React from "react";
 import "./dashboardChart.scss";
 import { connect } from "react-redux";
-// import { activeFacilityArray } from "../../../../redux/action/facilityActive";
-import data from '../data'
 import ColumnChart from "./ColumnChart";
 
-// const mapStateToProps = ({ facilityActive }) => ({
-//   facilityActive
-// });y
+const mapStateToProps = ({ facilityActive }) => ({
+  facilityActive
+});
 
-// const mapDispatchToProps = dispatch => null;
 class DashboardChart extends React.Component {
   constructor(props) {
     super(props);
@@ -43,8 +40,9 @@ class DashboardChart extends React.Component {
         }
       }
     }, 0);
-    if (data.facilityActive.activeFacilityArray.length > 0) {   // TODO: this.props.facilityActive
-      chartElem = data.facilityActive.activeFacilityArray.map(items => { // TODO: this.props.facilityActive
+
+    if (this.props.facilityActive.activeFacilityArray.length > 0) {
+      chartElem = this.props.facilityActive.activeFacilityArray.map(items => {
         return (
           <ColumnChart
             widthColumn={this.state.widthColumn}
@@ -60,11 +58,11 @@ class DashboardChart extends React.Component {
         </div>
       );
     }
+
     return <div className="chart_dashboard">{chartElem}</div>;
   }
 }
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(DashboardChart);
-export default DashboardChart
+
+export default connect(
+  mapStateToProps,
+)(DashboardChart);

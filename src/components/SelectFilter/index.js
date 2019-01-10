@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import "./selectFilter.scss";
 import SVG from "react-inlinesvg";
 import searchIcon from "../../assets/images/TennisLockerInternalPortal/seacrch.svg";
-// import { addSelectFacility } from "../../actions/redux/facilityFilter";
-import { getFacilities } from "../../actions/Facility";
+import { getFacilities, addSelectFacility } from "../../actions/Facility";
 
 const colourStyles = {
   control: styles => ({ ...styles, backgroundColor: "white" }),
@@ -89,10 +88,11 @@ class SelectFilter extends React.Component {
   };
 
   handleChangeSelect = selectedOption => {
-    // this.props.addSelectFacility(
-    //   selectedOption.id,
-    //   this.hashMapFacility[selectedOption.id]
-    // );
+    this.props.addSelectFacility(
+      selectedOption.id,
+      this.hashMapFacility[selectedOption.id]
+    );
+
     this.setState({
       selectedOption,
       facilityActive: this.hashMapFacility[selectedOption.id]
@@ -119,7 +119,7 @@ class SelectFilter extends React.Component {
         <Select
           value={this.state.selectedOption}
           components={{ DropdownIndicator }}
-          // onChange={this.handleChangeSelect}
+          onChange={this.handleChangeSelect}
           placeholder="Type Facility Name"
           hideSelectedOptions={false}
           styles={colourStyles}

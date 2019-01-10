@@ -5,6 +5,9 @@ GET_FACILITIES_SELECT_DATE,
 GET_FACILITIES_SELECT_DATE_SUCCESS,
 GET_FACILITIES_TODAY,
 GET_FACILITIES_TODAY_SUCCESS,
+ADD_SELECT_FACILITY,
+ACTIVE_FACILITY_ARRAY,
+FACILITY_ACTIVE_BUTTONS,
 } from '../constants/ActionTypes';
 
 export const getFacilities = () => {
@@ -45,3 +48,34 @@ export const getFacilitiesTodaySuccess = (facilities) => {
       payload: facilities
   }
 };
+
+export const addSelectFacility = (id, active) => {
+  const selectDate = { id, active };
+
+  return {
+    type: ADD_SELECT_FACILITY,
+    activeDateSelect: selectDate,
+    flagFilter: true
+  }
+}
+
+export function activeFacilityArray(activeArray) {
+  return {
+    type: ACTIVE_FACILITY_ARRAY,
+    activeFacilityArray: activeArray
+  }
+}
+
+export function activeFacilityAddButtons(facilityActiveButtons) {
+  return {
+    type: FACILITY_ACTIVE_BUTTONS,
+    facilityActiveButtons,
+  }
+}
+
+export function activeFacilityRemoveButtons(facilityActiveButtons) {
+  return {
+    type: FACILITY_ACTIVE_BUTTONS,
+    facilityActiveButtons,
+  }
+}

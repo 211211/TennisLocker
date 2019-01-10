@@ -4,21 +4,15 @@ import DashboardInfo from "./DashboardInfo";
 import DashboardButtons from "./DashboardButtons";
 import DashboardChart from "./DashboardChart";
 import data from './data'
-// import { connect } from "react-redux";
-// import {
-//   getFacilityToday,
-//   getFacilitySelectDate
-// } fro../../../redux/action/facilityFilterlter";
+import { connect } from "react-redux";
+import {
+  getFacilitiesToday,
+  getFacilitiesSelectDate
+} from "../../../actions/Facility";
 
-// const mapStateToProps = ({ facilityFilter }) => ({
-//   facilityFilter
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   getFacilityToday: id => dispatch(getFacilityToday(id)),
-//   getFacilitySelectDate: (id, startDay, endDay) =>
-//     dispatch(getFacilitySelectDate(id, startDay, endDay))
-// });
+const mapStateToProps = ({ facilityFilter }) => ({
+  facilityFilter
+});
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -26,31 +20,25 @@ class Dashboard extends React.Component {
     this.state = {};
   }
   render() {
-    // const facility = this.props.facilityFilter;  // TODO
-    const facility = data.facilityFilter;
+    const facility = this.props.facilityFilter;
     const facilityId = facility.facilityActive.id;
     const flag = facility.flagFilter;
     const activeFacility = facility.activeDateSelect;
-    // const {
-    //   facilityFilter: { flagFilter } // TODO
-    // } = this.props;
-    const {
-      facilityFilter: { flagFilter }
-    } = data;
+    const { facilityFilter: { flagFilter } } = this.props;
 
-    // if (facilityId !== null) { // TODO
-    //   if (flag) {
-    //     if (facility.activeDateSelect) {
-    //       this.props.getFacilitySelectDate(
-    //         facilityId,
-    //         activeFacility.startDay,
-    //         activeFacility.endDay
-    //       );
-    //     } else {
-    //       this.props.getFacilityToday(facilityId);
-    //     }
-    //   }
-    // }
+    if (facilityId !== null) {
+      if (flag) {
+        if (facility.activeDateSelect) {
+          this.props.getFacilitiesSelectDate(
+            facilityId,
+            activeFacility.startDay,
+            activeFacility.endDay
+          );
+        } else {
+          this.props.getFacilitiesToday(facilityId);
+        }
+      }
+    }
 
     return (
       <div className="dashboard">
@@ -68,9 +56,11 @@ class Dashboard extends React.Component {
     );
   }
 }
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(Dashboard);
 
-export default Dashboard
+export default connect(
+  mapStateToProps,
+  {
+    getFacilitiesToday: id => getFacilitiesToday(id),
+    getFacilitiesSelectDate: (id, startDay, endDay) => getFacilitiesSelectDate(id, startDay, endDay)
+  }
+)(Dashboard);

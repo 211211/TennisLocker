@@ -2,22 +2,15 @@ import React from "react";
 import "./dashboardButtons.scss";
 import checkImg from "../../../../assets/images/TennisLockerInternalPortal/chech.svg";
 import NumberFormat from "react-number-format";
-// import {
-//   activeFacilityAddButtons,
-//   activeFacilityRemoveButtons
-// } from "../../../../redux/action/facilityActiveButtons";
-// import { connect } from "react-redux";
+import {
+  activeFacilityAddButtons,
+  activeFacilityRemoveButtons
+} from "../../../../actions/Facility";
+import { connect } from "react-redux";
 
-// const mapStateToProps = ({ facilityActiveButton }) => ({
-//   facilityActiveButton
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   activeFacilityAddButtons: btnObj =>
-//     dispatch(activeFacilityAddButtons(btnObj)),
-//   activeFacilityRemoveButtons: btnObj =>
-//     dispatch(activeFacilityRemoveButtons(btnObj))
-// });
+const mapStateToProps = ({ facilityActiveButton }) => ({
+  facilityActiveButton
+});
 
 class FilterBtn extends React.Component {
   constructor(props) {
@@ -26,12 +19,14 @@ class FilterBtn extends React.Component {
       isClick: this.props.item.activeFlag
     };
   }
+
   static getDerivedStateFromProps(props, state) {
     if (props.facilityButtonsActive.length === 0) {
       state.isClick = false;
     }
     return state;
   }
+
   toggleButtons = () => {
     this.props.activeButtons(this.props.item, !this.state.isClick);
     this.setState({ isClick: !this.state.isClick });
@@ -47,6 +42,7 @@ class FilterBtn extends React.Component {
       });
     }
   };
+
   render() {
     const { color, name, count } = this.props.item;
     return (
@@ -75,9 +71,10 @@ class FilterBtn extends React.Component {
   }
 }
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(FilterBtn);
-
-export default FilterBtn
+export default connect(
+  mapStateToProps,
+  {
+    activeFacilityAddButtons: payload => activeFacilityAddButtons(payload),
+    activeFacilityRemoveButtons: payload => activeFacilityRemoveButtons(payload),
+  }
+)(FilterBtn);
