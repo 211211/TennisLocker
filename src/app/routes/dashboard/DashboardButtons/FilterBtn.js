@@ -27,19 +27,40 @@ class FilterBtn extends React.Component {
     return state;
   }
 
+  addActiveFacilityButton = ({name = '', flag = false}) => {
+    if (name === '') {
+      return
+    }
+
+    let activeBtns = this.props.facilityActiveButton.facilityActiveButtons;
+    if (flag) {
+      activeBtns.push(name);
+    }
+
+    this.props.activeFacilityAddButtons(activeBtns);
+  }
+
+  removeActiveFacilityButton = ({name = '', flag = false}) => {
+    if (name === '') {
+      return
+    }
+
+    let activeBtns = this.props.facilityActiveButton.facilityActiveButtons.filter(btn => btn !== name);
+    this.props.activeFacilityRemoveButtons(activeBtns);
+  }
+
   toggleButtons = () => {
     this.props.activeButtons(this.props.item, !this.state.isClick);
     this.setState({ isClick: !this.state.isClick });
+    const activeButton = {
+      name: this.props.item.name,
+      flag: !this.state.isClick
+    }
+
     if (!this.state.isClick) {
-      this.props.activeFacilityAddButtons({
-        name: this.props.item.name,
-        flag: !this.state.isClick
-      });
+      this.addActiveFacilityButton(activeButton)
     } else {
-      this.props.activeFacilityRemoveButtons({
-        name: this.props.item.name,
-        flag: !this.state.isClick
-      });
+      this.removeActiveFacilityButton(activeButton)
     }
   };
 

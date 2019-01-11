@@ -14,16 +14,21 @@ class DashboardChart extends React.Component {
       widthColumn: null
     };
   }
+
   resize = () => this.forceUpdate();
+
   componentDidMount() {
     window.addEventListener("resize", this.resize);
   }
+
   componentWillUnmount() {
     window.removeEventListener("resize", this.resize);
   }
+
   changeWidth = widthColumn => {
     this.setState({ widthColumn });
   };
+
   render() {
     let chartElem = "";
     setTimeout(() => {

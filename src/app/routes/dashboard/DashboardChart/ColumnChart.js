@@ -1,6 +1,5 @@
 import React from "react";
 import "./dashboardChart.scss";
-// import NumberFormat from "react-number-format";
 import chroma from "chroma-js";
 
 class ColumnChart extends React.Component {
@@ -10,11 +9,13 @@ class ColumnChart extends React.Component {
       didMount: false
     };
   }
+
   componentDidMount() {
     setTimeout(() => {
       this.setState({ didMount: true });
     }, 0);
   }
+
   render() {
     const newWidth = this.props.widthColumn ? "changeWidth" : "";
     let widthNym = "";
@@ -70,4 +71,5 @@ class ColumnChart extends React.Component {
     );
   }
 }
+
 export default ColumnChart;

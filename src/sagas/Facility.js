@@ -56,7 +56,7 @@ function* getAllFacilitiesToday({ payload }) {
     try {
         const { id } = payload;
         const activeButtons = yield select(selectorFacilityActiveButtons);
-        const response = yield call(getAllFacilitiesTodayRequest, id);
+        const response = yield call(getAllFacilitiesTodayRequest, id, activeButtons);
         if (response.error) {
             yield put(showAuthMessage(response.error_description));
         } else {

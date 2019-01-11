@@ -93,13 +93,13 @@ class DashboardButtons extends React.Component {
             <React.Fragment>
                 <div className="dashboard_top_block">
                     {
-                        [...this.buildTopArrayButtons(this.props.facilityBtn)]
+                        [...this.buildTopArrayButtons()]
                     }
                 </div>
                 <p className="features_title">Features</p>
                 <div className="dashboard_bottom_block">
                     {
-                        [...this.buildBottomArrayButtons(this.props.facilityBtn)]
+                        [...this.buildBottomArrayButtons()]
                     }
                 </div>
             </React.Fragment>
