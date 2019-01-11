@@ -23,9 +23,14 @@ export const getFacilitiesSuccess = (facilities) => {
   }
 };
 
-export const getFacilitiesSelectDate = () => {
+export const userGetFacilitiesSelectDate = (id, startDate, endDate) => {
   return {
       type: GET_FACILITIES_SELECT_DATE,
+      payload: {
+        id,
+        startDate,
+        endDate,
+      }
   };
 };
 

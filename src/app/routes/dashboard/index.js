@@ -6,7 +6,7 @@ import DashboardChart from "./DashboardChart";
 import { connect } from "react-redux";
 import {
     userGetFacilitiesToday,
-    // getFacilitiesSelectDate
+    userGetFacilitiesSelectDate
 } from "../../../actions/Facility";
 
 const mapStateToProps = ({ facilityFilter }) => ({
@@ -28,11 +28,11 @@ class Dashboard extends React.Component {
         if (facilityId) {
             if (flag) {
                 if (facility.activeDateSelect) {
-                    // this.props.getFacilitiesSelectDate(
-                    //     facilityId,
-                    //     activeFacility.startDay,
-                    //     activeFacility.endDay
-                    // );
+                    this.props.userGetFacilitiesSelectDate(
+                        facilityId,
+                        activeFacility.startDay,
+                        activeFacility.endDay
+                    );
                 } else {
                     this.props.userGetFacilitiesToday(facilityId);
                 }
@@ -61,6 +61,6 @@ export default connect(
     mapStateToProps,
     {
         userGetFacilitiesToday: id => userGetFacilitiesToday(id),
-        // getFacilitiesSelectDate: (id, startDay, endDay) => getFacilitiesSelectDate(id, startDay, endDay)
+        userGetFacilitiesSelectDate: (id, startDay, endDay) => userGetFacilitiesSelectDate(id, startDay, endDay)
     }
 )(Dashboard);
