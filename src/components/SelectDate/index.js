@@ -8,6 +8,7 @@ import calendarIcon from "../../assets/images/TennisLockerInternalPortal/calenda
 // import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import moment from "moment";
+console.log('moment: ', moment())
 import { addFacilitySelectDate } from "../../actions/Facility";
 
 const mapStateToProps = ({ facilityFilter }) => ({
@@ -142,10 +143,9 @@ class SelectDate extends React.Component {
         this.setState({ startDate, endDate });
     };
     addFilterDate = () => {
-        this.props.addFacilitySelectDate(
-            this.state.startDate.format("MM-DD-YYYY"),
-            this.state.endDate.format("MM-DD-YYYY")
-        );
+        const {startDate, endDate} = this.state
+        let selectDateObj = this.buildFacilitySelectDateObject(startDate.format("MM-DD-YYYY"), endDate.format("MM-DD-YYYY"))
+        this.props.addFacilitySelectDate(selectDateObj);
     };
 
     handleChangeStart = startDate => this.handleChange({ startDate });
@@ -154,7 +154,7 @@ class SelectDate extends React.Component {
 
     render() {
         const { facilityFilter: { facilityActive } } = this.props
-
+        const {startDate, endDate} = this.state
         const DropdownIndicator = props => {
             return (
                 components.DropdownIndicator && (
@@ -186,12 +186,12 @@ class SelectDate extends React.Component {
                     <div className="datePicker_block-start">
                         <div className="datePicker_block-start-custom">
                             <DatePicker
-                                selected={this.state.startDate}
+                                selected={startDate}
                                 selectsStart
                                 dateFormat="MMM Do, YYYY"
                                 className="datePicker_block-start-custom-input"
-                                startDate={this.state.startDate}
-                                endDate={this.state.endDate}
+                                startDate={startDate}
+                                endDate={endDate}
                                 maxDate={moment()}
                                 onChange={this.handleChangeStart}
                             />
@@ -203,13 +203,13 @@ class SelectDate extends React.Component {
                         </div>
                         <div className="datePicker_block-start-custom">
                             <DatePicker
-                                selected={this.state.endDate}
+                                selected={endDate}
                                 selectsEnd
                                 maxDate={moment()}
                                 dateFormat="MMM Do, YYYY"
                                 className="datePicker_block-end-custom-input"
-                                startDate={this.state.startDate}
-                                endDate={this.state.endDate}
+                                startDate={startDate}
+                                endDate={endDate}
                                 onChange={this.handleChangeEnd}
                             />
                             <img
