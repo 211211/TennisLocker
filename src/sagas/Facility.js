@@ -16,6 +16,8 @@ import ColorHelper from "../helpers/colorDashboardSelect";
 import DashboardSplitFilter from "../helpers/dashboardSplitFilter";
 import config from "../config";
 
+export const selectorFacilityActiveButtons = ({ facilityActiveButton }) => facilityActiveButton.facilityActiveButtons;
+
 const getAllFacilitiesRequest = async () => {
     return await AxiosHelper.get(`${config.baseUrl}/facility/all`)
         .then(AuthHelper.checkStatus)
@@ -55,8 +57,6 @@ const getAllFacilitiesTodayRequest = async (id, activeButtons = []) => {
         .catch(error => error);
 };
 
-export const selectorFacilityActiveButtons = ({ facilityActiveButton }) => facilityActiveButton.facilityActiveButtons;
-
 function* getAllFacilitiesToday({ payload }) {
     try {
         const { id } = payload;
@@ -72,29 +72,28 @@ function* getAllFacilitiesToday({ payload }) {
     }
 }
 
-const getAllFacilitiesSelectDateRequest = async (id, startDate, endDate) => {
-    return await AxiosHelper.get(
-        `${config.baseUrl}/analytics/metrics/facility/${id}/${startDate}/${endDate}`
-            .then(AuthHelper.checkStatus)
-            .then(ColorHelper.colorButtons)
-            .then(DashboardSplitFilter.split)
-            .then(DashboardSplitFilter.filterAll)
-            .then(response => response.data)
-            .catch(error => error)
-    )
+const getAllFacilitiesSelectDateRequest = async (payload) => {
+    const { id, startDay, endDay } = payload
+    const url = `${config.baseUrl}/analytics/metricsByDate/facility/${id}/${startDay}/${endDay}`
+    return await AxiosHelper
+        .get(url)
+        .then(AuthHelper.checkStatus)
+        .then(ColorHelper.colorButtons)
+        .then(DashboardSplitFilter.split)
+        .then(DashboardSplitFilter.filterAll)
+        .then(response => response.data)
+        .catch(error => error);
 };
 
 function* getAllFacilitiesSelectDate({ payload }) {
     try {
-        const { id, startDate, endDate } = payload;
         const activeButtons = yield select(selectorFacilityActiveButtons);
+        let response = yield call(getAllFacilitiesSelectDateRequest, payload);
         const activeFacilityArray = []
-        let response = yield call(getAllFacilitiesSelectDateRequest, id, startDate, endDate);
-
         if (response.error) {
             yield put(showAuthMessage(response.error_description));
         } else {
-            response = response.map(btn => {
+            response.map(btn => {
                 if (activeButtons.indexOf(btn.name) !== -1) {
                     btn.activeFlag = true;
                     activeFacilityArray.push(btn);
@@ -102,7 +101,6 @@ function* getAllFacilitiesSelectDate({ payload }) {
                     btn.activeFlag = false;
                 }
             });
-
             yield put(getFacilitiesSelectDateSuccess({
                 facilityDate: response,
                 flagFilter: false,

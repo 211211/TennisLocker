@@ -8,6 +8,7 @@ GET_FACILITIES_TODAY_SUCCESS,
 ADD_SELECT_FACILITY,
 ACTIVE_FACILITY_ARRAY,
 FACILITY_ACTIVE_BUTTONS,
+ADD_FACILITY_SELECT_DATE,
 } from '../constants/ActionTypes';
 
 export const getFacilities = () => {
@@ -23,13 +24,13 @@ export const getFacilitiesSuccess = (facilities) => {
   }
 };
 
-export const userGetFacilitiesSelectDate = (id, startDate, endDate) => {
+export const userGetFacilitiesSelectDate = (id, startDay, endDay) => {
   return {
       type: GET_FACILITIES_SELECT_DATE,
       payload: {
         id,
-        startDate,
-        endDate,
+        startDay,
+        endDay,
       }
   };
 };
@@ -86,4 +87,14 @@ export function activeFacilityRemoveButtons(payload) {
     type: FACILITY_ACTIVE_BUTTONS,
     payload,
   }
+}
+
+export function addFacilitySelectDate(activeDateSelect) {
+  return {
+    type: ADD_FACILITY_SELECT_DATE,
+    payload: {
+      activeDateSelect: activeDateSelect,
+      flagFilter: true
+    }
+  };
 }

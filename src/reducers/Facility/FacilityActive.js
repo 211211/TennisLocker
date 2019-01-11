@@ -17,7 +17,7 @@ const FacilityActive = (state = initial, action) => {
     case GET_FACILITIES_SELECT_DATE_SUCCESS:
       return {
         ...state,
-        activeFacilityArray: action.activeFacilityArray
+        activeFacilityArray: action.payload.activeFacilityArray
       };
     default:
       return state;

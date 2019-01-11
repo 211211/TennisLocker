@@ -18,7 +18,7 @@ import Menu from "../../components/Header/Menu";
 import logo from "../../assets/images/TennisLockerInternalPortal/logo.svg";
 
 import SelectFilter from "../../components/SelectFilter";
-// import SelectDate from "../../components/SelectDate";
+import SelectDate from "../../components/SelectDate";
 
 class Header extends React.Component {
 
@@ -83,11 +83,9 @@ class Header extends React.Component {
                 <div className="header_search" style={{maxWidth: 400, minWidth: 300}}>
                     <SelectFilter />
                 </div>
-                {
-                    // <div>
-                    //     <SelectDate />
-                    // </div>
-                }
+                <div>
+                    <SelectDate />
+                </div>
             </React.Fragment>
         )
     }

@@ -22,7 +22,7 @@ class Dashboard extends React.Component {
         const facility = this.props.facilityFilter;
         const facilityId = facility.facilityActive.id;
         const flag = facility.flagFilter;
-        // const activeFacility = facility.activeDateSelect;
+        const activeFacility = facility.activeDateSelect;
         const { facilityFilter: { flagFilter } } = this.props;
 
         if (facilityId) {
