@@ -1,5 +1,6 @@
 import React from "react";
 import "./dashboardButtons.scss";
+import isEqual from 'lodash/isEqual'
 import FilterBtn from "./FilterBtn";
 import { connect } from "react-redux";
 import { activeFacilityArray } from "../../../../actions/Facility";
@@ -18,15 +19,8 @@ class DashboardButtons extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const {
-            facilityActive: { activeFacilityArray },
-            facilityFilter: { flagFilter }
-        } = nextProps;
-
-        const { facilityFilter } = this.props;
-
-        if (facilityFilter.flagFilter && !flagFilter) {
-            this.facilityButtonsActive = activeFacilityArray;
+        if (isEqual(this.props.facilityFilter.flagFilter, nextProps.facilityFilter.flagFilter)) {
+            this.facilityButtonsActive = nextProps.facilityActive.activeFacilityArray;
         }
     }
 
@@ -38,8 +32,10 @@ class DashboardButtons extends React.Component {
             newArrayActive = this.facilityButtonsActive.filter(btn => {
                 return btn.name !== item.name;
             });
+
             this.facilityButtonsActive = newArrayActive;
         }
+
         this.props.activeFacilityArray(this.facilityButtonsActive);
     };
 
@@ -84,11 +80,6 @@ class DashboardButtons extends React.Component {
     };
 
     render() {
-        this.facilityButtonsActive = [];
-        if (this.facilityButtonsActive.length === 0) {
-            this.props.activeFacilityArray(this.facilityButtonsActive);
-        }
-
         return (
             <React.Fragment>
                 <div className="dashboard_top_block">

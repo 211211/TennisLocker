@@ -9,16 +9,16 @@ const initial = {
 
 const FacilityActive = (state = initial, action) => {
   switch (action.type) {
-    // case ACTIVE_FACILITY_ARRAY:
-    //   return {
-    //     ...state,
-    //     activeFacilityArray: action.payload
-    //   };
-    // case GET_FACILITIES_SELECT_DATE_SUCCESS:
-    //   return {
-    //     ...state,
-    //     activeFacilityArray: action.payload
-    //   };
+    case ACTIVE_FACILITY_ARRAY:
+      return {
+        ...state,
+        activeFacilityArray: action.payload
+      };
+    case GET_FACILITIES_SELECT_DATE_SUCCESS:
+      return {
+        ...state,
+        activeFacilityArray: action.payload
+      };
     default:
       return state;
   }
