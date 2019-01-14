@@ -35,8 +35,8 @@ class SignIn extends React.Component {
             }, 100);
         }
 
-        const {authUser, history} = this.props
-        if (authUser && authUser.access_token) {
+        const {history} = this.props
+        if (localStorage.getItem('access_token')) {
             history.push("/");
         }
     }
@@ -181,8 +181,8 @@ class SignIn extends React.Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-    const { loader, alertMessage, showMessage, authUser } = auth;
-    return { loader, alertMessage, showMessage, authUser };
+    const { loader, alertMessage, showMessage } = auth;
+    return { loader, alertMessage, showMessage };
 };
 
 export default connect(

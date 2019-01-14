@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {IntlProvider} from 'react-intl'
 import 'react-big-calendar/lib/less/styles.less';
 import "react-toggle-switch/dist/css/switch.min.css";
-import 'react-notifications/lib/notifications.css';
 import 'rc-drawer/assets/index.css';
 import 'styles/bootstrap.scss'
 import 'styles/app.scss';
@@ -19,7 +18,7 @@ import asyncComponent from "util/asyncComponent";
 const RestrictedRoute = ({ component: Component, ...rest, authUser }) =>
     <Route
         {...rest}
-        render={props => authUser && authUser.access_token && authUser.token_type === 'bearer'
+        render={props => authUser
             ? <Component {...props} />
             : <Redirect
                 to={{
@@ -28,7 +27,6 @@ const RestrictedRoute = ({ component: Component, ...rest, authUser }) =>
                 }}
             />}
     />;
-
 
 class App extends Component {
 
@@ -39,9 +37,10 @@ class App extends Component {
     }
 
     render() {
-        const {match, location, locale, authUser, initURL, isDirectionRTL} = this.props;
+        const {match, location, locale, initURL, isDirectionRTL} = this.props;
+        let authUser = localStorage.getItem('access_token')
         if (location.pathname === '/') {
-            if(!authUser || !authUser.access_token) {
+            if(!authUser || typeof authUser !== 'string') {
                 return ( <Redirect to={'/signin'}/> );
             }
 
@@ -77,8 +76,8 @@ class App extends Component {
 
 const mapStateToProps = ({settings, auth}) => {
     const {locale, isDirectionRTL} = settings;
-    const {authUser, initURL} = auth;
-    return {locale, isDirectionRTL, authUser, initURL}
+    const {initURL} = auth;
+    return {locale, isDirectionRTL, initURL}
 };
 
 export default connect(mapStateToProps, {setInitUrl})(App);

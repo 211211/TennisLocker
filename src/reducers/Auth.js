@@ -13,7 +13,7 @@ const INIT_STATE = {
     alertMessage: '',
     showMessage: false,
     initURL: '',
-    authUser: {},
+    authUser: localStorage.getItem('access_token'),
 };
 
 
@@ -23,7 +23,7 @@ export default (state = INIT_STATE, action) => {
             return {
                 ...state,
                 loader: false,
-                authUser: action.payload
+                authUser: action.payload.access_token
             }
         }
         case INIT_URL: {
