@@ -13,7 +13,7 @@ const INIT_STATE = {
     alertMessage: '',
     showMessage: false,
     initURL: '',
-    authUser: localStorage.getItem ('access_token'),
+    authUser: {},
 };
 
 

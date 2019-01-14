@@ -24,10 +24,10 @@ export const userSignOut = () => {
     };
 };
 
-export const userSignInSuccess = (authUser) => {
+export const userSignInSuccess = (payload) => {
     return {
         type: SIGNIN_USER_SUCCESS,
-        payload: authUser
+        payload,
     }
 };
 

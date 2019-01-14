@@ -8,7 +8,6 @@ import calendarIcon from "../../assets/images/TennisLockerInternalPortal/calenda
 // import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import moment from "moment";
-console.log('moment: ', moment())
 import { addFacilitySelectDate } from "../../actions/Facility";
 
 const mapStateToProps = ({ facilityFilter }) => ({

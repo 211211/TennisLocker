@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {IntlProvider} from 'react-intl'
 import 'react-big-calendar/lib/less/styles.less';
 import "react-toggle-switch/dist/css/switch.min.css";
+import 'react-notifications/lib/notifications.css';
 import 'rc-drawer/assets/index.css';
 import 'styles/bootstrap.scss'
 import 'styles/app.scss';
@@ -15,18 +16,17 @@ import SignIn from './SignIn/index';
 import {setInitUrl} from '../actions/Auth';
 import asyncComponent from "util/asyncComponent";
 
-const RestrictedRoute = ({component: Component, ...rest, authUser}) =>
+const RestrictedRoute = ({ component: Component, ...rest, authUser }) =>
     <Route
         {...rest}
-        render={props =>
-            authUser
-                ? <Component {...props} />
-                : <Redirect
-                    to={{
-                        pathname: '/signin',
-                        state: {from: props.location}
-                    }}
-                />}
+        render={props => authUser && authUser.access_token && authUser.token_type === 'bearer'
+            ? <Component {...props} />
+            : <Redirect
+                to={{
+                    pathname: '/signin',
+                    state: { from: props.location }
+                }}
+            />}
     />;
 
 
@@ -41,7 +41,7 @@ class App extends Component {
     render() {
         const {match, location, locale, authUser, initURL, isDirectionRTL} = this.props;
         if (location.pathname === '/') {
-            if(authUser === null) {
+            if(!authUser || !authUser.access_token) {
                 return ( <Redirect to={'/signin'}/> );
             }
 
@@ -67,7 +67,7 @@ class App extends Component {
                     <Switch>
                         <RestrictedRoute path={`${match.url}app`} authUser={authUser} component={MainApp}/>
                         <Route path='/signin' component={SignIn}/>
-                        <Route component={asyncComponent(() => import('components/Error404'))}/>
+                        <Route component={asyncComponent(() => import('../components/Error404'))}/>
                     </Switch>
                 </div>
             </IntlProvider>

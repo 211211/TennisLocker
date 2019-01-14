@@ -33,8 +33,7 @@ const signInUserWithEmailPasswordRequest = async (email, password) => {
         .post(`${config.baseUrl}/oauth/token`, formBody.toString())
         .then(AuthHelper.checkStatus)
         .then(AuthHelper.saveToken)
-        .then (authUser => authUser)
-        .catch(error => error);
+        .then(response => response.data)
 }
 
 const signOutRequest = async () => {
@@ -49,24 +48,26 @@ function* signInUserWithEmailPassword ({payload}) {
     try {
         const { email, password } = payload;
         const signInUser = yield call (signInUserWithEmailPasswordRequest, email, password);
-        if (signInUser.error) {
-            yield put (showAuthMessage (signInUser.error_description));
-        } else {
-            yield put (userSignInSuccess (signInUser));
-        }
+        yield put (userSignInSuccess (signInUser));
+        // if (signInUser && signInUser.error) {
+        //     yield put (showAuthMessage (signInUser.error_description));
+        // } else {
+        //     yield put (userSignInSuccess (signInUser));
+        // }
     } catch (error) {
-        yield put (showAuthMessage (error));
+        yield put (showAuthMessage ('Invalid email or password. Please try again!'));
     }
 }
 
 function* signOut () {
     try {
         const signOutUser = yield call (signOutRequest);
-        if (signInUser.error) {
-            yield put (showAuthMessage (signInUser.error_description));
-        } else {
-            yield put (userSignOutSuccess ());
-        }
+        yield put (userSignOutSuccess ());
+        // if (signInUser.error) {
+        //     yield put (showAuthMessage (signInUser.error_description));
+        // } else {
+        //     yield put (userSignOutSuccess ());
+        // }
     } catch (error) {
         yield put (showAuthMessage (error));
     }
