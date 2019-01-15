@@ -6,7 +6,9 @@ import {
     SHOW_MESSAGE,
     SIGNIN_USER_SUCCESS,
     SIGNOUT_USER_SUCCESS,
-} from 'constants/ActionTypes';
+    REFRESH_TOKEN_SUCCESS,
+
+} from '../constants/ActionTypes';
 
 const INIT_STATE = {
     loader: false,
@@ -19,6 +21,7 @@ const INIT_STATE = {
 
 export default (state = INIT_STATE, action) => {
     switch (action.type) {
+        case REFRESH_TOKEN_SUCCESS:
         case SIGNIN_USER_SUCCESS: {
             return {
                 ...state,

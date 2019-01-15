@@ -171,7 +171,7 @@ class SignIn extends React.Component {
                         </div>
                     )}
                     {
-                        showMessage && NotificationManager.error(alertMessage)
+                        showMessage && typeof alertMessage === 'string' && alertMessage.length > 0 && NotificationManager.error(alertMessage)
                     }
                     <NotificationContainer />
                 </div>

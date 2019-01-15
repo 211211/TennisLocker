@@ -7,9 +7,24 @@ import {
 
     SIGNIN_USER,
     SIGNIN_USER_SUCCESS,
+    REFRESH_TOKEN,
+    REFRESH_TOKEN_SUCCESS,
     SIGNOUT_USER,
     SIGNOUT_USER_SUCCESS,
 } from '../constants/ActionTypes';
+
+export const userRefreshToken = () => {
+    return {
+        type: REFRESH_TOKEN,
+    };
+};
+
+export const userRefreshTokenSuccess = (payload) => {
+    return {
+        type: REFRESH_TOKEN_SUCCESS,
+        payload,
+    };
+};
 
 export const userSignIn = (user) => {
     return {

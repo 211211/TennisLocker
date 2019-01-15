@@ -189,7 +189,10 @@ class Header extends React.Component {
                                     tag="span"
                                     data-toggle="dropdown">
                                     <span className="icon-btn size-20 font-size-16">
-                                        <i className="zmdi zmdi-notifications-active zmdi-hc-lg icon-alert"/>
+                                        {
+                                            // <i className="zmdi zmdi-notifications-active zmdi-hc-lg icon-alert"/>
+                                        }
+                                        <i className="zmdi zmdi-notifications-active zmdi-hc-lg"/>
                                     </span>
                                 </DropdownToggle>
 
@@ -212,7 +215,10 @@ class Header extends React.Component {
                                     data-toggle="dropdown">
 
                                     <span className="icon-btn size-20 font-size-16">
-                                        <i className="zmdi zmdi-comment-alt-text icon-alert zmdi-hc-lg"/>
+                                        {
+                                            // <i className="zmdi zmdi-comment-alt-text icon-alert zmdi-hc-lg"/>
+                                        }
+                                        <i className="zmdi zmdi-comment-alt-text zmdi-hc-lg"/>
                                     </span>
                                 </DropdownToggle>
 

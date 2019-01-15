@@ -12,8 +12,13 @@ import AppLocale from '../lngProvider';
 
 import MainApp from '../app/index';
 import SignIn from './SignIn/index';
-import {setInitUrl} from '../actions/Auth';
-import asyncComponent from "util/asyncComponent";
+import {
+    setInitUrl,
+    userRefreshToken,
+    showAuthLoader,
+} from '../actions/Auth';
+import asyncComponent from "../util/asyncComponent";
+import CircularProgress from "../components/CircularProgress";
 
 const RestrictedRoute = ({ component: Component, ...rest, authUser }) =>
     <Route
@@ -31,13 +36,28 @@ const RestrictedRoute = ({ component: Component, ...rest, authUser }) =>
 class App extends Component {
 
     componentWillMount() {
-        if (this.props.initURL === '') {
-            this.props.setInitUrl(this.props.history.location.pathname);
+        const {initURL, setInitUrl, userRefreshToken, history, showAuthLoader} = this.props
+        if (initURL === '') {
+            setInitUrl(history.location.pathname);
+        }
+
+        const refreshToken = localStorage.getItem('refresh_token')
+        if (refreshToken && typeof userRefreshToken === 'function') {
+            showAuthLoader()
+            userRefreshToken()
         }
     }
 
     render() {
-        const {match, location, locale, initURL, isDirectionRTL} = this.props;
+        const {match, location, locale, initURL, isDirectionRTL, loader} = this.props;
+        // if (loader) {
+        //     return (
+        //         <div className="loader-view">
+        //             <CircularProgress />
+        //         </div>
+        //     )
+        // }
+
         let authUser = localStorage.getItem('access_token')
         if (location.pathname === '/') {
             if(!authUser || typeof authUser !== 'string') {
@@ -76,8 +96,12 @@ class App extends Component {
 
 const mapStateToProps = ({settings, auth}) => {
     const {locale, isDirectionRTL} = settings;
-    const {initURL} = auth;
-    return {locale, isDirectionRTL, initURL}
+    const {initURL, loader} = auth;
+    return {locale, isDirectionRTL, initURL, loader}
 };
 
-export default connect(mapStateToProps, {setInitUrl})(App);
+export default connect(mapStateToProps, {
+    setInitUrl,
+    userRefreshToken,
+    showAuthLoader,
+})(App);
