@@ -24,7 +24,12 @@ const generateFreshTokenAuthObject = () => {
 
     for (let property in data) {
         let encodedKey = encodeURIComponent(property);
-        let encodedValue = encodeURIComponent(data[property]);
+        let encodedValue
+        if (property === 'refresh_token') {
+            encodedValue = data[property].replace(/['"«»]/g, "")
+        } else {
+            encodedValue = encodeURIComponent(data[property]);
+        }
 
         formBody.push(encodedKey + "=" + encodedValue);
     }
