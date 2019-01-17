@@ -12,7 +12,7 @@
     font-size: 14px;
     color: #a8abb3;
     padding-left: 22px;
-    height: 53px;
+    height: 45px;
     cursor: pointer;
   }
   .my-selectDate__single-value {
@@ -65,7 +65,7 @@
 }
 .datePicker {
   display: flex;
-  height: 53px;
+  height: 45px;
 }
 .datePicker_block-start {
   display: flex;
@@ -78,9 +78,9 @@
     cursor: pointer;
     font-size: 14px;
     font-weight: normal;
-    width: 53px;
+    width: 45px;
     border-radius: 3px;
-    height: 53px;
+    height: 45px;
     margin-left: 10px;
     background-color: #2f80ed;
     border-color: #3f51b5;
@@ -101,7 +101,7 @@
   }
   .datePicker_block-start-custom-input {
     width: 188px;
-    height: 53px;
+    height: 45px;
     font-size: 16px;
     font-weight: normal;
     border-top-left-radius: 3px;
@@ -112,7 +112,7 @@
   }
   .datePicker_block-end-custom-input {
     width: 188px;
-    height: 53px;
+    height: 45px;
     font-size: 16px;
     font-weight: normal;
     border-bottom-right-radius: 3px;
