@@ -1,3 +1,5 @@
+$dashboard_blog_info_margin_bottom: 15px;
+$dashboard_info_wrap_height: 435px;
 .dashboard_blog {
   display: flex;
   .dashboard_blog-buttons {
@@ -8,12 +10,12 @@
     min-width: 329px;
     padding: 34px;
     height: 100%;
-    // max-height: 428px;
+    max-height: $dashboard_info_wrap_height;
     border-radius: 5px;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
     .dashboard_blog_info_head {
-      margin-bottom: 35px;
+      margin-bottom: $dashboard_blog_info_margin_bottom;
       align-items: center;
       display: flex;
       .dashboard_blog_info-imgpopup {
@@ -46,7 +48,7 @@
     .dashboard_blog_date {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 30px;
+      margin-bottom: $dashboard_blog_info_margin_bottom;
       .dashboard_blog_date-block-modife {
         min-width: 100px;
       }
