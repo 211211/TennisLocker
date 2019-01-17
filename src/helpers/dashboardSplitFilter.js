@@ -3,11 +3,11 @@ import { find } from "lodash";
 class DashboardSplitFilter {
   split = response => {
     const blueBlocksName = [
-      "Player",
-      "Parent",
+      "Players",
+      "Parents",
       "Coaches",
-      "Group",
-      "Session",
+      "Groups",
+      "Sessions",
       "Courts"
     ];
 
@@ -23,21 +23,21 @@ class DashboardSplitFilter {
 
   filterAll = response => {
     const schema = [
-      "Player",
-      "Parent",
+      "Players",
+      "Parents",
       "Coaches",
-      "Group",
-      "Session",
+      "Groups",
+      "Sessions",
       "Courts",
       "Attendance",
-      "Daily Eval",
-      "Fitness Test",
+      "Evals",
+      "Fitness Tests",
       "Singles PM",
       "Doubles PM",
       "Goals",
       "Events",
-      "Tournament",
-      "Push Notification",
+      "Tournaments",
+      "Push Notifications",
       "Files",
       "Player Calendar"
     ];
