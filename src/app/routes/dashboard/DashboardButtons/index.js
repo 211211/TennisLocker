@@ -41,8 +41,16 @@ class DashboardButtons extends React.Component {
 
     buildTopArrayButtons = () => {
         const buttons = this.props.facilityBtn;
-        if (buttons === undefined || (Array.isArray(buttons) && buttons.length === 0)) {
+        if (buttons === undefined) {
             return [];
+        }
+
+        if (!Array.isArray(buttons)) {
+            return []
+        }
+
+        if (buttons.length === 0) {
+            return []
         }
 
         return buttons
@@ -61,8 +69,16 @@ class DashboardButtons extends React.Component {
 
     buildBottomArrayButtons = () => {
         const buttons = this.props.facilityBtn;
-        if (buttons === undefined || (Array.isArray(buttons) && buttons.length === 0)) {
+        if (buttons === undefined) {
             return [];
+        }
+
+        if (!Array.isArray(buttons)) {
+            return []
+        }
+
+        if (buttons.length === 0) {
+            return []
         }
 
         return buttons

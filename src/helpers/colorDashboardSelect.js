@@ -1,4 +1,5 @@
-import { find } from "lodash"
+const SUFFIX_PLURAL_NOUN = 's'
+const addSuffixPluralNoun = (str) => `${str}${SUFFIX_PLURAL_NOUN}`
 
 class AddColorButtons {
   colorButtons = response => {
@@ -11,7 +12,7 @@ class AddColorButtons {
       switch (item) {
         case "groupCount":
           arrButtons.push({
-            name: str.charAt(0).toUpperCase() + str.slice(1),
+            name: addSuffixPluralNoun(str.charAt(0).toUpperCase() + str.slice(1)),
             color: "#65b2ff",
             count: response.data[item],
             activeFlag: false
@@ -19,7 +20,7 @@ class AddColorButtons {
           break;
         case "playerCount":
           arrButtons.push({
-            name: str.charAt(0).toUpperCase() + str.slice(1),
+            name: addSuffixPluralNoun(str.charAt(0).toUpperCase() + str.slice(1)),
             color: "#65b2ff",
             count: response.data[item],
             activeFlag: false
@@ -27,7 +28,7 @@ class AddColorButtons {
           break;
         case "parentCount":
           arrButtons.push({
-            name: str.charAt(0).toUpperCase() + str.slice(1),
+            name: addSuffixPluralNoun(str.charAt(0).toUpperCase() + str.slice(1)),
             color: "#65b2ff",
             count: response.data[item],
             activeFlag: false
@@ -43,7 +44,7 @@ class AddColorButtons {
           break;
         case "fitnessTestCount":
           arrButtons.push({
-            name: str.charAt(0).toUpperCase() + str.slice(1),
+            name: addSuffixPluralNoun(str.charAt(0).toUpperCase() + str.slice(1)),
             color: "#e6d21f",
             count: response.data[item],
             activeFlag: false
@@ -83,7 +84,7 @@ class AddColorButtons {
           break;
         case "attendanceCount":
           arrButtons.push({
-            name: str.charAt(0).toUpperCase() + str.slice(1),
+            name: addSuffixPluralNoun(str.charAt(0).toUpperCase() + str.slice(1)),
             color: "#8acb3f",
             count: response.data[item],
             activeFlag: false
@@ -91,7 +92,7 @@ class AddColorButtons {
           break;
         case "tournamentCount":
           arrButtons.push({
-            name: str.charAt(0).toUpperCase() + str.slice(1),
+            name: addSuffixPluralNoun(str.charAt(0).toUpperCase() + str.slice(1)),
             color: "#aed7ff",
             count: response.data[item],
             activeFlag: false
@@ -107,7 +108,7 @@ class AddColorButtons {
           break;
         case "pushNotificationCount":
           arrButtons.push({
-            name: str.charAt(0).toUpperCase() + str.slice(1),
+            name: addSuffixPluralNoun(str.charAt(0).toUpperCase() + str.slice(1)),
             color: "#f7ab6f",
             count: response.data[item],
             activeFlag: false
@@ -123,7 +124,7 @@ class AddColorButtons {
           break;
         case "sessionCount":
           arrButtons.push({
-            name: str.charAt(0).toUpperCase() + str.slice(1),
+            name: addSuffixPluralNoun(str.charAt(0).toUpperCase() + str.slice(1)),
             color: "#65b2ff",
             count: response.data[item],
             activeFlag: false
