@@ -11,15 +11,15 @@ import {
     TOGGLE_COLLAPSED_NAV,
     VERTICAL_NAVIGATION,
     WINDOW_WIDTH
-} from 'constants/ActionTypes';
-import {INDIGO} from 'constants/ThemeColors';
+} from '../constants/ActionTypes';
+import {DARK_INDIGO} from '../constants/ThemeColors';
 
 const rltLocale = ['ar'];
 const initialSettings = {
     navCollapsed: false,
     drawerType: FIXED_DRAWER,
-    themeColor: INDIGO,
-    darkTheme: false,
+    themeColor: DARK_INDIGO,
+    darkTheme: true,
     width: window.innerWidth,
     isDirectionRTL: false,
     navigationStyle: VERTICAL_NAVIGATION,
