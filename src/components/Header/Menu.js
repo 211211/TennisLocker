@@ -92,19 +92,13 @@ class Menu extends Component {
 
                             <li className="nav-arrow">
                                 <a role="button" href="javascript:void(0)">
-                                    <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
-                                    <span className="nav-text">
-                                        <IntlMessages id="sidebar.dashboard" />
-                                    </span>
+                                    <NavLink to="/app/dashboard">
+                                        <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
+                                        <span className="nav-text">
+                                            <IntlMessages id="sidebar.dashboard" />
+                                        </span>
+                                    </NavLink>
                                 </a>
-                                <ul className="sub-menu ">
-                                    <li>
-                                        <NavLink className="prepend-icon" to="/app/dashboard/default">
-                                            <span className="nav-text"><IntlMessages
-                                                id="sidebar.dashboard.default" /></span>
-                                        </NavLink>
-                                    </li>
-                                </ul>
                             </li>
 
                             <li className="nav-arrow">

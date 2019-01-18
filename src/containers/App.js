@@ -66,7 +66,7 @@ class App extends Component {
 
             // if user is authenticated then redirect to main page
             if (initURL === '' || initURL === '/' || initURL === '/signin') {
-                return ( <Redirect to={'/app/dashboard/default'}/> );
+                return ( <Redirect to={'/app/dashboard'}/> );
             }
 
             return ( <Redirect to={initURL}/> );

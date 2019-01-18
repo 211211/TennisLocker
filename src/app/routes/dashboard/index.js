@@ -1,13 +1,13 @@
-import React from "react";
-import "./dashboard.scss";
-import DashboardInfo from "./DashboardInfo";
-import DashboardButtons from "./DashboardButtons";
-import DashboardChart from "./DashboardChart";
-import { connect } from "react-redux";
+import React from 'react';
+import './dashboard.scss';
+import DashboardInfo from './DashboardInfo';
+import DashboardButtons from './DashboardButtons';
+import DashboardChart from './DashboardChart';
+import { connect } from 'react-redux';
 import {
     userGetFacilitiesToday,
     userGetFacilitiesSelectDate
-} from "../../../actions/Facility";
+} from '../../../actions/Facility';
 
 const mapStateToProps = ({ facilityFilter }) => ({
     facilityFilter

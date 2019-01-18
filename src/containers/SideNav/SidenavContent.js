@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {NavLink, withRouter} from 'react-router-dom';
 
 import IntlMessages from 'util/IntlMessages';
-import CustomScrollbars from "util/CustomScrollbars";
+import CustomScrollbars from 'util/CustomScrollbars';
 
 
 class SidenavContent extends Component {
@@ -80,22 +80,16 @@ class SidenavContent extends Component {
         return (
             <CustomScrollbars className="scrollbar" style={{height: 'calc(100vh - 70px)'}}>
                 <ul className="nav-menu">
-
                     <li className="nav-header"><IntlMessages id="sidebar.main"/></li>
-                    <li className="menu">
+                    <li className="menu no-arrow">
                         <a role="button" href="javascript:void(0)">
-                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
-                            <span className="nav-text">
-                            <IntlMessages id="sidebar.dashboard"/>
-                        </span>
+                            <NavLink className="prepend-icon" to="/app/dashboard">
+                                <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                                <span className="nav-text">
+                                    <IntlMessages id="sidebar.dashboard"/>
+                                </span>
+                            </NavLink>
                         </a>
-                        <ul className="sub-menu">
-                            <li>
-                                <NavLink className="prepend-icon" to="/app/dashboard/default">
-                                    <span className="nav-text"><IntlMessages id="sidebar.dashboard.default"/></span>
-                                </NavLink>
-                            </li>
-                        </ul>
                     </li>
 
                     <li className="menu no-arrow">
