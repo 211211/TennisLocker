@@ -1,4 +1,5 @@
 .datePicker-selectDate {
+  width: 150px;
   .css-10nd86i {
     width: 156px;
   }
@@ -64,8 +65,29 @@
   }
 }
 .datePicker {
+  margin-left: 10px;
   display: flex;
   height: 45px;
+
+  @media screen and(max-width: 1100) {
+    .datePicker-selectDate {
+      display: none;
+    }
+
+    .datePicker {
+      display: none;
+    }
+  }
+
+  @media screen and(min-width: 1100) {
+    .datePicker-selectDate {
+      display: none;
+    }
+
+    .datePicker {
+      display: none;
+    }
+  }
 }
 .datePicker_block-start {
   display: flex;
@@ -124,8 +146,6 @@
 }
 @media screen and (max-width: 1700px) {
   .datePicker-selectDate {
-    width: 30%;
-    min-width: 200px;
     .my-selectDate__control {
       padding-left: 7px
     }
@@ -141,5 +161,11 @@
       padding-left: 10px;
       width: 100%;
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .datePicker-selectDate {
+    display: none;
   }
 }

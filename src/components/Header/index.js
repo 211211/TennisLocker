@@ -2,10 +2,8 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Dropdown, DropdownMenu, DropdownToggle} from 'reactstrap';
-import classnames from 'classnames'
 
 import {COLLAPSED_DRAWER, FIXED_DRAWER, HORIZONTAL_NAVIGATION, INSIDE_THE_HEADER} from '../../constants/ActionTypes';
-// import SearchBox from '../../components/SearchBox';
 import MailNotification from '../MailNotification/index';
 import AppNotification from '../AppNotification/index';
 import CardHeader from '../../components/dashboard/Common/CardHeader/index';
@@ -14,9 +12,7 @@ import IntlMessages from '../../util/IntlMessages';
 import LanguageSwitcher from '../../components/LanguageSwitcher/index';
 import UserInfo from '../../components/UserInfo';
 import Menu from "../../components/Header/Menu";
-
 import logo from "../../assets/images/TennisLockerInternalPortal/logo.svg";
-
 import SelectFilter from "../../components/SelectFilter";
 import SelectDate from "../../components/SelectDate";
 
@@ -79,14 +75,10 @@ class Header extends React.Component {
 
     renderSearchFacilityBox = () => {
         return (
-            <React.Fragment>
-                <div className="header_search" style={{maxWidth: 400, minWidth: 300}}>
-                    <SelectFilter />
-                </div>
-                <div>
-                    <SelectDate />
-                </div>
-            </React.Fragment>
+            <div className={`search-bar right-side-icon bg-transparent`}>
+                <SelectFilter />
+                <SelectDate />
+            </div>
         )
     }
 
@@ -116,68 +108,12 @@ class Header extends React.Component {
                             <span className="menu-icon"/>
                         </span>
                     }
-
-                    {
-                        // <SearchBox styleName="d-none d-lg-block"
-                        //        onChange={this.updateSearchText.bind(this)}
-                        //        value={this.state.searchText}/>
-                    }
-
-                    {
-                        this.renderSearchFacilityBox()
-                    }
+                    {this.renderSearchFacilityBox()}
 
                     {(navigationStyle === HORIZONTAL_NAVIGATION && horizontalNavPosition === INSIDE_THE_HEADER) &&
                     <Menu/>}
 
                     <ul className="header-notifications list-inline ml-auto">
-                        <li className="d-inline-block d-lg-none list-inline-item">
-                            <Dropdown
-                                className="quick-menu nav-searchbox"
-                                isOpen={this.state.searchBox}
-                                toggle={this.onSearchBoxSelect.bind(this)}>
-
-                                <DropdownToggle
-                                    className="d-inline-block"
-                                    tag="span"
-                                    data-toggle="dropdown">
-                                    <span className="icon-btn size-30">
-                                        <i className="zmdi zmdi-search zmdi-hc-fw"/>
-                                    </span>
-                                </DropdownToggle>
-
-                                {
-                                    // <DropdownMenu right className="p-0">
-                                    //     <SearchBox styleName="search-dropdown" placeholder=""
-                                    //             onChange={this.updateSearchText.bind(this)}
-                                    //             value={this.state.searchText}/>
-                                    // </DropdownMenu>
-                                }
-                            </Dropdown>
-                        </li>
-                        <li className="list-inline-item">
-                            <Dropdown
-                                className="quick-menu"
-                                isOpen={this.state.langSwitcher}
-                                toggle={this.onLangSwitcherSelect.bind(this)}>
-
-                                <DropdownToggle
-                                    className="d-inline-block"
-                                    tag="span"
-                                    data-toggle="dropdown">
-                                    <div className="d-flex align-items-center pointer">
-                                        <i className={`flag flag-24 flag-${locale.icon}`}/>
-                                    </div>
-                                </DropdownToggle>
-
-                                <DropdownMenu right className="w-50">
-                                    <LanguageSwitcher switchLanguage={this.props.switchLanguage}
-                                                      handleRequestClose={this.handleRequestClose}/>
-                                </DropdownMenu>
-                            </Dropdown>
-
-
-                        </li>
                         <li className="list-inline-item app-tour">
                             <Dropdown
                                 className="quick-menu"
