@@ -84,6 +84,14 @@
   min-height: 70px;
   padding: 10px 22px;
   border-bottom: 1px solid $border-color;
+
+  > img {
+    width: 100%;
+  }
+
+  .mini-logo > img {
+    width: 100%;
+  }
 }
 
 .app-toolbar {

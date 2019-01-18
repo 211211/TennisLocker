@@ -1,5 +1,5 @@
 import React from 'react';
-import {MINI_DRAWER} from "constants/ActionTypes";
+import {MINI_DRAWER} from '../../constants/ActionTypes';
 
 import logo from '../../assets/images/TennisLockerInternalPortal/logo.svg'
 
