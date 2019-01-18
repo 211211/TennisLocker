@@ -82,14 +82,12 @@ class SidenavContent extends Component {
                 <ul className="nav-menu">
                     <li className="nav-header"><IntlMessages id="sidebar.main"/></li>
                     <li className="menu no-arrow">
-                        <a role="button" href="javascript:void(0)">
-                            <NavLink className="prepend-icon" to="/app/dashboard">
-                                <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
-                                <span className="nav-text">
-                                    <IntlMessages id="sidebar.dashboard"/>
-                                </span>
-                            </NavLink>
-                        </a>
+                        <NavLink className="prepend-icon" to="/app/dashboard">
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <span className="nav-text">
+                                <IntlMessages id="sidebar.dashboard"/>
+                            </span>
+                        </NavLink>
                     </li>
 
                     <li className="menu no-arrow">
