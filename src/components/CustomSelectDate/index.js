@@ -1,65 +1,13 @@
 import React from 'react';
-import Select, { components } from 'react-select';
 import { connect } from 'react-redux';
-import './selectDate.scss';
-import SVG from 'react-inlinesvg';
-import arrowIcon from '../../assets/images/TennisLockerInternalPortal/icons/arrow.svg';
-import calendarIcon from '../../assets/images/TennisLockerInternalPortal/calendar.svg';
-import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import CustomDateTimePicker from '../customDateTimePicker/CustomDateTimePicker'
 import { addFacilitySelectDate } from '../../actions/Facility';
 
 const mapStateToProps = ({ facilityFilter }) => ({
     facilityFilter
 });
 
-const colourStyles = {
-    control: styles => ({ ...styles, backgroundColor: 'white' }),
-    option: (styles, { data, isDisabled, isSelected, isFocused }) => {
-        return {
-            ...styles,
-            backgroundColor: isDisabled
-                ? null
-                : isSelected
-                    ? '#d9dde0'
-                    : isFocused
-                        ? '#edf0f2'
-                        : null,
-            color: isDisabled
-                ? '#ccc'
-                : isSelected
-                    ? 'white'
-                        ? 'black'
-                        : 'black'
-                    : 'black',
-            ':before': {
-                background: data.color
-            }
-        };
-    },
-    multiValue: (styles, { data }) => {
-        return {
-            ...styles,
-            backgroundColor: '#edf0f2',
-            paddingLeft: '5px',
-            ':before': {
-                background: data.color
-            }
-        };
-    },
-    multiValueLabel: (styles, { data }) => ({
-        ...styles,
-        color: 'black'
-    }),
-    multiValueRemove: styles => ({
-        ...styles,
-        color: '#7a7a7a',
-        ':hover': {
-            color: '#040405',
-            cursor: 'pointer'
-        }
-    })
-};
 class SelectDate extends React.Component {
     constructor(props) {
         super(props);

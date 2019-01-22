@@ -1,17 +1,17 @@
-import React from "react";
-import { connect } from "react-redux";
-import "./SignIn.scss";
-import { Formik } from "formik";
-import logo from "../../assets/images/TennisLockerInternalPortal/logo.svg";
-import Vector from "../../assets/images/TennisLockerInternalPortal/Vector.svg";
+import React from 'react';
+import { connect } from 'react-redux';
+import './SignIn.scss';
+import { Formik } from 'formik';
+import logo from '../../assets/images/TennisLockerInternalPortal/logo.svg';
+import Vector from '../../assets/images/TennisLockerInternalPortal/Vector.svg';
 // import helpers from "../../helpers";
 import {
     NotificationContainer,
     NotificationManager
-} from "react-notifications";
+} from 'react-notifications';
 
-import { hideMessage, showAuthLoader, userSignIn } from "../../actions/Auth";
-import CircularProgress from "../../components/CircularProgress";
+import { hideMessage, showAuthLoader, userSignIn } from '../../actions/Auth';
+import CircularProgress from '../../components/CircularProgress';
 
 async function onSubmitLogin(func, setSubmitting) {
     await func;
@@ -37,7 +37,7 @@ class SignIn extends React.Component {
 
         const {history} = this.props
         if (localStorage.getItem('access_token')) {
-            history.push("/");
+            history.push('/');
         }
     }
 
@@ -46,7 +46,7 @@ class SignIn extends React.Component {
     };
 
     render() {
-        const imgChech = this.state.img ? <img src={Vector} alt="Vector" /> : "";
+        const imgChech = this.state.img ? <img src={Vector} alt="Vector" /> : '';
         const { showMessage, loader, alertMessage } = this.props;
         // helpers.saveRememberMe(String(this.state.img));
         return (
@@ -55,13 +55,13 @@ class SignIn extends React.Component {
                     <div className="login-block">
                         <img className="login-block_logo" src={logo} alt="logo" />
                         <Formik
-                            initialValues={{ email: "", password: "" }}
+                            initialValues={{ email: '', password: '' }}
                             validate={values => {
                                 let errors = {};
                                 if (!values.email) {
-                                    errors.email = "";
+                                    errors.email = '';
                                 } else if (!EMAIL_REGEX.test(values.email)) {
-                                    errors.email = "Invalid email address";
+                                    errors.email = 'Invalid email address';
                                 }
                                 return errors;
                             }}
@@ -90,7 +90,7 @@ class SignIn extends React.Component {
                                     <form onSubmit={handleSubmit}>
                                         <div
                                             className={
-                                                errors.email && touched.email ? "errorImg" : "blockImg"
+                                                errors.email && touched.email ? 'errorImg' : 'blockImg'
                                             }
                                         >
                                             <input
@@ -105,8 +105,8 @@ class SignIn extends React.Component {
                                         <div
                                             className={
                                                 errors.password && touched.password
-                                                    ? "errorImg"
-                                                    : "blockImg"
+                                                    ? 'errorImg'
+                                                    : 'blockImg'
                                             }
                                         >
                                             <input

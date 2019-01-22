@@ -11,10 +11,11 @@ import {switchLanguage, toggleCollapsedNav} from '../../actions/Setting';
 import IntlMessages from '../../util/IntlMessages';
 import LanguageSwitcher from '../../components/LanguageSwitcher/index';
 import UserInfo from '../../components/UserInfo';
-import Menu from "../../components/Header/Menu";
-import logo from "../../assets/images/TennisLockerInternalPortal/logo.svg";
-import SelectFilter from "../../components/SelectFilter";
-import SelectDate from "../../components/SelectDate";
+import Menu from '../../components/Header/Menu';
+import logo from '../../assets/images/TennisLockerInternalPortal/logo.svg';
+import SelectFilter from '../../components/SelectFilter';
+import SelectDate from '../../components/SelectDate';
+import CustomDateTimePicker from '../../components/customDateTimePicker/CustomDateTimePicker';
 
 class Header extends React.Component {
 
@@ -75,9 +76,12 @@ class Header extends React.Component {
 
     renderSearchFacilityBox = () => {
         return (
-            <div className={`search-bar right-side-icon bg-transparent`}>
+            <div className={'search-bar right-side-icon bg-transparent'}>
                 <SelectFilter />
                 <SelectDate />
+                {
+                    // <CustomDateTimePicker />
+                }
             </div>
         )
     }
