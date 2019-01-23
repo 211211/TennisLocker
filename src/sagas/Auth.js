@@ -10,31 +10,31 @@ import {
     userSignOutSuccess,
     userRefreshTokenSuccess,
 } from '../actions/Auth';
-import AxiosHelper from "../helpers/api/AxiosHelper";
-import AuthHelper from "../helpers/AuthHelper";
-import config from "../config";
+import AxiosHelper from '../helpers/api/AxiosHelper';
+import AuthHelper from '../helpers/AuthHelper';
+import config from '../config';
 
 const generateFreshTokenAuthObject = () => {
     let formBody = [];
     const data = {
         refresh_token: localStorage.getItem('refresh_token'),
-        grant_type: "refresh_token",
-        client_id: "mobile"
+        grant_type: 'refresh_token',
+        client_id: 'mobile'
     }
 
     for (let property in data) {
         let encodedKey = encodeURIComponent(property);
         let encodedValue
         if (property === 'refresh_token') {
-            encodedValue = data[property].replace(/['"«»]/g, "")
+            encodedValue = data[property].replace(/['"«»]/g, '')
         } else {
             encodedValue = encodeURIComponent(data[property]);
         }
 
-        formBody.push(encodedKey + "=" + encodedValue);
+        formBody.push(encodedKey + '=' + encodedValue);
     }
 
-    return formBody.join("&");
+    return formBody.join('&');
 }
 
 const generateHashedAuthObject = (email, password) => {
@@ -42,18 +42,18 @@ const generateHashedAuthObject = (email, password) => {
     const data = {
         username: email,
         password: password,
-        grant_type: "password",
-        client_id: "mobile"
+        grant_type: 'password',
+        client_id: 'mobile'
     }
 
     for (let property in data) {
         let encodedKey = encodeURIComponent(property);
         let encodedValue = encodeURIComponent(data[property]);
 
-        formBody.push(encodedKey + "=" + encodedValue);
+        formBody.push(encodedKey + '=' + encodedValue);
     }
 
-    return formBody.join("&");
+    return formBody.join('&');
 }
 
 const signInUserWithEmailPasswordRequest = async (email, password) => {
@@ -109,11 +109,13 @@ function* refreshUserToken () {
     try {
         const response = yield call (refreshUserTokenRequest);
         if (!response || response.error || !!(response.data && response.data.error)) {
+            yield put (userSignOutSuccess ());
             yield put (showAuthMessage ('Token is invalid!'));
         } else {
             yield put (userRefreshTokenSuccess (response));
         }
     } catch (error) {
+        yield put (userSignOutSuccess ());
         yield put (showAuthMessage ('Token is invalid!'));
     }
 }
