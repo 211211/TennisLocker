@@ -77,7 +77,11 @@ class SelectDate extends React.Component {
 
             this.props.addFacilitySelectDate(selectDateObj)
         }
-        this.setState({ selectedOption });
+        this.setState({ 
+            selectedOption,
+            startDate: undefined,
+            endDate: undefined
+        });
     };
     handleChange = ({ startDate, endDate }) => {
         startDate = startDate || this.state.startDate;

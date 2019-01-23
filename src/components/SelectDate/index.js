@@ -5,7 +5,7 @@ import './selectDate.scss';
 import SVG from 'react-inlinesvg';
 import arrowIcon from '../../assets/images/TennisLockerInternalPortal/icons/arrow.svg';
 import calendarIcon from '../../assets/images/TennisLockerInternalPortal/calendar.svg';
-import DatePicker from 'react-datepicker';
+import CustomDateTimePicker from '../customDateTimePicker'
 import moment from 'moment';
 import { addFacilitySelectDate } from '../../actions/Facility';
 
@@ -129,7 +129,9 @@ class SelectDate extends React.Component {
 
             this.props.addFacilitySelectDate(selectDateObj)
         }
-        this.setState({ selectedOption });
+        this.setState({ 
+            selectedOption
+        });
     };
     handleChange = ({ startDate, endDate }) => {
         startDate = startDate || this.state.startDate;
@@ -138,17 +140,21 @@ class SelectDate extends React.Component {
         if (startDate.isAfter(endDate)) {
             endDate = startDate;
         }
-        this.setState({ startDate, endDate });
+        this.setState(
+            { 
+                startDate, 
+                endDate 
+            }
+        );
     };
-    addFilterDate = () => {
-        const {startDate, endDate} = this.state
+    addFilterDate = (startDate, endDate) => {
         let selectDateObj = this.buildFacilitySelectDateObject(startDate.format('MM-DD-YYYY'), endDate.format('MM-DD-YYYY'))
         this.props.addFacilitySelectDate(selectDateObj);
     };
 
     handleChangeStart = startDate => this.handleChange({ startDate });
 
-    handleChangeEnd = endDate => this.handleChange({ endDate });
+    handleChangeEnd = (endDate) => this.handleChange({ endDate });
 
     render() {
         const { facilityFilter: { facilityActive } } = this.props
@@ -181,47 +187,12 @@ class SelectDate extends React.Component {
                     />
                 </div>
                 {this.state.selectedOption.value === 'Custom' && (
-                    <div className="datePicker_block-start">
-                        <div className="datePicker_block-start-custom">
-                            <DatePicker
-                                selected={startDate}
-                                selectsStart
-                                dateFormat="MMM Do, YYYY"
-                                className="datePicker_block-start-custom-input"
-                                startDate={startDate}
-                                endDate={endDate}
-                                maxDate={moment()}
-                                onChange={this.handleChangeStart}
-                            />
-                            <img
-                                className="datePicker_block-start-custom-img"
-                                src={calendarIcon}
-                                alt="calendarIcon"
-                            />
-                        </div>
-                        <div className="datePicker_block-start-custom">
-                            <DatePicker
-                                selected={endDate}
-                                selectsEnd
-                                maxDate={moment()}
-                                dateFormat="MMM Do, YYYY"
-                                className="datePicker_block-end-custom-input"
-                                startDate={startDate}
-                                endDate={endDate}
-                                onChange={this.handleChangeEnd}
-                            />
-                            <img
-                                className="datePicker_block-start-custom-img"
-                                src={calendarIcon}
-                                alt="calendarIcon"
-                            />
-                        </div>
-                        <div
-                            onClick={this.addFilterDate}
-                            className="datePicker_block-button"
-                        >
-                            <span>Go</span>
-                        </div>
+                    <div className="datePicker-selectCustomDate">
+                        <CustomDateTimePicker
+                            handleFromChange={this.handleChangeStart}
+                            handleToChange={this.handleChangeEnd}
+                            addFilterDate={this.addFilterDate}
+                        />
                     </div>
                 )}
             </div>

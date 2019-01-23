@@ -1,0 +1,45 @@
+.InputFromTo {
+    display: flex;
+    .DayPickerInput {
+        margin-left: 10px;
+        margin-right: 10px;
+        input { 
+            padding: .5em 1em;
+            border: 1px solid #ddd;
+            font-size: 1em;
+            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+            text-align: center;
+            font-weight: 400;
+            height: 45px;
+            background-color: white !important;
+            color: #636c6e;
+            border-radius: 4px;
+        }
+    }
+    
+    .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+        background-color: #f0f8ff !important;
+        color: #4a90e2;
+    }
+    .DayPicker-Day {
+        border-radius: 0 !important;
+        color: #5c5c5c;
+    }
+    .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+        position: relative;
+        color: #f0f8ff;
+        background-color: #4a90e2;
+        border-radius: 100%;
+    }
+    .DayPicker-Day--start {
+        border-top-left-radius: 50% !important;
+        border-bottom-left-radius: 50% !important;
+    }
+    .DayPicker-Day--end {
+        border-top-right-radius: 50% !important;
+        border-bottom-right-radius: 50% !important;
+    }
+    .DayPickerInput-Overlay {
+        margin-left: -198px;
+    }
+}

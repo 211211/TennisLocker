@@ -1,6 +1,6 @@
 @import '~react-datepicker/dist/react-datepicker.css';
 .app-wrapper-select {
-  width: 350px;
+  width: 300px;
   font-size: 16px;
 
   .my-select__menu {
@@ -112,5 +112,8 @@ $font_size_select_date_min_1025: 14px;
     width: 100px;
     height: 45px;
     font-size: 12px;
+  }
+  .datePicker-selectCustomDate {
+    display: none;
   }
 }
