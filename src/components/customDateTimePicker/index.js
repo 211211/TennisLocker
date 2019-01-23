@@ -21,7 +21,7 @@ class CustomDateTimePicker extends React.Component {
         if (moment(to).diff(moment(from), 'months') < 2) {
           this.to.getDayPicker().showMonth(from);
         }
-        
+
     }
 
     handleFromChange = (from) => {
@@ -34,7 +34,7 @@ class CustomDateTimePicker extends React.Component {
         this.props.handleToChange(moment(to));
         this.props.addFilterDate(moment(this.state.from), moment(to))
     }
-    
+
     render() {
         const { from, to } = this.state;
         const modifiers = { start: from, end: to };
@@ -56,7 +56,6 @@ class CustomDateTimePicker extends React.Component {
                     }}
                     onDayChange={this.handleFromChange}
                 />
-               <span className="divider">-</span>
                <DayPickerInput
                         ref={el => (this.to = el)}
                         value={to}
