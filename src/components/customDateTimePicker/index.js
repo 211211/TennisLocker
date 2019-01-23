@@ -5,21 +5,22 @@ import { formatDate, parseDate } from 'react-day-picker/moment';
 import moment from 'moment';
 import './customDateTimePicker.scss'
 
+const DATE_FORMAT = 'MMM Do, YYYY'
 class CustomDateTimePicker extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            from: undefined,
+            from: new Date(),
             to: undefined
         }
     }
     showFromMonth = () => {
         const { from, to } = this.state;
         if (!from) {
-          return;
+            return;
         }
         if (moment(to).diff(moment(from), 'months') < 2) {
-          this.to.getDayPicker().showMonth(from);
+            this.to.getDayPicker().showMonth(from);
         }
 
     }
@@ -43,7 +44,7 @@ class CustomDateTimePicker extends React.Component {
                 <DayPickerInput
                     value={from}
                     placeholder="From"
-                    format="MMM Do, YYYY"
+                    format={DATE_FORMAT}
                     formatDate={formatDate}
                     parseDate={parseDate}
                     dayPickerProps={{
@@ -56,23 +57,23 @@ class CustomDateTimePicker extends React.Component {
                     }}
                     onDayChange={this.handleFromChange}
                 />
-               <DayPickerInput
-                        ref={el => (this.to = el)}
-                        value={to}
-                        placeholder="To"
-                        format="MMM Do, YYYY"
-                        formatDate={formatDate}
-                        parseDate={parseDate}
-                        dayPickerProps={{
+                <DayPickerInput
+                    ref={el => (this.to = el)}
+                    value={to}
+                    placeholder="To"
+                    format={DATE_FORMAT}
+                    formatDate={formatDate}
+                    parseDate={parseDate}
+                    dayPickerProps={{
                         selectedDays: [from, { from, to }],
                         disabledDays: { before: from },
                         modifiers,
                         month: from,
                         fromMonth: from,
                         numberOfMonths: 2,
-                        }}
-                        onDayChange={this.handleToChange}
-                    />
+                    }}
+                    onDayChange={this.handleToChange}
+                />
             </div>
         );
     }
