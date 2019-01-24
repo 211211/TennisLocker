@@ -79,7 +79,7 @@ class App extends Component {
 
         // redirect user to main page if token is still valid
         if (location.pathname === '/signin') {
-            if (authUser) {
+            if (typeof authUser === 'string' && authUser.length > 0) {
                 return redirectToHomePage(initURL)
             }
         }

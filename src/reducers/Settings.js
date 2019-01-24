@@ -12,13 +12,13 @@ import {
     VERTICAL_NAVIGATION,
     WINDOW_WIDTH
 } from '../constants/ActionTypes';
-import {DARK_INDIGO} from '../constants/ThemeColors';
+import {INDIGO} from '../constants/ThemeColors';
 
 const rltLocale = ['ar'];
 const initialSettings = {
     navCollapsed: false,
     drawerType: FIXED_DRAWER,
-    themeColor: DARK_INDIGO,
+    themeColor: INDIGO,
     darkTheme: true,
     width: window.innerWidth,
     isDirectionRTL: false,
