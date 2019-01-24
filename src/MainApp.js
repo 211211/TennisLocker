@@ -7,9 +7,12 @@ import App from './containers/App';
 import {setGlobalVariable} from './helpers/WindowHelper'
 
 export const store = configureStore ();
-store.subscribe(() => {
-    setGlobalVariable('redux', store.getState())
-})
+
+if(process.env.NODE_ENV === 'development') {
+    store.subscribe(() => {
+        setGlobalVariable('redux', store.getState())
+    })
+}
 
 const MainApp = () =>
     <Provider store={store}>
