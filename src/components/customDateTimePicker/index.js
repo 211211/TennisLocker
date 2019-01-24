@@ -8,29 +8,6 @@ import './customDateTimePicker.scss'
 
 const DATE_FORMAT = 'MMM Do'
 
-function CustomOverlay({ classNames, selectedDay, children, ...props }) {
-    return (
-      <div
-        className={classNames.overlayWrapper}
-        style={{ marginLeft: -100 }}
-        {...props}
-      >
-        <div className={classNames.overlay}>
-          <h3>Hello day picker!</h3>
-          <p>
-            <input />
-            <button onClick={() => console.log('clicked!')}>button</button>
-          </p>
-          <p>
-            {selectedDay
-              ? `You picked: ${selectedDay})}`
-              : 'Please pick a day'}
-          </p>
-          {children}
-        </div>
-      </div>
-    );
-  }
 class CustomDateTimePicker extends React.Component {
     constructor(props) {
         super(props);
@@ -46,7 +23,7 @@ class CustomDateTimePicker extends React.Component {
             return;
         }
         if (moment(to).diff(moment(from), 'months') < 2) {
-            this.from.getDayPicker().showMonth(from);
+            this.datePicker.getDayPicker().showMonth(from);
         }
 
     }
@@ -73,6 +50,10 @@ class CustomDateTimePicker extends React.Component {
         this.props.addFilterDate(moment(from), moment(to));
     }
 
+    componentDidMount(){
+        this.datePicker.getInput().focus();
+    }
+
     render() {
         const { from, to, displayValue } = this.state;
         const modifiers = { start: from, end: to };
@@ -81,7 +62,7 @@ class CustomDateTimePicker extends React.Component {
                  <DayPickerInput
                     value={displayValue}
                     placeholder="Select day range" 
-                    ref={el => (this.from = el)} 
+                    ref={el => (this.datePicker = el)}  
                     dayPickerProps={{ 
                         selectedDays: [from, { from, to }], 
                         disabledDays: { after: to }, 
