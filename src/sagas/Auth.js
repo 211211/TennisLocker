@@ -65,12 +65,8 @@ const signInUserWithEmailPasswordRequest = async (email, password) => {
         .then(response => response.data)
 }
 
-const signOutRequest = async () => {
-    try {
-        return await AuthHelper.removeToken()
-    } catch (error) {
-        return error
-    }
+const signOutRequest = () => {
+    AuthHelper.removeToken()
 }
 
 const refreshUserTokenRequest = async () => {
@@ -98,7 +94,7 @@ function* signInUserWithEmailPassword ({payload}) {
 
 function* signOut () {
     try {
-        const signOutUser = yield call (signOutRequest);
+        yield call (signOutRequest);
         yield put (userSignOutSuccess ());
     } catch (error) {
         yield put (showAuthMessage (error));

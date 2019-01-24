@@ -3,7 +3,7 @@ import {Redirect, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {IntlProvider} from 'react-intl'
 import 'react-big-calendar/lib/less/styles.less';
-import "react-toggle-switch/dist/css/switch.min.css";
+import 'react-toggle-switch/dist/css/switch.min.css';
 import 'rc-drawer/assets/index.css';
 import 'styles/bootstrap.scss'
 import 'styles/app.scss';
@@ -17,10 +17,18 @@ import {
     userRefreshToken,
     showAuthLoader,
 } from '../actions/Auth';
-import asyncComponent from "../util/asyncComponent";
-import CircularProgress from "../components/CircularProgress";
+import asyncComponent from '../util/asyncComponent';
+import CircularProgress from '../components/CircularProgress';
 
-const RestrictedRoute = ({ component: Component, ...rest, authUser }) =>
+const redirectToHomePage = (initURL) => {
+    if (initURL === '' || initURL === '/' || initURL === '/signin') {
+        return ( <Redirect to={'/app/dashboard'}/> );
+    }
+
+    return ( <Redirect to={initURL}/> );
+}
+
+const RestrictedRoute = ({ component: Component, authUser, ...rest }) =>
     <Route
         {...rest}
         render={props => authUser
@@ -49,7 +57,7 @@ class App extends Component {
     }
 
     render() {
-        const {match, location, locale, initURL, isDirectionRTL, loader} = this.props;
+        const {match, location, locale, initURL, isDirectionRTL, authUser, loader} = this.props;
         // if (loader) {
         //     return (
         //         <div className="loader-view">
@@ -58,18 +66,19 @@ class App extends Component {
         //     )
         // }
 
-        let authUser = localStorage.getItem('access_token')
         if (location.pathname === '/') {
-            if(!authUser || typeof authUser !== 'string') {
+            if (authUser === null || !authUser || authUser === '') {
                 return ( <Redirect to={'/signin'}/> );
             }
 
-            // if user is authenticated then redirect to main page
-            if (initURL === '' || initURL === '/' || initURL === '/signin') {
-                return ( <Redirect to={'/app/dashboard'}/> );
-            }
+            return redirectToHomePage(initURL)
+        }
 
-            return ( <Redirect to={initURL}/> );
+        // redirect user to main page if token is still valid
+        if (location.pathname === '/signin') {
+            if (authUser) {
+                return redirectToHomePage(initURL)
+            }
         }
 
         // for RTL Support
@@ -96,8 +105,8 @@ class App extends Component {
 
 const mapStateToProps = ({settings, auth}) => {
     const {locale, isDirectionRTL} = settings;
-    const {initURL, loader} = auth;
-    return {locale, isDirectionRTL, initURL, loader}
+    const {initURL, loader, authUser} = auth;
+    return {locale, isDirectionRTL, initURL, loader, authUser}
 };
 
 export default connect(mapStateToProps, {
