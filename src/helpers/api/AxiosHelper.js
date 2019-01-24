@@ -1,19 +1,18 @@
-import axios from "axios";
+import axios from 'axios';
 // import helpers from "../helpers";
 // import { getNewToken } from "../actions/redux/login";
 // let pending = false;
 axios.interceptors.request.use(
   config => {
     // const ref_token = localStorage.getItem("refresh_token");
+    const access_token = localStorage.getItem('access_token')
     const newConfig = config;
-    if (localStorage.getItem("access_token") != null) {
+    if (!access_token) {
       // if (helpers.isTokenExpired() && !pending) {
       //   const res = getNewToken(ref_token);
       //   pending = true;
       // }
-      newConfig.headers.Authorization = `Bearer ${localStorage
-        .getItem("access_token")
-        .slice(1, -1)}`;
+      newConfig.headers.Authorization = `Bearer ${access_token.slice(1, -1)}`;
     }
     return newConfig;
   },
@@ -58,9 +57,9 @@ ApiRequest.prototype = {
   },
   post: (url, data) => {
     return axios({
-      method: "post",
+      method: 'post',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       },
       url,
       data
@@ -68,9 +67,9 @@ ApiRequest.prototype = {
   },
   put: (url, data) => {
     return axios({
-      method: "put",
+      method: 'put',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       },
       url,
       data: JSON.stringify(data)
@@ -78,9 +77,9 @@ ApiRequest.prototype = {
   },
   delete: (url, data) => {
     return axios({
-      method: "delete",
+      method: 'delete',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       },
       url,
       data: JSON.stringify(data)
