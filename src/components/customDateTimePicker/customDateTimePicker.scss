@@ -15,6 +15,9 @@
             color: #636c6e;
             border-radius: 4px;
         }
+        &.toDate {
+            display: none;
+        }
     }
     
     .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
