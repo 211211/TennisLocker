@@ -5,14 +5,15 @@ import axios from 'axios';
 axios.interceptors.request.use(
   config => {
     // const ref_token = localStorage.getItem("refresh_token");
-    const access_token = localStorage.getItem('access_token')
     const newConfig = config;
-    if (!access_token) {
+    if (localStorage.getItem('access_token') != null) {
       // if (helpers.isTokenExpired() && !pending) {
       //   const res = getNewToken(ref_token);
       //   pending = true;
       // }
-      newConfig.headers.Authorization = `Bearer ${access_token.slice(1, -1)}`;
+      newConfig.headers.Authorization = `Bearer ${localStorage
+        .getItem('access_token')
+        .slice(1, -1)}`;
     }
     return newConfig;
   },
