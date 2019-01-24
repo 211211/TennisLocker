@@ -49,10 +49,13 @@ class App extends Component {
             setInitUrl(history.location.pathname);
         }
 
-        const refreshToken = localStorage.getItem('refresh_token')
-        if (refreshToken && typeof userRefreshToken === 'function') {
-            showAuthLoader()
-            userRefreshToken()
+        const accessToken = localStorage.getItem('access_token')
+        if (accessToken) {
+            const refreshToken = localStorage.getItem('refresh_token')
+            if (refreshToken && typeof userRefreshToken === 'function') {
+                showAuthLoader()
+                userRefreshToken()
+            }
         }
     }
 
