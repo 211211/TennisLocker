@@ -1,6 +1,5 @@
-@import '~react-datepicker/dist/react-datepicker.css';
 .app-wrapper-select {
-  width: 300px;
+  flex-grow: 1;
   font-size: 16px;
 
   .my-select__menu {
@@ -82,38 +81,18 @@ $font_size_select_date_min_1025: 14px;
 // iPad
 @media screen and (max-width: 768px) {
   .app-wrapper-select {
-    width: 300px;
     height: 45px;
     font-size: 12px;
   }
 }
 
 // Iphone 5, 5C, 5S
-@media screen and (max-width: 568) {
+@media screen and (max-width: 568px) {
   .app-wrapper-select {
-    width: 200px;
     height: 45px;
     font-size: 12px;
   }
-}
-
-// Iphone 4
-@media screen and (max-width: 480) {
-  .app-wrapper-select {
-    width: 150px;
-    height: 45px;
-    font-size: 12px;
-  }
-}
-
-// Iphone 4, 5, 5C, 5S
-@media screen and (max-width: 400) {
-  .app-wrapper-select {
-    width: 100px;
-    height: 45px;
-    font-size: 12px;
-  }
-  .datePicker-selectCustomDate {
+  .datePicker {
     display: none;
   }
 }
