@@ -16,9 +16,12 @@ import {isIOS, isMobile} from 'react-device-detect';
 import asyncComponent from '../util/asyncComponent';
 import TopNav from '../components/TopNav';
 import ColorOption from '../containers/Customizer/ColorOption';
-
+import {setGlobalVariable} from '../helpers/WindowHelper'
 
 class App extends React.Component {
+    componentDidMount = () => {
+        setGlobalVariable('history', this.props.history)
+    }
 
     render() {
         const {match, drawerType, navigationStyle, horizontalNavPosition} = this.props;

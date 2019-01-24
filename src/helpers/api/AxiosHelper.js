@@ -21,6 +21,24 @@ axios.interceptors.request.use(
     return Promise.reject(err);
   }
 );
+
+// TODO: refresh token
+axios.interceptors.response.use(
+  function(response) {
+    return response;
+  },
+  function(error) {
+    // redirect user to /signin page if token is invalid
+    if (error.response.status === 401) {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      window.location = '/signin'
+    }
+
+    return Promise.reject(error);
+  }
+);
+
 // axios.interceptors.response.use(
 //   function(response) {
 //     return response;

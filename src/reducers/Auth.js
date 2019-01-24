@@ -39,7 +39,7 @@ export default (state = INIT_STATE, action) => {
             return {
                 ...state,
                 authUser: null,
-                initURL: '/',
+                initURL: '',
                 loader: false
             }
         }
