@@ -26,7 +26,7 @@ export default (state = INIT_STATE, action) => {
             return {
                 ...state,
                 loader: false,
-                authUser: action.payload.access_token
+                authUser: localStorage.getItem('access_token')
             }
         }
         case INIT_URL: {
