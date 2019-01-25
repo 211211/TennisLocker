@@ -2,13 +2,14 @@ import { find } from "lodash";
 
 class DashboardSplitFilter {
   split = response => {
+    console.log(response);
     const blueBlocksName = [
-      "Players",
-      "Parents",
-      "Coaches",
-      "Groups",
-      "Sessions",
-      "Courts"
+      'Players',
+      'Parents',
+      'Coaches',
+      'Groups',
+      'Sessions',
+      'Courts'
     ];
 
     response.data.map(item => {
@@ -22,55 +23,96 @@ class DashboardSplitFilter {
   };
 
   filterAll = response => {
-    const schema = [
-      "Players",
-      "Parents",
-      "Coaches",
-      "Groups",
-      "Sessions",
-      "Courts",
-      "Attendance",
-      "Evals",
-      "Fitness Tests",
-      "Singles PM",
-      "Doubles PM",
-      "Goals",
-      "Events",
-      "Tournaments",
-      "Push Notifications",
-      "Files",
-      "Player Calendar"
+    const returnOrder = [
+        {
+            name: 'Attendance',
+            code: 'attendanceCount',
+        },
+        {
+            name: 'Evals',
+            code: 'dailyEvalCount'
+        },
+        {
+            name: 'Fitness Tests',
+            code: 'fitnessTestCount'
+        },
+        {
+            name: 'Practice Matches',
+            code: 'doublesPMCount',
+        },
+        {
+            name: 'Tournament Matches',
+            code: 'tournamentCount',
+
+        },
+        {
+            name: 'Files',
+            code: 'filesCount',
+        },
+        {
+            name: 'Goals',
+            code: 'goalsCount'
+        },
+        {
+            name: 'Push Notifications',
+            code: 'pushNotificationCount'
+        },
+        {
+            name: 'Player Calendar',
+            code: 'playerCalendarCount'
+        },
+        {
+            name: 'Events',
+            code: 'eventsCount'
+        },
+        {
+            name: 'Parents',
+            code: 'parentCount'
+        },
+        {
+            name: 'Coaches',
+            code: 'coachesCount'
+        },
+        {
+            name: 'Groups',
+            code: 'groupCount',
+        },
+        {
+            name: 'Sessions',
+            code: 'sessionCount'
+        },
+        {
+            name: 'Courts',
+            code: 'courtsCount'
+        },
+        {
+            name: 'Singles PM',
+            code: 'singlesPMCount'
+        }
     ];
 
     let data = response.data.slice();
     let deletedInd = [];
     let sortedData = [];
-
-    response.data.map((item, ind) => {
-      let ind2 = schema.indexOf(item.name);
-      if (ind2 !== -1) {
-        sortedData[ind2] = item;
-        deletedInd.push(ind);
-      }
+    const facilities = returnOrder.map(facility => {
+        const temp = response.data.find(item => item.code === facility.code);
+        let count = temp.count;
+        if (temp.code === 'doublesPMCount') {
+            const single = response.data.find(item => item.code === 'singlesPMCount');
+            count = temp.count + single.count;
+        }
+        return {
+            ...temp,
+            ...facility,
+            count
+        }
     });
-
-    data = data.filter((item, i) => {
-      return deletedInd.indexOf(i) === -1;
+    const itemsNotInList = response.data.filter(item => {
+        const idx = returnOrder.findIndex(fac => fac.code === item.code);
+        return idx === -1;
     });
-
-    const newData = sortedData.concat(data);
-    const Singles = find(newData, ["name", "Singles PM"]);
-    const Doubles = find(newData, ["name", "Doubles PM"]);
-    const SinglesIndex = newData.indexOf(Singles);
-    newData.splice(SinglesIndex, 1);
-    const DoublesIndex = newData.indexOf(Doubles);
-    newData[DoublesIndex] = {
-      ...Doubles,
-      name: "Practice Match",
-      count: Doubles.count + Singles.count
-    };
-    response.data = newData;
-
+   
+    response.data = facilities.concat(itemsNotInList);
     return response;
   };
 }

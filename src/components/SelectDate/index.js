@@ -89,8 +89,8 @@ class SelectDate extends React.Component {
                     valueDate: 1
                 },
                 {
-                    value: '2 month',
-                    label: '2 month',
+                    value: '2 months',
+                    label: '2 months',
                     valueName: 'month',
                     valueDate: 2
                 },
