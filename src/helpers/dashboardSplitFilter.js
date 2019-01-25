@@ -2,7 +2,6 @@ import { find } from "lodash";
 
 class DashboardSplitFilter {
   split = response => {
-    console.log(response);
     const blueBlocksName = [
       'playerCount',
       'parentCount',
