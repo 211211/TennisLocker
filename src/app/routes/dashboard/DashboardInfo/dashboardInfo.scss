@@ -1,5 +1,4 @@
-$dashboard_blog_info_margin_bottom: 15px;
-$dashboard_info_wrap_height: 435px;
+$dashboard_blog_info_margin_bottom: 5px;
 .dashboard_blog {
   display: flex;
   .dashboard_blog-buttons {
@@ -8,9 +7,8 @@ $dashboard_info_wrap_height: 435px;
   }
   .dashboard_blog_info {
     min-width: 329px;
-    padding: 34px;
+    padding: 15px 34px 0 34px;
     height: 100%;
-    max-height: $dashboard_info_wrap_height;
     border-radius: 5px;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
