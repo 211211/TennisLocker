@@ -6,7 +6,7 @@
   overflow: hidden;
   flex-direction: column;
   .dashboard_chart {
-    min-height: 459px;
+    min-height: 350px;
     border-radius: 5px;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
@@ -16,13 +16,12 @@
       align-items: center;
       font-size: 23px;
       color: #6c757d;
-      min-height: 459px;
+      min-height: 350px;
     }
   }
   .dashboard_top_block {
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
     border-radius: 5px;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
@@ -71,12 +70,7 @@
   padding: 10px 0;
   width: 100%;
   margin: 0;
-  margin-bottom: 10px;
   padding-left: 20px;
-}
-
-.features_title.chart_title {
-  margin-top: 30px;
 }
 
 @media screen and (max-width: 1440px) {
