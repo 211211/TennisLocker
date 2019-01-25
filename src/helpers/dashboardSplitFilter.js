@@ -113,8 +113,7 @@ class DashboardSplitFilter {
     });
    
     response.data = facilities.concat(itemsNotInList);
-    console.log(response.data);
-    return response;
+     return response;
   };
 }
 
