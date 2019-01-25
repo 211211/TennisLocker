@@ -4,19 +4,19 @@ class DashboardSplitFilter {
   split = response => {
     console.log(response);
     const blueBlocksName = [
-      'Players',
-      'Parents',
-      'Coaches',
-      'Groups',
-      'Sessions',
-      'Courts'
+      'playerCount',
+      'parentCount',
+      'coachesCount',
+      'groupCount',
+      'sessionCount',
+      'courtsCount'
     ];
 
-    response.data.map(item => {
-      if (blueBlocksName.indexOf(item.name) !== -1) {
-        item.placement = "top";
+    response.data.forEach(item => {
+      if (blueBlocksName.includes(item.code)) {
+        item.placement = 'top';
       } else {
-        item.placement = "bottom";
+        item.placement = 'bottom';
       }
     });
     return response;
@@ -113,6 +113,7 @@ class DashboardSplitFilter {
     });
    
     response.data = facilities.concat(itemsNotInList);
+    console.log(response.data);
     return response;
   };
 }
