@@ -1,4 +1,4 @@
-import { GET_FACILITIES_SUCCESS } from "../../constants/ActionTypes";
+import { GET_FACILITIES_SUCCESS } from '../../constants/ActionTypes';
 
 const initial = {
   facilityArr: []

@@ -4,7 +4,7 @@ import {
     ADD_FACILITY_SELECT_DATE_SUCCESS,
     ADD_SELECT_FACILITY,
     ADD_FACILITY_SELECT_DATE
-} from "../../constants/ActionTypes";
+} from '../../constants/ActionTypes';
 
 const initial = {
     facilityDate: [],

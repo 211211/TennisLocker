@@ -9,39 +9,72 @@ import {
     userGetFacilitiesSelectDate
 } from '../../../actions/Facility';
 
-const mapStateToProps = ({ facilityFilter }) => ({
-    facilityFilter
-});
+import CircularProgress from '../../../components/CircularProgress';
+
+const mapStateToProps = ({ facilityFilter, app }) => {
+    const {loading} = app
+
+    return {
+        facilityFilter,
+        loading,
+    }
+};
 
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
     }
+
+    renderLoadingComponent = () => {
+        const {loader} = this.props
+        if (loader) {
+            return (
+                <div className="loader-view">
+                    <CircularProgress />
+                </div>
+            )
+        }
+
+        return null
+    }
+
     render() {
+        const {
+            facilityFilter: { flagFilter },
+            userGetFacilitiesToday,
+            userGetFacilitiesSelectDate,
+            loader
+        } = this.props;
+
         const facility = this.props.facilityFilter;
         const facilityId = facility.facilityActive.id;
         const flag = facility.flagFilter;
         const activeFacility = facility.activeDateSelect;
-        const { facilityFilter: { flagFilter } } = this.props;
 
         if (facilityId) {
             if (flag) {
                 if (facility.activeDateSelect) {
-                    this.props.userGetFacilitiesSelectDate(
+                    userGetFacilitiesSelectDate(
                         facilityId,
                         activeFacility.startDay,
                         activeFacility.endDay
                     );
                 } else {
-                    this.props.userGetFacilitiesToday(facilityId);
+                    userGetFacilitiesToday(facilityId);
                 }
             }
         }
 
         const {facilityActive, facilityDate} = facility
+
+        if (loader) {
+            return this.renderLoadingComponent()
+        }
+
         return (
             <div className="dashboard">
+
                 <div className="dashboard_blog">
                 <div className="dashboard_blog-buttons">
                     <DashboardButtons facilityBtn={facility.facilityDate} />
@@ -61,6 +94,6 @@ export default connect(
     mapStateToProps,
     {
         userGetFacilitiesToday: id => userGetFacilitiesToday(id),
-        userGetFacilitiesSelectDate: (id, startDay, endDay) => userGetFacilitiesSelectDate(id, startDay, endDay)
+        userGetFacilitiesSelectDate: (id, startDay, endDay) => userGetFacilitiesSelectDate(id, startDay, endDay),
     }
 )(Dashboard);

@@ -1,7 +1,7 @@
 import {
   ACTIVE_FACILITY_ARRAY,
   GET_FACILITIES_SELECT_DATE_SUCCESS
-} from "../../constants/ActionTypes";
+} from '../../constants/ActionTypes';
 
 const initial = {
   activeFacilityArray: []

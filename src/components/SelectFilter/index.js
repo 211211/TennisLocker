@@ -1,31 +1,31 @@
-import React from "react";
-import Select, { components } from "react-select";
-import { connect } from "react-redux";
-import "./selectFilter.scss";
-import SVG from "react-inlinesvg";
-import searchIcon from "../../assets/images/TennisLockerInternalPortal/seacrch.svg";
-import { getFacilities, addSelectFacility } from "../../actions/Facility";
+import React from 'react';
+import Select, { components } from 'react-select';
+import { connect } from 'react-redux';
+import './selectFilter.scss';
+import SVG from 'react-inlinesvg';
+import searchIcon from '../../assets/images/TennisLockerInternalPortal/seacrch.svg';
+import { getFacilities, addSelectFacility } from '../../actions/Facility';
 
 const colourStyles = {
-  control: styles => ({ ...styles, backgroundColor: "white" }),
+  control: styles => ({ ...styles, backgroundColor: 'white' }),
   option: (styles, { data, isDisabled, isSelected, isFocused }) => {
     return {
       ...styles,
       backgroundColor: isDisabled
         ? null
         : isSelected
-          ? "#d9dde0"
+          ? '#d9dde0'
           : isFocused
-            ? "#edf0f2"
+            ? '#edf0f2'
             : null,
       color: isDisabled
-        ? "#ccc"
+        ? '#ccc'
         : isSelected
-          ? "white"
-            ? "black"
-            : "black"
-          : "black",
-      ":before": {
+          ? 'white'
+            ? 'black'
+            : 'black'
+          : 'black',
+      ':before': {
         background: data.color
       }
     };
@@ -33,23 +33,23 @@ const colourStyles = {
   multiValue: (styles, { data }) => {
     return {
       ...styles,
-      backgroundColor: "#edf0f2",
-      paddingLeft: "5px",
-      ":before": {
+      backgroundColor: '#edf0f2',
+      paddingLeft: '5px',
+      ':before': {
         background: data.color
       }
     };
   },
   multiValueLabel: styles => ({
     ...styles,
-    color: "black"
+    color: 'black'
   }),
   multiValueRemove: styles => ({
     ...styles,
-    color: "#7a7a7a",
-    ":hover": {
-      color: "#040405",
-      cursor: "pointer"
+    color: '#7a7a7a',
+    ':hover': {
+      color: '#040405',
+      cursor: 'pointer'
     }
   })
 };

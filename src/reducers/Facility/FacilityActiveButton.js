@@ -1,4 +1,4 @@
-import { FACILITY_ACTIVE_BUTTONS } from "../../constants/ActionTypes";
+import { FACILITY_ACTIVE_BUTTONS } from '../../constants/ActionTypes';
 
 const initial = {
   facilityActiveButtons: []

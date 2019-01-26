@@ -61,13 +61,13 @@ class App extends Component {
 
     render() {
         const {match, location, locale, initURL, isDirectionRTL, authUser, loader} = this.props;
-        // if (loader) {
-        //     return (
-        //         <div className="loader-view">
-        //             <CircularProgress />
-        //         </div>
-        //     )
-        // }
+        if (loader) {
+            return (
+                <div className="loader-view">
+                    <CircularProgress />
+                </div>
+            )
+        }
 
         if (location.pathname === '/') {
             if (authUser === null || !authUser || authUser === '') {
