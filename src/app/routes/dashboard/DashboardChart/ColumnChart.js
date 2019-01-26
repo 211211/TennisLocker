@@ -1,6 +1,6 @@
-import React from "react";
-import "./dashboardChart.scss";
-import chroma from "chroma-js";
+import React from 'react';
+import './dashboardChart.scss';
+import chroma from 'chroma-js';
 
 class ColumnChart extends React.Component {
   constructor(props) {
@@ -17,14 +17,14 @@ class ColumnChart extends React.Component {
   }
 
   render() {
-    const newWidth = this.props.widthColumn ? "changeWidth" : "";
-    let widthNym = "";
+    const newWidth = this.props.widthColumn ? 'changeWidth' : '';
+    let widthNym = '';
     if (this.props.widthColumn) {
-      widthNym = this.props.widthColumn < 110 ? "changeWidthNum" : "";
+      widthNym = this.props.widthColumn < 110 ? 'changeWidthNum' : '';
     }
     const item = this.props.item;
     const num = String(item.count / (item.count + 100)).slice(2, 4);
-    let scale = chroma.scale(["white", item.color]);
+    let scale = chroma.scale(['white', item.color]);
     return (
       <div className="chart_dashboard_elem">
         <div
@@ -35,8 +35,8 @@ class ColumnChart extends React.Component {
         >
           <div
             style={{
-              height: `${this.state.didMount ? Number(num) + "%" : 0}`,
-              transition: "height 1s ease-out",
+              height: `${this.state.didMount ? Number(num) + '%' : 0}`,
+              transition: 'height 1s ease-out',
               backgroundColor: `${item.color}`
             }}
             className="chart_dashboard_elem_block_count"
@@ -44,8 +44,8 @@ class ColumnChart extends React.Component {
             <span
               className={`${
                 Number(num) > 10
-                  ? "chart_dashboard_elem_count"
-                  : "chart_dashboard_elem_count zero_count"
+                  ? 'chart_dashboard_elem_count'
+                  : 'chart_dashboard_elem_count zero_count'
               } ${widthNym}`}
             >
               <span>{item.count}</span>
@@ -53,19 +53,7 @@ class ColumnChart extends React.Component {
           </div>
         </div>
         <div className="chart_dashboard_elem-title">
-          <span className={newWidth}>
-            <svg viewBox="0 0 100 100" width="100%" height="100%">
-              <text
-                x="50"
-                y="60"
-                fill="#636c6e"
-                fontSize="50px"
-                textAnchor="middle"
-              >
-                {item.name}
-              </text>
-            </svg>
-          </span>
+            <span>{item.name}</span>
         </div>
       </div>
     );

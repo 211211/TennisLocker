@@ -21,41 +21,25 @@
 
 
   .dashboard_buttons_block-count {
-    font-size: 24px;
+    font-size: 1.5em;
     font-weight: normal;
     color: #ffffff;
     margin-bottom: auto;
   }
+
   .dashboard_buttons_block-name {
     font-size: 1em;
     font-weight: normal;
     display: flex;
-    white-space: nowrap;
-    // justify-content: flex-end;
     color: #ffffff;
   }
+
   .dashboard_buttons_block-img {
     position: absolute;
     right: 15px;
     top: 15px;
     display: none;
   }
-}
-
-@media screen and (max-width: 1366px) {
-
-  //.dashboard_buttons_block {
-  //  width: 180px;
-  //  height: 75px;
-  //
-  //  .dashboard_buttons_block-count {
-  //    font-size: 18px;
-  //  }
-  //
-  //  .dashboard_buttons_block-name {
-  //    font-size: 14px;
-  //  }
-  //}
 }
 
 @media screen and (max-width: 1024px) {
