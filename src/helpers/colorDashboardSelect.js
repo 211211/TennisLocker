@@ -4,111 +4,110 @@ const addSuffixPluralNoun = (str) => `${str}${SUFFIX_PLURAL_NOUN}`
 class AddColorButtons {
   colorButtons = response => {
     const arrButtons = [];
-    console.log(response.data);
     Object.keys(response.data).forEach(item => {
       const str = item
-        .replace(/Count/g, "")
-        .replace(/([A-Z]+)/g, " $1")
-        .replace(/([A-Z][a-z])/g, "$1");
+        .replace(/Count/g, '')
+        .replace(/([A-Z]+)/g, ' $1')
+        .replace(/([A-Z][a-z])/g, '$1');
       const obj = {
         name: addSuffixPluralNoun(str.charAt(0).toUpperCase() + str.slice(1)),
         count: response.data[item],
         activeFlag: false,
         code: item,
-        color: "#65b2ff"
+        color: '#65b2ff'
       };
       switch (item) {
-        case "groupCount":
+        case 'groupCount':
           arrButtons.push(obj);
           break;
-        case "playerCount":
+        case 'playerCount':
           arrButtons.push(obj);
           break;
-        case "parentCount":
+        case 'parentCount':
           arrButtons.push(obj);
           break;
-        case "dailyEvalCount":
+        case 'dailyEvalCount':
           arrButtons.push({
             ...obj,
-            color: "#1c65af",
+            color: '#1c65af',
           });
           break;
-        case "fitnessTestCount":
+        case 'fitnessTestCount':
           arrButtons.push({
             ...obj,
-            color: "#e6d21f"
+            color: '#e6d21f'
           });
           break;
-        case "singlesPMCount":
+        case 'singlesPMCount':
           arrButtons.push({
             ...obj,
-            color: "#E50404",
+            color: '#E50404',
           });
           break;
-        case "doublesPMCount":
+        case 'doublesPMCount':
           arrButtons.push({
             ...obj,
-            color: "#E50404"
+            color: '#E50404'
           });
           break;
-        case "goalsCount":
+        case 'goalsCount':
           arrButtons.push({
             ...obj,
-            color: "#624096",
+            color: '#624096',
           });
           break;
-        case "eventsCount":
+        case 'eventsCount':
           arrButtons.push({
             ...obj,
-            color: "#ea8637",
+            color: '#ea8637',
           });
           break;
-        case "attendanceCount":
+        case 'attendanceCount':
           arrButtons.push({
             ...obj,
-            color: "#8acb3f"
+            color: '#8acb3f'
           });
           break;
-        case "tournamentCount":
+        case 'tournamentCount':
           arrButtons.push({
             ...obj,
-            color: "#aed7ff"
+            color: '#aed7ff'
           });
           break;
-        case "courtsCount":
+        case 'courtsCount':
           arrButtons.push({
             ...obj,
-            color: "#65b2ff"
+            color: '#65b2ff'
           });
           break;
-        case "pushNotificationCount":
+        case 'pushNotificationCount':
           arrButtons.push({
             ...obj,
-            color: "#f7ab6f"
+            color: '#f7ab6f'
           });
           break;
-        case "coachesCount":
+        case 'coachesCount':
           arrButtons.push({
             ...obj,
-            color: "#65b2ff"
+            color: '#65b2ff'
           });
           break;
-        case "sessionCount":
+        case 'sessionCount':
           arrButtons.push({
             ...obj,
-            color: "#65b2ff"
+            color: '#65b2ff'
           });
           break;
-        case "filesCount":
+        case 'filesCount':
           arrButtons.push({
             ...obj,
-            color: "#ef35ff"
+            color: '#ef35ff'
           });
           break;
-        case "playerCalendarCount":
+        case 'playerCalendarCount':
           arrButtons.push({
             ...obj,
-            color: "#ff8dbf"
+            color: '#ff8dbf'
           });
           break;
         default:

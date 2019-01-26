@@ -59,7 +59,7 @@ class ColumnChart extends React.Component {
                 x="50"
                 y="60"
                 fill="#636c6e"
-                fontSize="45px"
+                fontSize="40px"
                 textAnchor="middle"
               >
                 {item.name}

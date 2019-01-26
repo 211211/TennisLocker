@@ -27,16 +27,11 @@ class Dashboard extends React.Component {
     }
 
     renderLoadingComponent = () => {
-        const {loader} = this.props
-        if (loader) {
-            return (
-                <div className="loader-view">
-                    <CircularProgress />
-                </div>
-            )
-        }
-
-        return null
+        return (
+            <div className="loader-view">
+                <CircularProgress />
+            </div>
+        )
     }
 
     render() {
@@ -44,7 +39,7 @@ class Dashboard extends React.Component {
             facilityFilter: { flagFilter },
             userGetFacilitiesToday,
             userGetFacilitiesSelectDate,
-            loader
+            loading
         } = this.props;
 
         const facility = this.props.facilityFilter;
@@ -67,14 +62,12 @@ class Dashboard extends React.Component {
         }
 
         const {facilityActive, facilityDate} = facility
-
-        if (loader) {
+        if (loading) {
             return this.renderLoadingComponent()
         }
 
         return (
             <div className="dashboard">
-
                 <div className="dashboard_blog">
                 <div className="dashboard_blog-buttons">
                     <DashboardButtons facilityBtn={facility.facilityDate} />
