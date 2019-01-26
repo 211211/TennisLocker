@@ -1,7 +1,7 @@
-import React from "react";
-import "./dashboardChart.scss";
-import { connect } from "react-redux";
-import ColumnChart from "./ColumnChart";
+import React from 'react';
+import './dashboardChart.scss';
+import { connect } from 'react-redux';
+import ColumnChart from './ColumnChart';
 
 const mapStateToProps = ({ facilityActive }) => ({
   facilityActive
@@ -18,11 +18,11 @@ class DashboardChart extends React.Component {
   resize = () => this.forceUpdate();
 
   componentDidMount() {
-    window.addEventListener("resize", this.resize);
+    window.addEventListener('resize', this.resize);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.resize);
+    window.removeEventListener('resize', this.resize);
   }
 
   changeWidth = widthColumn => {
@@ -30,10 +30,10 @@ class DashboardChart extends React.Component {
   };
 
   render() {
-    let chartElem = "";
+    let chartElem = '';
     setTimeout(() => {
       const element = document.querySelector(
-        ".chart_dashboard .chart_dashboard_elem:last-child"
+        '.chart_dashboard .chart_dashboard_elem:last-child'
       );
       if (element) {
         if (this.state.widthColumn !== element.clientWidth) {

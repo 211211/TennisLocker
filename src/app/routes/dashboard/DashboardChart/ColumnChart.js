@@ -53,7 +53,19 @@ class ColumnChart extends React.Component {
           </div>
         </div>
         <div className="chart_dashboard_elem-title">
-            <span>{item.name}</span>
+          <span className={newWidth}>
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <text
+                x="50"
+                y="60"
+                fill="#636c6e"
+                fontSize="45px"
+                textAnchor="middle"
+              >
+                {item.name}
+              </text>
+            </svg>
+          </span>
         </div>
       </div>
     );
