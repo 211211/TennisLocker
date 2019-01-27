@@ -1,4 +1,4 @@
-import { find } from "lodash";
+import { remove } from 'lodash';
 
 class DashboardSplitFilter {
   split = response => {
@@ -90,9 +90,9 @@ class DashboardSplitFilter {
         }
     ];
 
-    let data = response.data.slice();
-    let deletedInd = [];
-    let sortedData = [];
+    // let data = response.data.slice();
+    // let deletedInd = [];
+    // let sortedData = [];
     const facilities = returnOrder.map(facility => {
         const temp = response.data.find(item => item.code === facility.code);
         let count = temp.count;
@@ -110,7 +110,9 @@ class DashboardSplitFilter {
         const idx = returnOrder.findIndex(fac => fac.code === item.code);
         return idx === -1;
     });
-   
+
+    remove(facilities, (({code}) => code === 'singlesPMCount'))
+
     response.data = facilities.concat(itemsNotInList);
      return response;
   };
