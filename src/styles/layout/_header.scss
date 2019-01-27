@@ -100,7 +100,7 @@
 
   & .search-bar {
     display: flex;
-    width: 100%;
+    width: calc(100% - 370px);
     // margin-right: auto;
     // max-width: 320px;
     // width: 300px;
