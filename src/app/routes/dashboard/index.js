@@ -9,7 +9,7 @@ import {
     userGetFacilitiesSelectDate
 } from '../../../actions/Facility';
 
-import CircularProgress from '../../../components/CircularProgress';
+import withLoader from '../../../components/WithLoader';
 
 const mapStateToProps = ({ facilityFilter, app }) => {
     const {loading} = app
@@ -20,18 +20,11 @@ const mapStateToProps = ({ facilityFilter, app }) => {
     }
 };
 
+@withLoader(({loading}) => loading)
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-    }
-
-    renderLoadingComponent = () => {
-        return (
-            <div className="loader-view">
-                <CircularProgress />
-            </div>
-        )
     }
 
     render() {
@@ -39,7 +32,6 @@ class Dashboard extends React.Component {
             facilityFilter: { flagFilter },
             userGetFacilitiesToday,
             userGetFacilitiesSelectDate,
-            loading
         } = this.props;
 
         const facility = this.props.facilityFilter;
@@ -62,10 +54,7 @@ class Dashboard extends React.Component {
         }
 
         const {facilityActive, facilityDate} = facility
-        if (loading) {
-            return this.renderLoadingComponent()
-        }
-
+   
         return (
             <div className="dashboard">
                 <div className="dashboard_blog">
