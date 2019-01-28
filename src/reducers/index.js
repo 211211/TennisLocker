@@ -7,6 +7,7 @@ import FacilityActive from './Facility/FacilityActive';
 import FacilityActiveButton from './Facility/FacilityActiveButton';
 import FacilityFilter from './Facility/FacilityFilter';
 import AppReducer from './App';
+import CalendarReducer from './Calendar';
 
 const reducers = combineReducers ({
     routing: routerReducer,
@@ -19,6 +20,7 @@ const reducers = combineReducers ({
     facilityActive: FacilityActive,
     facilityActiveButton: FacilityActiveButton,
     app: AppReducer,
+    calendar: CalendarReducer,
 });
 
 export default reducers;
