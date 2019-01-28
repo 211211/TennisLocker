@@ -20,6 +20,8 @@ const mapStateToProps = ({ facilityFilter, app }) => {
     }
 };
 
+// If you get this warrning: Experimental support for decorators is a feature that is subject to change in a future release
+// Solved here: https://github.com/Microsoft/vscode/issues/45071
 @withLoader(({loading}) => loading)
 class Dashboard extends React.Component {
     constructor(props) {
@@ -54,7 +56,7 @@ class Dashboard extends React.Component {
         }
 
         const {facilityActive, facilityDate} = facility
-   
+
         return (
             <div className="dashboard">
                 <div className="dashboard_blog">
