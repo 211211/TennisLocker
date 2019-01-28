@@ -136,12 +136,12 @@ class SidenavContent extends Component {
                     </li>
 
                     <li className="menu no-arrow">
-                        <a role="button" href="javascript:void(0)">
+                        <NavLink className="prepend-icon" to="/app/events">
                             <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
                             <span className="nav-text">
-                            <IntlMessages id="sidebar.events"/>
-                        </span>
-                        </a>
+                                <IntlMessages id="sidebar.events"/>
+                            </span>
+                        </NavLink>
                     </li>
 
                     <li className="menu no-arrow">
