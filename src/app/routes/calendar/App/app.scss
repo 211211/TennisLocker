@@ -1,0 +1,50 @@
+@keyframes openModal {
+  0%   {margin-right: -20%;}
+  100% {margin-right: 0;}
+}
+@keyframes closeModal {
+  0%   {margin-right: 0;}
+  100% {margin-right: -26%;}
+}
+.ReactModal__Overlay--after-open {
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
+.Modal {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  position: absolute;
+  outline: none;
+}
+.app-wrapper {
+  padding: 36px 40px 0;
+  width: 100%;
+  background-color: #f4f4f4;
+  height: 100%;
+}
+.app-wrapper-select {
+  margin-bottom: 30px;
+  .my-select__menu {
+    z-index: 115222!important;
+  }
+}
+.ModalSettings {
+  top: 50%;
+  animation-name: openModal;
+  animation-duration: 1s;
+  right: 0;
+  transform: translate(0%, -50%);
+  background-color: transparent;
+  position: absolute;
+  outline: none;
+  height: 100%;
+}
+.ReactModal__Overlay--before-close{
+  animation-name: closeModal;
+  animation-duration: 1.5s;
+}

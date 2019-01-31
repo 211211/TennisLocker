@@ -1,0 +1,32 @@
+.app-wrapper-select {
+  margin-bottom: 30px;
+  .my-select__menu {
+    z-index: 115222!important;
+  }
+  .my-select__multi-value {
+    align-items: center;
+    color: white!important;
+    height: 22px;
+  }
+  .my-select__multi-value:before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .my-select__option {
+    display: flex;
+    align-items: center;
+  }
+  .my-select__option:active {
+    background: #bbbdbf;
+  }
+  .my-select__option:before{
+    content: '';
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    display: block;
+    border-radius: 50%;
+  }
+}

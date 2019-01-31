@@ -50,7 +50,7 @@ class App extends React.Component {
                         <div className="app-main-content">
                             <Switch>
                                 <Route path={`${match.url}/dashboard`} component={asyncComponent(() => import('./routes/dashboard'))}/>
-                                <Route path={`${match.url}/events`} component={asyncComponent(() => import('./routes/event'))}/>
+                                <Route path={`${match.url}/events`} component={asyncComponent(() => import('./routes/calendar/App'))}/>
                                 <Route component={asyncComponent(() => import('components/Error404'))}/>
                             </Switch>
                         </div>
