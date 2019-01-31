@@ -32,7 +32,7 @@ const getMonthCalendarRequest = async (year, month) => {
 
 // TODO: switch to new api
 const getFilterEventTypeRequest = async () => {
-    return await AxiosHelper.get(`${config.hrefUrl}/lookups/eventTypes/external/${config.token}`)
+    return await AxiosHelper.get(`${config.hrefUrl}lookups/eventTypes/external/${config.token}`)
         .then(AuthHelper.checkStatus)
         .then(response => response.data)
         .catch(error => error);
