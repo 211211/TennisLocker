@@ -24,6 +24,9 @@ export function* sendRequest(apiFn, type, payload) {
       }
   } catch (error) {
     yield put(action.create(
+      requestAction.FAIL,
+    ))
+    yield put(action.create(
       SHOW_MESSAGE,
       error
     ))

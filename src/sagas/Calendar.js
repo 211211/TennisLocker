@@ -1,9 +1,9 @@
-import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+import { all, call, fork, put, takeEvery, select } from 'redux-saga/effects';
 
 // ACTION TYPES
 import {
     GET_MONTH_CALENDAR,
-    GET_FILTER_EVENTtYPE,
+    GET_FILTER_EVENT_TYPE
 } from '../constants/ActionTypes';
 
 // AUTH MESSAGE
@@ -17,60 +17,47 @@ import {
 
 // HELPER
 import Api from '../helpers/api';
-import AuthHelper from '../helpers/AuthHelper';
 import config from '../config';
+import {sendRequest} from '../helpers/saga';
+import {makeSelectFacilityFilterActive} from '../selectors/Facility/FacilityFilterSelector'
 
 // TODO: switch to new api
-const getMonthCalendarRequest = async (facilityId, year, month) => {
-  return await Api.get({
-    url: `${config.baseUrl}/events/facility/${facilityId}/${year}/${month + 1}`
-  })
-    .then(response => response.data)
-    .catch(error => error);
+function* requestGetFilterEventType() {
+    const url = `${config.hrefUrl}lookups/eventTypes/external/${config.token}`
+    const request = sendRequest.bind(
+        null, 
+        async () => {
+            return await Api.get({url})
+                  .then(response => response.data)
+                  .catch(error => error);
+        }, 
+        GET_FILTER_EVENT_TYPE
+    );
+    yield call(request)
 };
 
-// TODO: switch to new api
-const getFilterEventTypeRequest = async () => {
-    return await Api.get({
-            url: `${config.hrefUrl}lookups/eventTypes/external/${config.token}`
-        })
-        .then(response => response.data)
-        .catch(error => error);
-};
-
-function* getMonthCalendarGenerator({ payload }) {
-    try {
-        const { year, month } = payload;
-        const response = yield call(getMonthCalendarRequest, year, month);
-        if (response.error) {
-            yield put(showAuthMessage(response.error_description));
-        } else {
-            yield put(getMonthCalendarSuccess(response));
-        }
-    } catch (error) {
-        yield put(showAuthMessage(error));
-    }
-}
-
-function* getFilterEventTypeGenerator() {
-    try {
-        const response = yield call(getFilterEventTypeRequest);
-        if (response.error) {
-            yield put(showAuthMessage(response.error_description));
-        } else {
-            yield put(getFilterEventTypeSuccess(response));
-        }
-    } catch (error) {
-        yield put(showAuthMessage(error));
-    }
+function* requestGetMonthCalendar({payload}) {
+    const {year, month} = payload;
+    const facilityActive = yield select(makeSelectFacilityFilterActive());
+    const url = `${config.baseUrl}/events/facility/${facilityActive.id}/${year}/${month + 1}`;
+    const request = sendRequest.bind(
+        null, 
+        async () => {
+            return await Api.get({url})
+                  .then(response => response.data)
+                  .catch(error => error);
+        }, 
+        GET_MONTH_CALENDAR
+    )
+    yield call(request)
 }
 
 export function* getMonthCalendarSaga() {
-    yield takeEvery(GET_MONTH_CALENDAR, getMonthCalendarGenerator);
+    yield takeEvery(GET_MONTH_CALENDAR, requestGetMonthCalendar);
 }
 
 export function* getFilterEventTypeSaga() {
-    yield takeEvery(GET_FILTER_EVENTtYPE, getFilterEventTypeGenerator);
+    yield takeEvery(GET_FILTER_EVENT_TYPE, requestGetFilterEventType);
 }
 
 export default function* rootSaga() {

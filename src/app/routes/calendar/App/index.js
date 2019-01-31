@@ -4,6 +4,7 @@ import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import ReactModal from 'react-modal';
 import PropTypes from 'prop-types';
+import {createStructuredSelector} from 'reselect'
 import {
   getMonthCalendar,
   getFilterEventType
@@ -11,6 +12,8 @@ import {
 import './app.scss';
 import Calendar from '../Calendar';
 import config from '../../../../config';
+import {makeSelectFacilityFilterActive} from '../../../../selectors/Facility/FacilityFilterSelector';
+import {makeSelectCalendar} from '../../../../selectors/Calendar'
 import ModalEventDetail from '../ModalEventDetail';
 import SelectFilter from '../SelectFilter';
 
@@ -28,6 +31,12 @@ class App extends React.Component {
     };
     this.filterEvents = [];
     this.searchEventDetail = {};
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.facilityFilterActive.id !== this.props.facilityFilterActive.id) {
+      this.props.getMonthCalendar(this.state.yearEvents, this.state.monthEvents);
+    }
   }
 
   componentDidMount() {
@@ -89,12 +98,12 @@ class App extends React.Component {
     );
   };
   render() {
-    if (this.props.calendar.eventForMonth.length > 0) {
-      this.filterMonthEvents(this.props.calendar.eventForMonth);
-    }
-    if (Object.keys(this.state.typesEvent).length > 0) {
-      this.filterTypes();
-    }
+    // if (this.props.calendar.eventForMonth.length > 0) {
+    //   this.filterMonthEvents(this.props.calendar.eventForMonth);
+    // }
+    // if (Object.keys(this.state.typesEvent).length > 0) {
+    //   this.filterTypes();
+    // }
     const colorCalendar = this.props.paramsUser;
     return (
       <div
@@ -141,9 +150,10 @@ App.propTypes = {
   }).isRequired
 };
 
-const mapStateToProps = ({ calendar }) => ({
-  calendar
-});
+const mapStateToProps = createStructuredSelector({
+  facilityFilterActive: makeSelectFacilityFilterActive(),
+  calendar: makeSelectCalendar()
+})
 
 export default connect(
   mapStateToProps,
