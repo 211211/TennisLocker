@@ -8,8 +8,6 @@
   .dashboard_chart {
     display: flex;
     flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
     border-radius: 5px;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
@@ -18,8 +16,8 @@
       justify-content: center;
       align-items: center;
       font-size: 2em;
-      width: 100%;
       color: #6c757d;
+      flex-grow: 1;
     }
   }
   .dashboard_top_block {
@@ -74,6 +72,20 @@
   width: 100%;
   margin: 0;
   padding-left: 20px;
+}
+
+@media screen and (max-width: 1440px) {
+
+  body .dashboard_buttons_block {
+    .dashboard_buttons_block-count {
+      font-size: 1.5em;
+    }
+
+    .dashboard_buttons_block-name {
+      font-size: 1em;
+    }
+  }
+
 }
 
 @media screen and (max-width: 1366px) {

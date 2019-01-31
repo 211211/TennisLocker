@@ -1,17 +1,15 @@
 .chart_dashboard {
   padding: 15px 42px 15px 42px;
   display: flex;
+  flex-grow: 1;
   .chart_dashboard_elem {
     display: flex;
     flex-direction: column;
     flex: 1;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
-    max-width: 150px;
+    max-width: 187px;
     padding-right: 2vw;
     width: auto;
-    min-width: 50px;
+    min-width: 0;
   }
   .zero_count {
     top: 50%;
@@ -47,9 +45,6 @@
     display: flex;
     align-items: flex-end;
     overflow: hidden;
-    // flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
   }
   .chart_dashboard_elem_block_count {
     display: flex;
