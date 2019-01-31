@@ -49,9 +49,9 @@ class App extends React.Component {
                     <main className="app-main-content-wrapper">
                         <div className="app-main-content">
                             <Switch>
-                                <Route path={`${match.url}/dashboard`} component={asyncComponent(() => import('./routes/dashboard'))} />
-                                <Route path={`${match.url}/events`} component={asyncComponent(() => import('./routes/event'))} />
-                                <Route component={asyncComponent(() => import('components/Error404'))} />
+                                <Route path={`${match.url}/dashboard`} component={asyncComponent(() => import('./routes/dashboard'))}/>
+                                <Route path={`${match.url}/events`} component={asyncComponent(() => import('./routes/calendar/App'))}/>
+                                <Route component={asyncComponent(() => import('components/Error404'))}/>
                             </Switch>
                         </div>
                         <Footer />
