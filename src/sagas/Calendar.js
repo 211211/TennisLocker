@@ -16,24 +16,24 @@ import {
 } from '../actions/Calendar';
 
 // HELPER
-import AxiosHelper from '../helpers/api/AxiosHelper';
+import Api from '../helpers/api';
 import AuthHelper from '../helpers/AuthHelper';
 import config from '../config';
 
 // TODO: switch to new api
-const getMonthCalendarRequest = async (year, month) => {
-  return await AxiosHelper.get(
-    `${config.hrefUrl}events/external/${config.token}/${year}/${month + 1}`
-  )
-    .then(AuthHelper.checkStatus)
+const getMonthCalendarRequest = async (facilityId, year, month) => {
+  return await Api.get({
+    url: `${config.baseUrl}/events/facility/${facilityId}/${year}/${month + 1}`
+  })
     .then(response => response.data)
     .catch(error => error);
 };
 
 // TODO: switch to new api
 const getFilterEventTypeRequest = async () => {
-    return await AxiosHelper.get(`${config.hrefUrl}lookups/eventTypes/external/${config.token}`)
-        .then(AuthHelper.checkStatus)
+    return await Api.get({
+            url: `${config.hrefUrl}lookups/eventTypes/external/${config.token}`
+        })
         .then(response => response.data)
         .catch(error => error);
 };

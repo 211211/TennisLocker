@@ -1,4 +1,5 @@
-import { all, call, fork, put, select, takeEvery } from 'redux-saga/effects';
+import { all, call, fork, put, select, takeEvery, take, cancel } from 'redux-saga/effects';
+import {LOCATION_CHANGE} from 'react-router-redux'
 import {
     GET_FACILITIES,
     GET_FACILITIES_TODAY,
@@ -10,118 +11,102 @@ import {
     getFacilitiesTodaySuccess,
     getFacilitiesSelectDateSuccess,
 } from '../actions/Facility';
-import AxiosHelper from '../helpers/api/AxiosHelper';
-import AuthHelper from '../helpers/AuthHelper';
+import Api from '../helpers/api';
+import {sendRequest} from '../helpers/saga';
 import ColorHelper from '../helpers/colorDashboardSelect';
 import DashboardSplitFilter from '../helpers/dashboardSplitFilter';
 import config from '../config';
 
 export const selectorFacilityActiveButtons = ({ facilityActiveButton }) => facilityActiveButton.facilityActiveButtons;
 
-const getAllFacilitiesRequest = async () => {
-    return await AxiosHelper.get(`${config.baseUrl}/facility/all`)
-        .then(AuthHelper.checkStatus)
-        .then(response => response.data)
-        .catch(error => error);
-};
-
-function* getAllFacilities() {
-    try {
-        const facilitiesResponse = yield call(getAllFacilitiesRequest);
-        if (facilitiesResponse.error) {
-            yield put(showAuthMessage(facilitiesResponse.error_description));
-        } else {
-            yield put(getFacilitiesSuccess(facilitiesResponse));
-        }
-    } catch (error) {
-        yield put(showAuthMessage(error));
-    }
-}
-
-const getAllFacilitiesTodayRequest = async (id, activeButtons = []) => {
-    return await AxiosHelper.get(
-        `${config.baseUrl}/analytics/metrics/facility/${id}`
-    )
-        .then(AuthHelper.checkStatus)
-        .then(ColorHelper.colorButtons)
-        .then(DashboardSplitFilter.split)
-        .then(DashboardSplitFilter.filterAll)
-        .then(response => {
-            response.data.map(function (btn) {
-                btn.activeFlag = activeButtons.indexOf(btn.name) !== -1 ? true : false;
-            });
-
-            return response;
-        })
-        .then(response => response.data)
-        .catch(error => error);
-};
-
-function* getAllFacilitiesToday({ payload }) {
-    try {
-        const { id } = payload;
-        const activeButtons = yield select(selectorFacilityActiveButtons);
-        const response = yield call(getAllFacilitiesTodayRequest, id, activeButtons);
-        if (response.error) {
-            yield put(showAuthMessage(response.error_description));
-        } else {
-            yield put(getFacilitiesTodaySuccess({ facilityDate: response, flagFilter: false }));
-        }
-    } catch (error) {
-        yield put(showAuthMessage(error));
-    }
-}
-
-const getAllFacilitiesSelectDateRequest = async (payload) => {
-    const { id, startDay, endDay } = payload
+function* requestGetAllFacilitiesSelectDate({ payload }) {
+    const { id, startDay, endDay } = payload;
+    const activeButtons = yield select(selectorFacilityActiveButtons);
     const url = `${config.baseUrl}/analytics/metricsByDate/facility/${id}/${startDay}/${endDay}`
-    return await AxiosHelper
-        .get(url)
-        .then(AuthHelper.checkStatus)
-        .then(ColorHelper.colorButtons)
-        .then(DashboardSplitFilter.split)
-        .then(DashboardSplitFilter.filterAll)
-        .then(response => response.data)
-        .catch(error => error);
-};
+    const request = sendRequest.bind(
+        null, 
+        async () => {
+            const activeFacilityArray = [];
+            return await Api
+                .get({url})
+                .then(ColorHelper.colorButtons)
+                .then(DashboardSplitFilter.split)
+                .then(DashboardSplitFilter.filterAll)
+                .then(response => response.data)
+                .then(data => {
+                    data.forEach(btn => {
+                        if (activeButtons.indexOf(btn.name) !== -1) {
+                            btn.activeFlag = true;
+                            activeFacilityArray.push(btn);
+                        } else {
+                            btn.activeFlag = false;
+                        }
+                    })
+                    return data;
+                })
+                .then(data => ({
+                    facilityDate: data,
+                    flagFilter: false,
+                    activeFacilityArray
+                }))
+                .catch(error => error);
+        },
+        GET_FACILITIES_SELECT_DATE
+    );
+    yield call(request)
+}
 
-function* getAllFacilitiesSelectDate({ payload }) {
-    try {
-        const activeButtons = yield select(selectorFacilityActiveButtons);
-        let response = yield call(getAllFacilitiesSelectDateRequest, payload);
-        const activeFacilityArray = []
-        if (response.error) {
-            yield put(showAuthMessage(response.error_description));
-        } else {
-            response.map(btn => {
-                if (activeButtons.indexOf(btn.name) !== -1) {
-                    btn.activeFlag = true;
-                    activeFacilityArray.push(btn);
-                } else {
-                    btn.activeFlag = false;
-                }
-            });
-            yield put(getFacilitiesSelectDateSuccess({
-                facilityDate: response,
-                flagFilter: false,
-                activeFacilityArray,
-            }));
-        }
-    } catch (error) {
-        yield put(showAuthMessage(error));
-    }
+function* requestGetFacilities() {
+    const url = `${config.baseUrl}/facility/all`;
+    const request = sendRequest.bind(
+        null, 
+        async () => {
+            return await Api.get({url})
+                  .then(response => response.data)
+                  .catch(error => error);
+        }, 
+        GET_FACILITIES
+    )
+    yield call(request)
+}
+
+function* requestGetFacilitiesToday({payload}) {
+    const { id } = payload;
+    const activeButtons = yield select(selectorFacilityActiveButtons);
+    const url = `${config.baseUrl}/analytics/metrics/facility/${id}`;
+    const request = sendRequest.bind(
+        null, 
+        async () => {
+            return await Api.get({url})
+                .then(ColorHelper.colorButtons)
+                .then(DashboardSplitFilter.split)
+                .then(DashboardSplitFilter.filterAll)
+                .then(response => {
+                    response.data.map(function (btn) {
+                        btn.activeFlag = activeButtons.indexOf(btn.name) !== -1 ? true : false;
+                    });
+        
+                    return response;
+                })
+                .then(response => ({facilityDate: response.data, flagFilter: false}))
+                .catch(error => error);
+        }, 
+        GET_FACILITIES_TODAY
+    )
+
+    yield call(request)
 }
 
 export function* getFacilities() {
-    yield takeEvery(GET_FACILITIES, getAllFacilities);
+    yield takeEvery(GET_FACILITIES, requestGetFacilities);
 }
 
 export function* getFacilitiesToday() {
-    yield takeEvery(GET_FACILITIES_TODAY, getAllFacilitiesToday);
+    yield takeEvery(GET_FACILITIES_TODAY, requestGetFacilitiesToday);
 }
 
 export function* getFacilitiesSelectDate() {
-    yield takeEvery(GET_FACILITIES_SELECT_DATE, getAllFacilitiesSelectDate);
+    yield takeEvery(GET_FACILITIES_SELECT_DATE, requestGetAllFacilitiesSelectDate);
 }
 
 export default function* rootSaga() {

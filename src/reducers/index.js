@@ -6,7 +6,7 @@ import Facility from './Facility/Facility';
 import FacilityActive from './Facility/FacilityActive';
 import FacilityActiveButton from './Facility/FacilityActiveButton';
 import FacilityFilter from './Facility/FacilityFilter';
-import AppReducer from './App';
+import LoadingReducer from './Loading';
 import CalendarReducer from './Calendar';
 
 const reducers = combineReducers ({
@@ -19,7 +19,7 @@ const reducers = combineReducers ({
     facilityFilter: FacilityFilter,
     facilityActive: FacilityActive,
     facilityActiveButton: FacilityActiveButton,
-    app: AppReducer,
+    loading: LoadingReducer,
     calendar: CalendarReducer,
 });
 

@@ -68,43 +68,39 @@ axios.interceptors.response.use(
 //   }
 // );
 
-function ApiRequest() {}
-
-ApiRequest.prototype = {
-  get: url => {
-    return axios.get(url);
-  },
-  post: (url, data) => {
+class ApiRequest {
+  send({url, method = 'get', headers = {}, data}) {
     return axios({
-      method: 'post',
+      method: method,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        ...headers
       },
       url,
       data
-    });
-  },
-  put: (url, data) => {
-    return axios({
-      method: 'put',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      url,
-      data: JSON.stringify(data)
-    });
-  },
-  delete: (url, data) => {
-    return axios({
-      method: 'delete',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      url,
-      data: JSON.stringify(data)
+    }).then(function (response) {
+      if (response.status >= 200 && response.status < 300) {
+        return response;
+      }
+      const error = new Error(response.statusText);
+      error.response = response;
+      throw error;
     });
   }
-};
+  get(params) {
+    return this.send({...params});
+  }
+  post(params) {
+    return this.send({...params, method: 'post'})
+  }
+  put(params) {
+    return this.send({...params, method: 'put'})
+  }
+  delete(params) {
+    return this.send({...params, method: 'delete'})
+  }
+}
+
 const api = new ApiRequest();
 
 export default api;

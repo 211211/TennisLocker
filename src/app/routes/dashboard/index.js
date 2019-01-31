@@ -11,9 +11,7 @@ import {
 
 import withLoader from '../../../components/WithLoader';
 
-const mapStateToProps = ({ facilityFilter, app }) => {
-    const {loading} = app
-
+const mapStateToProps = ({ facilityFilter, loading }) => {
     return {
         facilityFilter,
         loading,

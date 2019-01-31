@@ -1,12 +1,13 @@
-import React from "react";
-import "./dashboardButtons.scss";
-import checkImg from "../../../../assets/images/TennisLockerInternalPortal/chech.svg";
-import NumberFormat from "react-number-format";
+import React from 'react';
+import NumberFormat from 'react-number-format';
+import { connect } from 'react-redux';
+import './dashboardButtons.scss';
+import checkImg from '../../../../assets/images/TennisLockerInternalPortal/chech.svg';
 import {
   activeFacilityAddButtons,
   activeFacilityRemoveButtons
-} from "../../../../actions/Facility";
-import { connect } from "react-redux";
+} from '../../../../actions/Facility';
+
 
 const mapStateToProps = ({ facilityActiveButton }) => ({
   facilityActiveButton

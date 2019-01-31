@@ -10,7 +10,7 @@ import {
     userSignOutSuccess,
     userRefreshTokenSuccess,
 } from '../actions/Auth';
-import AxiosHelper from '../helpers/api/AxiosHelper';
+import Api from '../helpers/api';
 import AuthHelper from '../helpers/AuthHelper';
 import config from '../config';
 
@@ -58,9 +58,13 @@ const generateHashedAuthObject = (email, password) => {
 
 const signInUserWithEmailPasswordRequest = async (email, password) => {
     const formBody = generateHashedAuthObject(email, password)
-    return await AxiosHelper
-        .post(`${config.baseUrl}/oauth/token`, formBody.toString())
-        .then(AuthHelper.checkStatus)
+    const params = {
+        url: `${config.baseUrl}/oauth/token`,
+        data: formBody.toString()
+    };
+    
+    return await Api
+        .post(params)
         .then(AuthHelper.saveToken)
         .then(response => response.data)
 }
@@ -70,10 +74,13 @@ const signOutRequest = () => {
 }
 
 const refreshUserTokenRequest = async () => {
-    const formBody = generateFreshTokenAuthObject()
-    return await AxiosHelper
-        .post(`${config.baseUrl}/oauth/token`, formBody.toString())
-        .then(AuthHelper.checkStatus)
+    const formBody = generateFreshTokenAuthObject();
+    const params = {
+        url: `${config.baseUrl}/oauth/token`,
+        data: formBody.toString()
+    };
+    return await Api
+        .post(params)
         .then(AuthHelper.saveToken)
         .then(response => response.data)
 }
