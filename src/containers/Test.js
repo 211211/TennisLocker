@@ -5,7 +5,7 @@ import 'styles/app.scss';
 
 
 class Test extends Component {
-    render () {
+    render() {
         return (
             <TestComponent />
         );
