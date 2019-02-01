@@ -1,9 +1,9 @@
-import React from "react";
-import "./dashboardButtons.scss";
-import isEqual from 'lodash/isEqual'
-import FilterBtn from "./FilterBtn";
-import { connect } from "react-redux";
-import { activeFacilityArray } from "../../../../actions/Facility";
+import React from 'react';
+import './dashboardButtons.scss';
+import isEqual from 'lodash/isEqual';
+import FilterBtn from './FilterBtn';
+import { connect } from 'react-redux';
+import { activeFacilityArray } from '../../../../actions/Facility';
 
 const mapStateToProps = ({ facility, facilityActive, facilityFilter }) => ({
     facility,
@@ -19,7 +19,12 @@ class DashboardButtons extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (isEqual(this.props.facilityFilter.flagFilter, nextProps.facilityFilter.flagFilter)) {
+        if (
+            isEqual(
+                this.props.facilityFilter.flagFilter,
+                nextProps.facilityFilter.flagFilter
+            )
+        ) {
             this.facilityButtonsActive = nextProps.facilityActive.activeFacilityArray;
         }
     }
@@ -46,15 +51,15 @@ class DashboardButtons extends React.Component {
         }
 
         if (!Array.isArray(buttons)) {
-            return []
+            return [];
         }
 
         if (buttons.length === 0) {
-            return []
+            return [];
         }
 
         return buttons
-            .filter(button => !button.isHidden && button.placement !== "bottom")
+            .filter(button => !button.isHidden && button.placement !== 'bottom')
             .map(item => {
                 return (
                     <FilterBtn
@@ -74,15 +79,15 @@ class DashboardButtons extends React.Component {
         }
 
         if (!Array.isArray(buttons)) {
-            return []
+            return [];
         }
 
         if (buttons.length === 0) {
-            return []
+            return [];
         }
 
         return buttons
-            .filter(button => !button.isHidden && button.placement === "bottom")
+            .filter(button => !button.isHidden && button.placement === 'bottom')
             .map(item => {
                 return (
                     <FilterBtn
@@ -99,15 +104,11 @@ class DashboardButtons extends React.Component {
         return (
             <React.Fragment>
                 <div className="dashboard_top_block">
-                    {
-                        [...this.buildTopArrayButtons()]
-                    }
+                    {[...this.buildTopArrayButtons()]}
                 </div>
                 <p className="features_title">Features</p>
                 <div className="dashboard_bottom_block">
-                    {
-                        [...this.buildBottomArrayButtons()]
-                    }
+                    {[...this.buildBottomArrayButtons()]}
                 </div>
             </React.Fragment>
         );

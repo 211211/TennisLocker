@@ -33,7 +33,7 @@
       bottom: auto;
       margin-right: -50%;
       transform: translate(-50%, -50%) rotate(-30deg);
-      svg{
+      svg {
         width: 113px;
       }
     }
@@ -51,14 +51,15 @@
     justify-content: center;
     padding: 0 10px;
     align-items: center;
-    height: 0;
-    //transition:height 1s ease-out;
+    height: 0; //transition:height 1s ease-out;
     width: 100%;
   }
 }
+
 .chart_dashboard_elem_count {
   color: white;
 }
+
 .changeWidthNum {
   position: relative;
   display: flex;
@@ -74,7 +75,7 @@
     bottom: auto;
     margin-right: -50%;
     transform: translate(-52%, -50%) rotate(90deg);
-    svg{
+    svg {
       //width: 200px;
       text {
         font-size: 50px;
@@ -87,46 +88,36 @@
   .chart_dashboard {
     padding-left: 5px;
     padding-right: 5px;
-
     .chart_dashboard_elem {
       &:last-child {
         padding-right: 0;
       }
     }
-
-    .chart_dashboard_elem-title .changeWidth svg text{
+    .chart_dashboard_elem-title .changeWidth svg text {
       font-size: 28px !important;
     }
-
     .chart_dashboard_elem-title {
       margin-top: 5px;
     }
-
     .changeWidthNum span {
       font-size: 8px;
       display: flex;
       width: 100%;
       align-items: center;
       transform-origin: center top;
-
-      svg{
+      svg {
         height: 35px;
-
         text {
           font-size: 20px;
         }
       }
     }
   }
-
   .dashboard .dashboard_chart .chart_dashboard-select {
     text-align: center;
     font-size: 18px;
-
     span {
       padding: 0 20px;
     }
   }
-
-
 }

@@ -20,7 +20,7 @@ const mapStateToProps = ({ facilityFilter, loading }) => {
 
 // If you get this warrning: Experimental support for decorators is a feature that is subject to change in a future release
 // Solved here: https://github.com/Microsoft/vscode/issues/45071
-@withLoader(({loading}) => loading)
+@withLoader(({ loading }) => loading)
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
@@ -53,14 +53,14 @@ class Dashboard extends React.Component {
             }
         }
 
-        const {facilityActive, facilityDate} = facility
+        const { facilityActive, facilityDate } = facility
 
         return (
             <div className="dashboard">
                 <div className="dashboard_blog">
-                <div className="dashboard_blog-buttons">
-                    <DashboardButtons facilityBtn={facility.facilityDate} />
-                </div>
+                    <div className="dashboard_blog-buttons">
+                        <DashboardButtons facilityBtn={facility.facilityDate} />
+                    </div>
                     <DashboardInfo facilityActive={facilityActive} />
                 </div>
                 <p className="features_title chart_title">Usage comparison</p>

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const mapStateToProps = () => ({
-    
+
 });
 
 class Event extends React.Component {
@@ -11,7 +11,7 @@ class Event extends React.Component {
         this.state = {};
     }
     render() {
-        
+
         return (
             <div className="event">
                 <span>Hello</span>
@@ -23,6 +23,6 @@ class Event extends React.Component {
 export default connect(
     mapStateToProps,
     {
-       
+
     }
 )(Event);
