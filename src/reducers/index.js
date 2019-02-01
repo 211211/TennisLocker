@@ -1,5 +1,5 @@
-import {combineReducers} from 'redux';
-import {routerReducer} from 'react-router-redux';
+import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 import Settings from './Settings';
 import Auth from './Auth';
 import Facility from './Facility/Facility';
@@ -9,7 +9,7 @@ import FacilityFilter from './Facility/FacilityFilter';
 import LoadingReducer from './Loading';
 import CalendarReducer from './Calendar';
 
-const reducers = combineReducers ({
+const reducers = combineReducers({
     routing: routerReducer,
     settings: Settings,
     auth: Auth,

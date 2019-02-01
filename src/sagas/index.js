@@ -1,4 +1,4 @@
-import {all} from 'redux-saga/effects';
+import { all } from 'redux-saga/effects';
 import authSagas from './Auth';
 import facilitySagas from './Facility';
 import calendarSagas from './Calendar';

@@ -6,8 +6,7 @@ import {
     SHOW_MESSAGE,
     SIGNIN_USER_SUCCESS,
     SIGNOUT_USER_SUCCESS,
-    REFRESH_TOKEN_SUCCESS,
-
+    REFRESH_TOKEN_SUCCESS
 } from '../constants/ActionTypes';
 
 const INIT_STATE = {
@@ -15,9 +14,8 @@ const INIT_STATE = {
     alertMessage: '',
     showMessage: false,
     initURL: '',
-    authUser: localStorage.getItem('access_token'),
+    authUser: localStorage.getItem('access_token')
 };
-
 
 export default (state = INIT_STATE, action) => {
     switch (action.type) {
@@ -27,13 +25,13 @@ export default (state = INIT_STATE, action) => {
                 ...state,
                 loader: false,
                 authUser: localStorage.getItem('access_token')
-            }
+            };
         }
         case INIT_URL: {
             return {
                 ...state,
                 initURL: action.payload
-            }
+            };
         }
         case SIGNOUT_USER_SUCCESS: {
             return {
@@ -41,7 +39,7 @@ export default (state = INIT_STATE, action) => {
                 authUser: null,
                 initURL: '',
                 loader: false
-            }
+            };
         }
 
         case SHOW_MESSAGE: {
@@ -50,7 +48,7 @@ export default (state = INIT_STATE, action) => {
                 alertMessage: action.payload,
                 showMessage: true,
                 loader: false
-            }
+            };
         }
         case HIDE_MESSAGE: {
             return {
@@ -58,21 +56,21 @@ export default (state = INIT_STATE, action) => {
                 alertMessage: '',
                 showMessage: false,
                 loader: false
-            }
+            };
         }
         case ON_SHOW_LOADER: {
             return {
                 ...state,
                 loader: true
-            }
+            };
         }
         case ON_HIDE_LOADER: {
             return {
                 ...state,
                 loader: false
-            }
+            };
         }
         default:
             return state;
     }
-}
+};

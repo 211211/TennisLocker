@@ -18,35 +18,35 @@ import {
 // HELPER
 import Api from '../helpers/api';
 import config from '../config';
-import {sendRequest} from '../helpers/saga';
-import {makeSelectFacilityFilterActive} from '../selectors/Facility/FacilityFilterSelector'
+import { sendRequest } from '../helpers/saga';
+import { makeSelectFacilityFilterActive } from '../selectors/Facility/FacilityFilterSelector'
 
 // TODO: switch to new api
 function* requestGetFilterEventType() {
     const url = `${config.hrefUrl}lookups/eventTypes/external/${config.token}`
     const request = sendRequest.bind(
-        null, 
+        null,
         async () => {
-            return await Api.get({url})
-                  .then(response => response.data)
-                  .catch(error => error);
-        }, 
+            return await Api.get({ url })
+                .then(response => response.data)
+                .catch(error => error);
+        },
         GET_FILTER_EVENT_TYPE
     );
     yield call(request)
 };
 
-function* requestGetMonthCalendar({payload}) {
-    const {year, month} = payload;
+function* requestGetMonthCalendar({ payload }) {
+    const { year, month } = payload;
     const facilityActive = yield select(makeSelectFacilityFilterActive());
     const url = `${config.baseUrl}/events/facility/${facilityActive.id}/${year}/${month + 1}`;
     const request = sendRequest.bind(
-        null, 
+        null,
         async () => {
-            return await Api.get({url})
-                  .then(response => response.data)
-                  .catch(error => error);
-        }, 
+            return await Api.get({ url })
+                .then(response => response.data)
+                .catch(error => error);
+        },
         GET_MONTH_CALENDAR
     )
     yield call(request)

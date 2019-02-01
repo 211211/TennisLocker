@@ -1,5 +1,5 @@
 import { all, call, fork, put, select, takeEvery, take, cancel } from 'redux-saga/effects';
-import {LOCATION_CHANGE} from 'react-router-redux'
+import { LOCATION_CHANGE } from 'react-router-redux'
 import {
     GET_FACILITIES,
     GET_FACILITIES_TODAY,
@@ -12,7 +12,7 @@ import {
     getFacilitiesSelectDateSuccess,
 } from '../actions/Facility';
 import Api from '../helpers/api';
-import {sendRequest} from '../helpers/saga';
+import { sendRequest } from '../helpers/saga';
 import ColorHelper from '../helpers/colorDashboardSelect';
 import DashboardSplitFilter from '../helpers/dashboardSplitFilter';
 import config from '../config';
@@ -24,11 +24,11 @@ function* requestGetAllFacilitiesSelectDate({ payload }) {
     const activeButtons = yield select(selectorFacilityActiveButtons);
     const url = `${config.baseUrl}/analytics/metricsByDate/facility/${id}/${startDay}/${endDay}`
     const request = sendRequest.bind(
-        null, 
+        null,
         async () => {
             const activeFacilityArray = [];
             return await Api
-                .get({url})
+                .get({ url })
                 .then(ColorHelper.colorButtons)
                 .then(DashboardSplitFilter.split)
                 .then(DashboardSplitFilter.filterAll)
@@ -59,25 +59,25 @@ function* requestGetAllFacilitiesSelectDate({ payload }) {
 function* requestGetFacilities() {
     const url = `${config.baseUrl}/facility/all`;
     const request = sendRequest.bind(
-        null, 
+        null,
         async () => {
-            return await Api.get({url})
-                  .then(response => response.data)
-                  .catch(error => error);
-        }, 
+            return await Api.get({ url })
+                .then(response => response.data)
+                .catch(error => error);
+        },
         GET_FACILITIES
     )
     yield call(request)
 }
 
-function* requestGetFacilitiesToday({payload}) {
+function* requestGetFacilitiesToday({ payload }) {
     const { id } = payload;
     const activeButtons = yield select(selectorFacilityActiveButtons);
     const url = `${config.baseUrl}/analytics/metrics/facility/${id}`;
     const request = sendRequest.bind(
-        null, 
+        null,
         async () => {
-            return await Api.get({url})
+            return await Api.get({ url })
                 .then(ColorHelper.colorButtons)
                 .then(DashboardSplitFilter.split)
                 .then(DashboardSplitFilter.filterAll)
@@ -85,12 +85,12 @@ function* requestGetFacilitiesToday({payload}) {
                     response.data.map(function (btn) {
                         btn.activeFlag = activeButtons.indexOf(btn.name) !== -1 ? true : false;
                     });
-        
+
                     return response;
                 })
-                .then(response => ({facilityDate: response.data, flagFilter: false}))
+                .then(response => ({ facilityDate: response.data, flagFilter: false }))
                 .catch(error => error);
-        }, 
+        },
         GET_FACILITIES_TODAY
     )
 

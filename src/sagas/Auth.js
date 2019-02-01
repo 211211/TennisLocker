@@ -62,7 +62,7 @@ const signInUserWithEmailPasswordRequest = async (email, password) => {
         url: `${config.baseUrl}/oauth/token`,
         data: formBody.toString()
     };
-    
+
     return await Api
         .post(params)
         .then(AuthHelper.saveToken)
@@ -85,60 +85,60 @@ const refreshUserTokenRequest = async () => {
         .then(response => response.data)
 }
 
-function* signInUserWithEmailPassword ({payload}) {
+function* signInUserWithEmailPassword({ payload }) {
     try {
         const { email, password } = payload;
-        const signInUser = yield call (signInUserWithEmailPasswordRequest, email, password);
+        const signInUser = yield call(signInUserWithEmailPasswordRequest, email, password);
         if (!signInUser || signInUser.error || !!(signInUser.data && signInUser.data.error)) {
-            yield put (showAuthMessage ('Invalid email or password. Please try again!'));
+            yield put(showAuthMessage('Invalid email or password. Please try again!'));
         } else {
-            yield put (userSignInSuccess (signInUser));
+            yield put(userSignInSuccess(signInUser));
         }
     } catch (error) {
-        yield put (showAuthMessage ('Invalid email or password. Please try again!'));
+        yield put(showAuthMessage('Invalid email or password. Please try again!'));
     }
 }
 
-function* signOut () {
+function* signOut() {
     try {
-        yield call (signOutRequest);
-        yield put (userSignOutSuccess ());
+        yield call(signOutRequest);
+        yield put(userSignOutSuccess());
     } catch (error) {
-        yield put (showAuthMessage (error));
+        yield put(showAuthMessage(error));
     }
 }
 
-function* refreshUserToken () {
+function* refreshUserToken() {
     try {
-        const response = yield call (refreshUserTokenRequest);
+        const response = yield call(refreshUserTokenRequest);
         if (!response || response.error || !!(response.data && response.data.error)) {
-            yield put (userSignOutSuccess ());
-            yield put (showAuthMessage ('Token is invalid!'));
+            yield put(userSignOutSuccess());
+            yield put(showAuthMessage('Token is invalid!'));
         } else {
-            yield put (userRefreshTokenSuccess (response));
+            yield put(userRefreshTokenSuccess(response));
         }
     } catch (error) {
-        yield put (userSignOutSuccess ());
-        yield put (showAuthMessage ('Token is invalid!'));
+        yield put(userSignOutSuccess());
+        yield put(showAuthMessage('Token is invalid!'));
     }
 }
 
-export function* signInUser () {
-    yield takeEvery (SIGNIN_USER, signInUserWithEmailPassword);
+export function* signInUser() {
+    yield takeEvery(SIGNIN_USER, signInUserWithEmailPassword);
 }
 
-export function* signOutUser () {
-    yield takeEvery (SIGNOUT_USER, signOut);
+export function* signOutUser() {
+    yield takeEvery(SIGNOUT_USER, signOut);
 }
 
-export function* refreshToken () {
-    yield takeEvery (REFRESH_TOKEN, refreshUserToken);
+export function* refreshToken() {
+    yield takeEvery(REFRESH_TOKEN, refreshUserToken);
 }
 
-export default function* rootSaga () {
-    yield all ([
-        fork (signInUser),
-        fork (signOutUser),
-        fork (refreshToken),
+export default function* rootSaga() {
+    yield all([
+        fork(signInUser),
+        fork(signOutUser),
+        fork(refreshToken),
     ]);
 }
