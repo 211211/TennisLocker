@@ -35,7 +35,7 @@ class SignIn extends React.Component {
             }, 100);
         }
 
-        const {history} = this.props
+        const { history } = this.props
         if (localStorage.getItem('access_token')) {
             history.push('/');
         }

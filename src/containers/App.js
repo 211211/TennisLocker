@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {Redirect, Route, Switch} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {IntlProvider} from 'react-intl'
+import React, { Component } from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { IntlProvider } from 'react-intl'
 import 'react-big-calendar/lib/less/styles.less';
 import 'react-toggle-switch/dist/css/switch.min.css';
 import 'rc-drawer/assets/index.css';
@@ -22,10 +22,10 @@ import CircularProgress from '../components/CircularProgress';
 
 const redirectToHomePage = (initURL) => {
     if (initURL === '' || initURL === '/' || initURL === '/signin') {
-        return ( <Redirect to={'/app/dashboard'}/> );
+        return (<Redirect to={'/app/dashboard'} />);
     }
 
-    return ( <Redirect to={initURL}/> );
+    return (<Redirect to={initURL} />);
 }
 
 const RestrictedRoute = ({ component: Component, authUser, ...rest }) =>
@@ -44,7 +44,7 @@ const RestrictedRoute = ({ component: Component, authUser, ...rest }) =>
 class App extends Component {
 
     componentWillMount() {
-        const {initURL, setInitUrl, userRefreshToken, history, showAuthLoader} = this.props
+        const { initURL, setInitUrl, userRefreshToken, history, showAuthLoader } = this.props
         if (initURL === '') {
             setInitUrl(history.location.pathname);
         }
@@ -60,7 +60,7 @@ class App extends Component {
     }
 
     render() {
-        const {match, location, locale, initURL, isDirectionRTL, authUser, loader} = this.props;
+        const { match, location, locale, initURL, isDirectionRTL, authUser, loader } = this.props;
         if (loader) {
             return (
                 <div className="loader-view">
@@ -71,7 +71,7 @@ class App extends Component {
 
         if (location.pathname === '/') {
             if (authUser === null || !authUser || authUser === '') {
-                return ( <Redirect to={'/signin'}/> );
+                return (<Redirect to={'/signin'} />);
             }
 
             return redirectToHomePage(initURL)
@@ -96,9 +96,9 @@ class App extends Component {
             <IntlProvider locale={currentAppLocale.locale} messages={currentAppLocale.messages}>
                 <div className="app-main">
                     <Switch>
-                        <RestrictedRoute path={`${match.url}app`} authUser={authUser} component={MainApp}/>
-                        <Route path='/signin' component={SignIn}/>
-                        <Route component={asyncComponent(() => import('../components/Error404'))}/>
+                        <RestrictedRoute path={`${match.url}app`} authUser={authUser} component={MainApp} />
+                        <Route path='/signin' component={SignIn} />
+                        <Route component={asyncComponent(() => import('../components/Error404'))} />
                     </Switch>
                 </div>
             </IntlProvider>
@@ -106,10 +106,10 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = ({settings, auth}) => {
-    const {locale, isDirectionRTL} = settings;
-    const {initURL, loader, authUser} = auth;
-    return {locale, isDirectionRTL, initURL, loader, authUser}
+const mapStateToProps = ({ settings, auth }) => {
+    const { locale, isDirectionRTL } = settings;
+    const { initURL, loader, authUser } = auth;
+    return { locale, isDirectionRTL, initURL, loader, authUser }
 };
 
 export default connect(mapStateToProps, {

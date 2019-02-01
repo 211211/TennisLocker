@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {NavLink, withRouter} from 'react-router-dom';
+import React, { Component } from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import IntlMessages from 'util/IntlMessages';
 import CustomScrollbars from 'util/CustomScrollbars';
@@ -8,7 +8,7 @@ import CustomScrollbars from 'util/CustomScrollbars';
 class SidenavContent extends Component {
 
     componentDidMount() {
-        const {history} = this.props;
+        const { history } = this.props;
         const that = this;
         const pathname = `#${history.location.pathname}`;// get current path
 
@@ -78,123 +78,123 @@ class SidenavContent extends Component {
 
     render() {
         return (
-            <CustomScrollbars className="scrollbar" style={{height: 'calc(100vh - 70px)'}}>
+            <CustomScrollbars className="scrollbar" style={{ height: 'calc(100vh - 70px)' }}>
                 <ul className="nav-menu">
-                    <li className="nav-header"><IntlMessages id="sidebar.main"/></li>
+                    <li className="nav-header"><IntlMessages id="sidebar.main" /></li>
                     <li className="menu no-arrow">
                         <NavLink className="prepend-icon" to="/app/dashboard">
-                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
                             <span className="nav-text">
-                                <IntlMessages id="sidebar.dashboard"/>
+                                <IntlMessages id="sidebar.dashboard" />
                             </span>
                         </NavLink>
                     </li>
 
                     <li className="menu no-arrow">
                         <a role="button" href="javascript:void(0)">
-                            <i className="zmdi zmdi-accounts-outline zmdi-hc-fw"/>
+                            <i className="zmdi zmdi-accounts-outline zmdi-hc-fw" />
                             <span className="nav-text">
-                            <IntlMessages id="sidebar.users"/>
-                        </span>
+                                <IntlMessages id="sidebar.users" />
+                            </span>
                         </a>
                     </li>
 
                     <li className="menu no-arrow">
                         <a role="button" href="javascript:void(0)">
-                            <i className="zmdi zmdi-account zmdi-hc-fw"/>
+                            <i className="zmdi zmdi-account zmdi-hc-fw" />
                             <span className="nav-text">
-                            <IntlMessages id="sidebar.players"/>
-                        </span>
+                                <IntlMessages id="sidebar.players" />
+                            </span>
                         </a>
                     </li>
 
                     <li className="menu no-arrow">
                         <a role="button" href="javascript:void(0)">
-                            <i className="zmdi zmdi-accounts zmdi-hc-fw"/>
+                            <i className="zmdi zmdi-accounts zmdi-hc-fw" />
                             <span className="nav-text">
-                            <IntlMessages id="sidebar.coaches"/>
-                        </span>
+                                <IntlMessages id="sidebar.coaches" />
+                            </span>
                         </a>
                     </li>
 
                     <li className="menu no-arrow">
                         <a role="button" href="javascript:void(0)">
-                            <i className="zmdi zmdi-male-female zmdi-hc-fw"/>
+                            <i className="zmdi zmdi-male-female zmdi-hc-fw" />
                             <span className="nav-text">
-                            <IntlMessages id="sidebar.parents"/>
-                        </span>
+                                <IntlMessages id="sidebar.parents" />
+                            </span>
                         </a>
                     </li>
 
                     <li className="menu no-arrow">
                         <a role="button" href="javascript:void(0)">
-                            <i className="zmdi zmdi-group zmdi-hc-fw"/>
+                            <i className="zmdi zmdi-group zmdi-hc-fw" />
                             <span className="nav-text">
-                            <IntlMessages id="sidebar.groups"/>
-                        </span>
+                                <IntlMessages id="sidebar.groups" />
+                            </span>
                         </a>
                     </li>
 
                     <li className="menu no-arrow">
                         <NavLink className="prepend-icon" to="/app/events">
-                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
                             <span className="nav-text">
-                                <IntlMessages id="sidebar.events"/>
+                                <IntlMessages id="sidebar.events" />
                             </span>
                         </NavLink>
                     </li>
 
                     <li className="menu no-arrow">
                         <a role="button" href="javascript:void(0)">
-                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
                             <span className="nav-text">
-                            <IntlMessages id="sidebar.fitnessTest"/>
-                        </span>
+                                <IntlMessages id="sidebar.fitnessTest" />
+                            </span>
                         </a>
                     </li>
 
                     <li className="menu no-arrow">
                         <a role="button" href="javascript:void(0)">
-                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
                             <span className="nav-text">
-                            <IntlMessages id="sidebar.practiceMatches"/>
-                        </span>
+                                <IntlMessages id="sidebar.practiceMatches" />
+                            </span>
                         </a>
                     </li>
 
                     <li className="menu no-arrow">
                         <a role="button" href="javascript:void(0)">
-                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
                             <span className="nav-text">
-                            <IntlMessages id="sidebar.goals"/>
-                        </span>
+                                <IntlMessages id="sidebar.goals" />
+                            </span>
                         </a>
                     </li>
 
                     <li className="menu no-arrow">
                         <a role="button" href="javascript:void(0)">
-                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
                             <span className="nav-text">
-                            <IntlMessages id="sidebar.files"/>
-                        </span>
+                                <IntlMessages id="sidebar.files" />
+                            </span>
                         </a>
                     </li>
 
                     <li className="menu no-arrow">
                         <a role="button" href="javascript:void(0)">
-                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
                             <span className="nav-text">
-                            <IntlMessages id="sidebar.pushNotifications"/>
-                        </span>
+                                <IntlMessages id="sidebar.pushNotifications" />
+                            </span>
                         </a>
                     </li>
 
                     <li className="menu no-arrow">
                         <a role="button" href="javascript:void(0)">
-                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+                            <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
                             <span className="nav-text">
-                            <IntlMessages id="sidebar.about"/>
-                        </span>
+                                <IntlMessages id="sidebar.about" />
+                            </span>
                         </a>
                     </li>
                 </ul>
