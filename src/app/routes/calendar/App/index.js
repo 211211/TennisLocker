@@ -44,8 +44,11 @@ class App extends React.Component {
             config.token = this.props.paramsUser.token;
             config.hecColor = this.props.paramsUser.color;
         }
-        this.props.getMonthCalendar(this.state.yearEvents, this.state.monthEvents);
-        this.props.getFilterEventType();
+
+        if(this.props.facilityFilterActive.id) {
+            this.props.getMonthCalendar(this.state.yearEvents, this.state.monthEvents);
+            this.props.getFilterEventType();
+        }
     }
 
     onSelectEvents = a => {
