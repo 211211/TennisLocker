@@ -1,100 +1,100 @@
 import {
-GET_FACILITIES,
-GET_FACILITIES_SUCCESS,
-GET_FACILITIES_SELECT_DATE,
-GET_FACILITIES_SELECT_DATE_SUCCESS,
-GET_FACILITIES_TODAY,
-GET_FACILITIES_TODAY_SUCCESS,
-ADD_SELECT_FACILITY,
-ACTIVE_FACILITY_ARRAY,
-FACILITY_ACTIVE_BUTTONS,
-ADD_FACILITY_SELECT_DATE,
+    GET_FACILITIES,
+    GET_FACILITIES_SUCCESS,
+    GET_FACILITIES_SELECT_DATE,
+    GET_FACILITIES_SELECT_DATE_SUCCESS,
+    GET_FACILITIES_TODAY,
+    GET_FACILITIES_TODAY_SUCCESS,
+    ADD_SELECT_FACILITY,
+    ACTIVE_FACILITY_ARRAY,
+    FACILITY_ACTIVE_BUTTONS,
+    ADD_FACILITY_SELECT_DATE,
 } from '../constants/ActionTypes';
 
 export const getFacilities = () => {
-  return {
-      type: GET_FACILITIES,
-  };
+    return {
+        type: GET_FACILITIES,
+    };
 };
 
 export const getFacilitiesSuccess = (facilities) => {
-  return {
-      type: GET_FACILITIES_SUCCESS,
-      payload: facilities
-  }
+    return {
+        type: GET_FACILITIES_SUCCESS,
+        payload: facilities
+    }
 };
 
 export const userGetFacilitiesSelectDate = (id, startDay, endDay) => {
-  return {
-      type: GET_FACILITIES_SELECT_DATE,
-      payload: {
-        id,
-        startDay,
-        endDay,
-      }
-  };
+    return {
+        type: GET_FACILITIES_SELECT_DATE,
+        payload: {
+            id,
+            startDay,
+            endDay,
+        }
+    };
 };
 
 export const getFacilitiesSelectDateSuccess = (payload) => {
-  return {
-      type: GET_FACILITIES_SELECT_DATE_SUCCESS,
-      payload,
-  }
+    return {
+        type: GET_FACILITIES_SELECT_DATE_SUCCESS,
+        payload,
+    }
 };
 
 export const userGetFacilitiesToday = (id) => {
-  return {
-      type: GET_FACILITIES_TODAY,
-      payload: {
-        id,
-      }
-  };
+    return {
+        type: GET_FACILITIES_TODAY,
+        payload: {
+            id,
+        }
+    };
 };
 
 export const getFacilitiesTodaySuccess = (payload) => {
-  return {
-      type: GET_FACILITIES_TODAY_SUCCESS,
-      payload,
-  }
+    return {
+        type: GET_FACILITIES_TODAY_SUCCESS,
+        payload,
+    }
 };
 
 export const addSelectFacility = (id, active) => {
-  const selectDate = { id, active };
+    const selectDate = { id, active };
 
-  return {
-    type: ADD_SELECT_FACILITY,
-    activeDateSelect: selectDate,
-    flagFilter: true
-  }
+    return {
+        type: ADD_SELECT_FACILITY,
+        activeDateSelect: selectDate,
+        flagFilter: true
+    }
 }
 
 export function activeFacilityArray(payload) {
-  return {
-    type: ACTIVE_FACILITY_ARRAY,
-    payload,
-  }
+    return {
+        type: ACTIVE_FACILITY_ARRAY,
+        payload,
+    }
 }
 
 export function activeFacilityAddButtons(payload) {
-  return {
-    type: FACILITY_ACTIVE_BUTTONS,
-    payload,
-  }
+    return {
+        type: FACILITY_ACTIVE_BUTTONS,
+        payload,
+    }
 }
 
 export function activeFacilityRemoveButtons(payload) {
-  return {
-    type: FACILITY_ACTIVE_BUTTONS,
-    payload,
-  }
+    return {
+        type: FACILITY_ACTIVE_BUTTONS,
+        payload,
+    }
 }
 
 export function addFacilitySelectDate(activeDateSelect) {
-  return {
-    type: ADD_FACILITY_SELECT_DATE,
-    payload: {
-      activeDateSelect: activeDateSelect,
-      flagFilter: true
-    }
-  };
+    return {
+        type: ADD_FACILITY_SELECT_DATE,
+        payload: {
+            activeDateSelect: activeDateSelect,
+            flagFilter: true
+        }
+    };
 }

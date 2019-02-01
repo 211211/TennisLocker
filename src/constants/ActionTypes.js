@@ -57,9 +57,11 @@ export const INIT_URL = 'init_url';
 // Chat Module const
 
 export const FETCH_ALL_CHAT_USER = 'fetch_all_chat_user';
-export const FETCH_ALL_CHAT_USER_CONVERSATION = 'fetch_all_chat_user_conversation';
+export const FETCH_ALL_CHAT_USER_CONVERSATION =
+  'fetch_all_chat_user_conversation';
 export const FETCH_ALL_CHAT_USER_SUCCESS = 'fetch_all_chat_user_success';
-export const FETCH_ALL_CHAT_USER_CONVERSATION_SUCCESS = 'fetch_all_chat_user_conversation_success';
+export const FETCH_ALL_CHAT_USER_CONVERSATION_SUCCESS =
+  'fetch_all_chat_user_conversation_success';
 export const FILTER_USERS = 'filter_users';
 export const ON_SELECT_USER = 'on_select_user';
 export const ON_SHOW_LOADER = 'on_show_loader';
@@ -70,7 +72,6 @@ export const UPDATE_MESSAGE_VALUE = 'update_message_value';
 export const UPDATE_SEARCH_CHAT_USER = 'update_search_chat_user';
 
 //// Mail Module const
-
 
 export const ADD_LABEL = 'ADD_LABEL';
 export const GET_ALL_MAIL = 'get_all_mail';
@@ -110,7 +111,8 @@ export const ON_SORTEND = 'on_sortend';
 export const FETCH_ALL_TODO = 'fetch_all_todo';
 export const FETCH_ALL_TODO_SUCCESS = 'fetch_all_todo-success';
 export const FETCH_ALL_TODO_CONVERSATION = 'fetch_all_todo_conversation';
-export const FETCH_ALL_TODO_CONVERSATION_SUCCESS = 'fetch_all_todo_conversation_success';
+export const FETCH_ALL_TODO_CONVERSATION_SUCCESS =
+  'fetch_all_todo_conversation_success';
 export const SELECT_ALL_TODO = 'select_all_todo';
 export const GET_ALL_TODO = 'get_all_todo';
 export const GET_UNSELECTED_ALL_TODO = 'get_unselected_all_todo';
@@ -134,13 +136,15 @@ export const UPDATE_SEARCH = 'update_search';
 export const GET_FACILITIES = 'GET_FACILITIES';
 export const GET_FACILITIES_SUCCESS = 'GET_FACILITIES_SUCCESS';
 export const GET_FACILITIES_SELECT_DATE = 'GET_FACILITIES_SELECT_DATE';
-export const GET_FACILITIES_SELECT_DATE_SUCCESS = 'GET_FACILITIES_SELECT_DATE_SUCCESS';
+export const GET_FACILITIES_SELECT_DATE_SUCCESS =
+  'GET_FACILITIES_SELECT_DATE_SUCCESS';
 export const GET_FACILITIES_TODAY = 'GET_FACILITIES_TODAY';
 export const GET_FACILITIES_TODAY_SUCCESS = 'GET_FACILITIES_TODAY_SUCCESS';
 export const ADD_FACILITY_SELECT_DATE = 'ADD_FACILITY_SELECT_DATE';
-export const ADD_FACILITY_SELECT_DATE_SUCCESS = 'ADD_FACILITY_SELECT_DATE_SUCCESS';
+export const ADD_FACILITY_SELECT_DATE_SUCCESS =
+  'ADD_FACILITY_SELECT_DATE_SUCCESS';
 
-export const ADD_SELECT_FACILITY = 'ADD_SELECT_FACILITY'
+export const ADD_SELECT_FACILITY = 'ADD_SELECT_FACILITY';
 export const ACTIVE_FACILITY_ARRAY = 'ACTIVE_FACILITY_ARRAY';
 export const FACILITY_ACTIVE_BUTTONS = 'FACILITY_ACTIVE_BUTTONS';
 
@@ -151,7 +155,7 @@ export const GET_FILTER_EVENT_TYPE = 'GET_FILTER_EVENT_TYPE';
 export const GET_FILTER_EVENT_TYPE_SUCCESS = 'GET_FILTER_EVENT_TYPE_SUCCESS';
 
 export const REQUEST = {
-    START: 'START',
-    SUCCESS: 'SUCCESS',
-    FAIL: 'FAIL'
-}
+  START: 'START',
+  SUCCESS: 'SUCCESS',
+  FAIL: 'FAIL'
+};

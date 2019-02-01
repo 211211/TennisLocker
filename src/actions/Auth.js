@@ -4,29 +4,28 @@ import {
     ON_HIDE_LOADER,
     ON_SHOW_LOADER,
     SHOW_MESSAGE,
-
     SIGNIN_USER,
     SIGNIN_USER_SUCCESS,
     REFRESH_TOKEN,
     REFRESH_TOKEN_SUCCESS,
     SIGNOUT_USER,
-    SIGNOUT_USER_SUCCESS,
+    SIGNOUT_USER_SUCCESS
 } from '../constants/ActionTypes';
 
 export const userRefreshToken = () => {
     return {
-        type: REFRESH_TOKEN,
+        type: REFRESH_TOKEN
     };
 };
 
-export const userRefreshTokenSuccess = (payload) => {
+export const userRefreshTokenSuccess = payload => {
     return {
         type: REFRESH_TOKEN_SUCCESS,
-        payload,
+        payload
     };
 };
 
-export const userSignIn = (user) => {
+export const userSignIn = user => {
     return {
         type: SIGNIN_USER,
         payload: user
@@ -39,27 +38,27 @@ export const userSignOut = () => {
     };
 };
 
-export const userSignInSuccess = (payload) => {
+export const userSignInSuccess = payload => {
     return {
         type: SIGNIN_USER_SUCCESS,
-        payload,
-    }
+        payload
+    };
 };
 
 export const userSignOutSuccess = () => {
     return {
-        type: SIGNOUT_USER_SUCCESS,
-    }
+        type: SIGNOUT_USER_SUCCESS
+    };
 };
 
-export const showAuthMessage = (message) => {
+export const showAuthMessage = message => {
     return {
         type: SHOW_MESSAGE,
         payload: message
     };
 };
 
-export const setInitUrl = (url) => {
+export const setInitUrl = url => {
     return {
         type: INIT_URL,
         payload: url
@@ -68,18 +67,18 @@ export const setInitUrl = (url) => {
 
 export const showAuthLoader = () => {
     return {
-        type: ON_SHOW_LOADER,
+        type: ON_SHOW_LOADER
     };
 };
 
 export const hideMessage = () => {
     return {
-        type: HIDE_MESSAGE,
+        type: HIDE_MESSAGE
     };
 };
 
 export const hideAuthLoader = () => {
     return {
-        type: ON_HIDE_LOADER,
+        type: ON_HIDE_LOADER
     };
 };
