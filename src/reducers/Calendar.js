@@ -9,17 +9,17 @@ const initial = {
 };
 
 const Calendar = (state = initial, action) => {
-    const { data } = action;
-    switch (action.type) {
+    const { payload, type } = action;
+    switch (type) {
         case GET_MONTH_CALENDAR_SUCCESS:
             return {
                 ...state,
-                eventForMonth: data
+                eventForMonth: payload
             };
         case GET_FILTER_EVENT_TYPE_SUCCESS:
             return {
                 ...state,
-                eventFilterTypes: data
+                eventFilterTypes: payload
             };
         default:
             return state;

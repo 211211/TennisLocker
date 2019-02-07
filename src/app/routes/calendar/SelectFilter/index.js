@@ -70,20 +70,22 @@ class SelectFilter extends React.Component {
     this.setState({ selectedOption });
   };
 
-  selectOptions = () => {
-    if (this.state.eventsType !== this.props.calendar.eventFilterTypes) {
-      this.setState({ eventsType: this.props.calendar.eventFilterTypes });
-      const options = [];
-      this.props.calendar.eventFilterTypes.map(item => {
-        return options.push({
-          value: item.eventTypeId,
-          label: item.eventTypeName,
-          color: `#${item.eventColor}`
-        });
-      });
-      this.setState({ optionsSelect: options });
-    }
-  };
+    selectOptions = () => {
+        const { eventsType } = this.state
+        const { eventFilterTypes } = this.props
+        if (eventsType !== eventFilterTypes) {
+            this.setState({ eventsType: eventFilterTypes });
+            const options = [];
+            eventFilterTypes.map(item => {
+                return options.push({
+                    value: item.eventTypeId,
+                    label: item.eventTypeName,
+                    color: `#${item.eventColor}`
+                });
+            });
+            this.setState({ optionsSelect: options });
+        }
+    };
 
   render() {
     return (

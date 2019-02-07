@@ -13,7 +13,7 @@ import './app.scss';
 import Calendar from '../Calendar';
 import config from '../../../../config';
 import { makeSelectFacilityFilterActive } from '../../../../selectors/Facility/FacilityFilterSelector';
-import { makeSelectCalendar } from '../../../../selectors/Calendar'
+import { eventForMonthSelector, eventFilterTypesSelector } from '../../../../selectors/Calendar'
 import ModalEventDetail from '../ModalEventDetail';
 import SelectFilter from '../SelectFilter';
 
@@ -101,12 +101,15 @@ class App extends React.Component {
         );
     };
     render() {
-        // if (this.props.calendar.eventForMonth.length > 0) {
-        //   this.filterMonthEvents(this.props.calendar.eventForMonth);
-        // }
-        // if (Object.keys(this.state.typesEvent).length > 0) {
-        //   this.filterTypes();
-        // }
+        const {eventForMonth} = this.props
+        if (eventForMonth.length > 0) {
+            this.filterMonthEvents(eventForMonth);
+        }
+
+        if (Object.keys(this.state.typesEvent).length > 0) {
+            this.filterTypes();
+        }
+
         const colorCalendar = this.props.paramsUser;
         return (
             <div
@@ -120,7 +123,7 @@ class App extends React.Component {
                 <div>
                     <SelectFilter
                         filterTypeSelect={this.filterTypeSelect}
-                        calendar={this.props.calendar}
+                        calendar={this.props.eventFilterTypes}
                     />
                 </div>
                 <Calendar
@@ -148,14 +151,14 @@ class App extends React.Component {
 
 App.propTypes = {
     getMonthCalendar: PropTypes.func.isRequired,
-    calendar: PropTypes.shape({
-        eventForMonth: PropTypes.array.isRequired
-    }).isRequired
+    eventForMonth: PropTypes.array.isRequired,
+    eventFilterTypes: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
     facilityFilterActive: makeSelectFacilityFilterActive(),
-    calendar: makeSelectCalendar()
+    eventForMonth: eventForMonthSelector(),
+    eventFilterTypes: eventFilterTypesSelector(),
 })
 
 export default connect(
