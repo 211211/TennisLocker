@@ -21,9 +21,9 @@ import config from '../config';
 import { sendRequest } from '../helpers/saga';
 import { makeSelectFacilityFilterActive } from '../selectors/Facility/FacilityFilterSelector'
 
-// TODO: switch to new api
 function* requestGetFilterEventType() {
-    const url = `${config.hrefUrl}lookups/eventTypes/external/${config.token}`
+    const facilityActive = yield select(makeSelectFacilityFilterActive());
+    const url = `${config.baseUrl}lookups/eventTypes/external/${facilityActive.id}`
     const request = sendRequest.bind(
         null,
         async () => {

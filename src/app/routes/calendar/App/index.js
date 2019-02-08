@@ -40,14 +40,16 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.paramsUser) {
-            config.token = this.props.paramsUser.token;
-            config.hecColor = this.props.paramsUser.color;
+        const { paramsUser, facilityFilterActive, getMonthCalendar, getFilterEventType } = this.props
+        const { yearEvents, monthEvents } = this.state
+        if (paramsUser) {
+            config.token = paramsUser.token;
+            config.hecColor = paramsUser.color;
         }
 
-        if(this.props.facilityFilterActive.id) {
-            this.props.getMonthCalendar(this.state.yearEvents, this.state.monthEvents);
-            this.props.getFilterEventType();
+        if (facilityFilterActive.id) {
+            getMonthCalendar(yearEvents, monthEvents);
+            getFilterEventType();
         }
     }
 
