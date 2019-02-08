@@ -34,8 +34,10 @@ class App extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.facilityFilterActive.id !== this.props.facilityFilterActive.id) {
-            this.props.getMonthCalendar(this.state.yearEvents, this.state.monthEvents);
+        const { facilityFilterActive, getMonthCalendar, getFilterEventType } = this.props
+        if (nextProps.facilityFilterActive.id !== facilityFilterActive.id) {
+            getMonthCalendar(this.state.yearEvents, this.state.monthEvents);
+            getFilterEventType();
         }
     }
 
