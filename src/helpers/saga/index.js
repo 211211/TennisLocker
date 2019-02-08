@@ -3,10 +3,11 @@ import * as action from '../action'
 import { REQUEST, SHOW_MESSAGE } from '../../constants/ActionTypes'
 
 export function* sendRequest(apiFn, type, payload) {
+    const requestAction = action.createRequestTypes(type)
+    let error
     try {
-        const requestAction = action.createRequestTypes(type);
         yield put(action.create(requestAction.START))
-        const response = yield call(apiFn);
+        const response = yield call(apiFn, payload)
         if (response.error) {
             yield put(action.create(
                 requestAction.FAIL,
@@ -21,14 +22,20 @@ export function* sendRequest(apiFn, type, payload) {
                 requestAction.SUCCESS,
                 response
             ))
+            return response
         }
-    } catch (error) {
+    } catch (err) {
         yield put(action.create(
             requestAction.FAIL,
+            err.response
         ))
         yield put(action.create(
             SHOW_MESSAGE,
-            error
+            err
         ))
+        error = err
+    }
+    if (error) {
+        throw error
     }
 }

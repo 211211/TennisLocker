@@ -21,48 +21,50 @@ import config from '../config';
 import { sendRequest } from '../helpers/saga';
 import { makeSelectFacilityFilterActive } from '../selectors/Facility/FacilityFilterSelector'
 
-function* requestGetFilterEventType() {
-    const facilityActive = yield select(makeSelectFacilityFilterActive());
-    const url = `${config.baseUrl}lookups/eventTypes/external/${facilityActive.id}`
-    const request = sendRequest.bind(
-        null,
-        async () => {
-            return await Api.get({ url })
+const getFilterEventType = async(payload) => {
+    const url = `${config.baseUrl}/lookups/eventTypes/external/${payload.facilityActive.id}`
+    return await Api.get({ url })
                 .then(response => response.data)
-                .catch(error => error);
-        },
-        GET_FILTER_EVENT_TYPE
-    );
-    yield call(request)
-};
-
-function* requestGetMonthCalendar({ payload }) {
-    const { year, month } = payload;
-    const facilityActive = yield select(makeSelectFacilityFilterActive());
-    const url = `${config.baseUrl}/events/facility/${facilityActive.id}/${year}/${month + 1}`;
-    const request = sendRequest.bind(
-        null,
-        async () => {
-            return await Api.get({ url })
-                .then(response => response.data)
-                .catch(error => error);
-        },
-        GET_MONTH_CALENDAR
-    )
-    yield call(request)
 }
 
-export function* getMonthCalendarSaga() {
+function* requestGetFilterEventType() {
+    const facilityActive = yield select(makeSelectFacilityFilterActive());
+    const payload = {
+        facilityActive,
+    };
+    try {
+        yield call(sendRequest, getFilterEventType, GET_FILTER_EVENT_TYPE, payload);
+    } catch (error) {
+        console.log(error)
+    }
+};
+
+const getMonthCalendar = async(payload) => {
+    const { year, month, facilityActive } = payload;
+    const url = `${config.baseUrl}/events/facility/${facilityActive.id}/${year}/${month + 1}`;
+    
+    return await Api.get({ url })
+                .then(response => response.data)
+}
+
+function* requestGetMonthCalendar({ payload }) {
+    const facilityActive = yield select(makeSelectFacilityFilterActive());
+    payload = {
+        ...payload,
+        facilityActive,
+    };
+    try {
+        yield call(sendRequest, getMonthCalendar, GET_MONTH_CALENDAR, payload);
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export function* watchCalendar() {
+    yield takeEvery(GET_FILTER_EVENT_TYPE, requestGetFilterEventType);
     yield takeEvery(GET_MONTH_CALENDAR, requestGetMonthCalendar);
 }
 
-export function* getFilterEventTypeSaga() {
-    yield takeEvery(GET_FILTER_EVENT_TYPE, requestGetFilterEventType);
-}
-
 export default function* rootSaga() {
-    yield all([
-        fork(getMonthCalendarSaga),
-        fork(getFilterEventTypeSaga),
-    ]);
+    yield fork(watchCalendar);
 }

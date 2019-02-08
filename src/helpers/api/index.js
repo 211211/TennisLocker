@@ -27,15 +27,8 @@ axios.interceptors.response.use(
     function (response) {
         return response;
     },
-    function (error) {
-        // redirect user to /signin page if token is invalid
-        if (error.response.status === 401) {
-            localStorage.removeItem('access_token');
-            localStorage.removeItem('refresh_token');
-            window.location = '/'
-        }
-
-        return Promise.reject(error);
+    err => {
+        return Promise.reject(err);
     }
 );
 
@@ -80,12 +73,19 @@ class ApiRequest {
             data
         }).then(function (response) {
             if (response.status >= 200 && response.status < 300) {
-                return response;
+                return response
             }
-            const error = new Error(response.statusText);
-            error.response = response;
-            throw error;
-        });
+            const error = new Error(response.statusText)
+            error.response = response
+            throw error
+        }).catch(function (error) {
+            if (error.response.status === 401) {
+                localStorage.removeItem('access_token')
+                localStorage.removeItem('refresh_token')
+                window.location = '/'
+            }
+            throw error
+        })
     }
     get(params) {
         return this.send({ ...params });
