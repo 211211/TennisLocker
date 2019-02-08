@@ -89,7 +89,7 @@ class SelectFilter extends React.Component {
 
   render() {
     return (
-      <div className="app-wrapper-select" onClick={this.selectOptions}>
+      <div className="app-wrapper-select" onClick={this.selectOptions} style={{marginBottom: 30}}>
         <Select
           value={this.state.selectedOption}
           onChange={this.handleChangeSelect}
