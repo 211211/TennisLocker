@@ -22,37 +22,38 @@ const mapStateToProps = ({ facilityFilter, loading }) => {
 // Solved here: https://github.com/Microsoft/vscode/issues/45071
 @withLoader(({ loading }) => loading)
 class Dashboard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
-    render() {
-        const {
-            facilityFilter: { flagFilter },
+    componentWillReceiveProps(nextProps) {
+        const { 
             userGetFacilitiesToday,
             userGetFacilitiesSelectDate,
         } = this.props;
-
-        const facility = this.props.facilityFilter;
-        const facilityId = facility.facilityActive.id;
-        const flag = facility.flagFilter;
-        const activeFacility = facility.activeDateSelect;
-
-        if (facilityId) {
-            if (flag) {
-                if (facility.activeDateSelect) {
-                    userGetFacilitiesSelectDate(
-                        facilityId,
-                        activeFacility.startDay,
-                        activeFacility.endDay
-                    );
-                } else {
-                    userGetFacilitiesToday(facilityId);
-                }
-            }
+        const {
+            facilityFilter
+        } = nextProps;
+        const facility = nextProps.facilityFilter; 
+        const facilityId = facility.facilityActive.id; 
+        const flag = facility.flagFilter; 
+        const activeFacility = facility.activeDateSelect; 
+       
+        if (!flag || !facilityId) {
+            return;
+        } 
+        if  (this.props.facilityFilter.facilityActive.id === facilityId && this.props.facilityFilter.activeDateSelect === activeFacility) {
+            return;
         }
+        if (facility.activeDateSelect) { 
+            userGetFacilitiesSelectDate( 
+                facilityId, 
+                activeFacility.startDay, 
+                activeFacility.endDay 
+            ); 
+        } else { 
+            userGetFacilitiesToday(facilityId); 
+        } 
+    }
 
+    render() {
+        const facility = this.props.facilityFilter;
         const { facilityActive, facilityDate } = facility
 
         return (
