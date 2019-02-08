@@ -12,36 +12,18 @@ const mapStateToProps = ({ facility, facilityActive, facilityFilter }) => ({
 });
 
 class DashboardButtons extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-        this.facilityButtonsActive = [];
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (
-            isEqual(
-                this.props.facilityFilter.flagFilter,
-                nextProps.facilityFilter.flagFilter
-            )
-        ) {
-            this.facilityButtonsActive = nextProps.facilityActive.activeFacilityArray;
-        }
-    }
-
     activeButtons = (item, flag) => {
-        let newArrayActive = [];
+        
+        const {facilityActive: {activeFacilityArray}} = this.props
+        let newArrayActive
         if (flag) {
-            this.facilityButtonsActive.push(item);
+            newArrayActive = [...activeFacilityArray];
+            newArrayActive.push(item);
         } else {
-            newArrayActive = this.facilityButtonsActive.filter(btn => {
-                return btn.name !== item.name;
-            });
-
-            this.facilityButtonsActive = newArrayActive;
+            newArrayActive = activeFacilityArray.filter(btn => btn.name !== item.name);
         }
 
-        this.props.activeFacilityArray(this.facilityButtonsActive);
+        this.props.activeFacilityArray(newArrayActive);
     };
 
     buildTopArrayButtons = () => {
@@ -65,7 +47,7 @@ class DashboardButtons extends React.Component {
                     <FilterBtn
                         key={item.name}
                         item={item}
-                        facilityButtonsActive={this.facilityButtonsActive}
+                        facilityButtonsActive={this.props.facilityActive.activeFacilityArray}
                         activeButtons={this.activeButtons}
                     />
                 );
@@ -93,7 +75,7 @@ class DashboardButtons extends React.Component {
                     <FilterBtn
                         key={item.name}
                         item={item}
-                        facilityButtonsActive={this.facilityButtonsActive}
+                        facilityButtonsActive={this.props.facilityActive.activeFacilityArray}
                         activeButtons={this.activeButtons}
                     />
                 );
