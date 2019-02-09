@@ -106,10 +106,7 @@ class App extends React.Component {
     };
     render() {
         const {eventForMonth} = this.props
-        if (eventForMonth.length > 0) {
-            this.filterMonthEvents(eventForMonth);
-        }
-
+        this.filterMonthEvents(eventForMonth);
         if (Object.keys(this.state.typesEvent).length > 0) {
             this.filterTypes();
         }
