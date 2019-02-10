@@ -1,18 +1,19 @@
 import axios from 'axios';
-// import helpers from "../helpers";
+import AuthHelper from '../AuthHelper';
+
 // import { getNewToken } from "../actions/redux/login";
 // let pending = false;
 axios.interceptors.request.use(
     config => {
         // const ref_token = localStorage.getItem("refresh_token");
         const newConfig = config;
-        if (localStorage.getItem('access_token') != null) {
+        const {accessToken} = AuthHelper.getToken()
+        if (accessToken != null) {
             // if (helpers.isTokenExpired() && !pending) {
             //   const res = getNewToken(ref_token);
             //   pending = true;
             // }
-            newConfig.headers.Authorization = `Bearer ${localStorage
-                .getItem('access_token')
+            newConfig.headers.Authorization = `Bearer ${accessToken
                 .slice(1, -1)}`;
         }
         return newConfig;
@@ -80,8 +81,7 @@ class ApiRequest {
             throw error
         }).catch(function (error) {
             if (error.response.status === 401) {
-                localStorage.removeItem('access_token')
-                localStorage.removeItem('refresh_token')
+                AuthHelper.removeToken()
                 window.location = '/'
             }
             throw error

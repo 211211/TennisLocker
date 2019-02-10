@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import AuthHelper from './helpers/AuthHelper'
 const rootEl = document.getElementById ('app-site');
+
 
 // Create a reusable render method that we can call more than once
 let render = () => {
@@ -23,4 +24,4 @@ if (module.hot) {
     });
 }
 
-render ();
+AuthHelper.shareSessionStorage(render);

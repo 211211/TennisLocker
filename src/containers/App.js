@@ -17,6 +17,7 @@ import {
     userRefreshToken,
     showAuthLoader,
 } from '../actions/Auth';
+import AuthHelper from '../helpers/AuthHelper';
 import asyncComponent from '../util/asyncComponent';
 import CircularProgress from '../components/CircularProgress';
 
@@ -49,9 +50,8 @@ class App extends Component {
             setInitUrl(history.location.pathname);
         }
 
-        const accessToken = localStorage.getItem('access_token')
+        const {accessToken, refreshToken} = AuthHelper.getToken()
         if (accessToken) {
-            const refreshToken = localStorage.getItem('refresh_token')
             if (refreshToken && typeof userRefreshToken === 'function') {
                 showAuthLoader()
                 userRefreshToken()

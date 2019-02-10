@@ -8,13 +8,14 @@ import {
     SIGNOUT_USER_SUCCESS,
     REFRESH_TOKEN_SUCCESS
 } from '../constants/ActionTypes';
+import AuthHelper from '../helpers/AuthHelper'
 
 const INIT_STATE = {
     loader: false,
     alertMessage: '',
     showMessage: false,
     initURL: '',
-    authUser: localStorage.getItem('access_token')
+    authUser: AuthHelper.getToken().accessToken
 };
 
 export default (state = INIT_STATE, action) => {
@@ -24,7 +25,7 @@ export default (state = INIT_STATE, action) => {
             return {
                 ...state,
                 loader: false,
-                authUser: localStorage.getItem('access_token')
+                authUser: AuthHelper.getToken().accessToken
             };
         }
         case INIT_URL: {

@@ -17,7 +17,7 @@ import config from '../config';
 const generateFreshTokenAuthObject = () => {
     let formBody = [];
     const data = {
-        refresh_token: localStorage.getItem('refresh_token'),
+        refresh_token: AuthHelper.getToken().refreshToken,
         grant_type: 'refresh_token',
         client_id: 'mobile'
     }
@@ -56,7 +56,7 @@ const generateHashedAuthObject = (email, password) => {
     return formBody.join('&');
 }
 
-const signInUserWithEmailPasswordRequest = async (email, password) => {
+const signInUserWithEmailPasswordRequest = async (email, password, rememberMe) => {
     const formBody = generateHashedAuthObject(email, password)
     const params = {
         url: `${config.baseUrl}/oauth/token`,
@@ -65,7 +65,7 @@ const signInUserWithEmailPasswordRequest = async (email, password) => {
 
     return await Api
         .post(params)
-        .then(AuthHelper.saveToken)
+        .then((response) => AuthHelper.saveToken(response, rememberMe))
         .then(response => response.data)
 }
 
@@ -87,8 +87,8 @@ const refreshUserTokenRequest = async () => {
 
 function* signInUserWithEmailPassword({ payload }) {
     try {
-        const { email, password } = payload;
-        const signInUser = yield call(signInUserWithEmailPasswordRequest, email, password);
+        const { email, password, rememberMe } = payload;
+        const signInUser = yield call(signInUserWithEmailPasswordRequest, email, password, rememberMe);
         if (!signInUser || signInUser.error || !!(signInUser.data && signInUser.data.error)) {
             yield put(showAuthMessage('Invalid email or password. Please try again!'));
         } else {

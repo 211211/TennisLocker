@@ -4,7 +4,7 @@ import './SignIn.scss';
 import { Formik } from 'formik';
 import logo from '../../assets/images/TennisLockerInternalPortal/logo.svg';
 import Vector from '../../assets/images/TennisLockerInternalPortal/Vector.svg';
-// import helpers from "../../helpers";
+import AuthHelper from '../../helpers/AuthHelper';
 import {
     NotificationContainer,
     NotificationManager
@@ -36,7 +36,7 @@ class SignIn extends React.Component {
         }
 
         const { history } = this.props
-        if (localStorage.getItem('access_token')) {
+        if (AuthHelper.getToken().accessToken) {
             history.push('/');
         }
     }
@@ -47,8 +47,9 @@ class SignIn extends React.Component {
 
     render() {
         const imgChech = this.state.img ? <img src={Vector} alt="Vector" /> : '';
+
         const { showMessage, loader, alertMessage } = this.props;
-        // helpers.saveRememberMe(String(this.state.img));
+     
         return (
             <React.Fragment>
                 <div className="login">
@@ -68,7 +69,11 @@ class SignIn extends React.Component {
                             onSubmit={({ email, password }, { setSubmitting }) => {
                                 this.props.showAuthLoader();
                                 onSubmitLogin(
-                                    this.props.userSignIn({ email, password }),
+                                    this.props.userSignIn({ 
+                                        email, 
+                                        password,
+                                        rememberMe: this.state.img
+                                    }),
                                     setSubmitting
                                 );
 
