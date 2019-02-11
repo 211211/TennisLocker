@@ -105,7 +105,7 @@ class App extends React.Component {
         );
     };
     render() {
-        const {eventForMonth} = this.props
+        const {eventForMonth, eventFilterTypes} = this.props
         this.filterMonthEvents(eventForMonth);
         if (Object.keys(this.state.typesEvent).length > 0) {
             this.filterTypes();
@@ -124,7 +124,7 @@ class App extends React.Component {
                 <div>
                     <SelectFilter
                         filterTypeSelect={this.filterTypeSelect}
-                        calendar={this.props.eventFilterTypes}
+                        eventFilterTypes={eventFilterTypes}
                     />
                 </div>
                 <Calendar
