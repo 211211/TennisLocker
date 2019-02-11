@@ -17,7 +17,6 @@ const Calendar = (state = initial, action) => {
                 eventForMonth: payload
             };
         case GET_FILTER_EVENT_TYPE_SUCCESS:
-            console.log('payload: ', payload)
             return {
                 ...state,
                 eventFilterTypes: payload
