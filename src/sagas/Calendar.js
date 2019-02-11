@@ -22,7 +22,7 @@ import { sendRequest } from '../helpers/saga';
 import { makeSelectFacilityFilterActive } from '../selectors/Facility/FacilityFilterSelector'
 
 const getFilterEventType = async(payload) => {
-    const url = `${config.baseUrl}/lookups/eventTypes/external/${payload.facilityActive.id}`
+    const url = `${config.baseUrl}/lookups/eventTypes/facility/${payload.facilityActive.id}`
     return await Api.get({ url })
                 .then(response => response.data)
 }
@@ -42,7 +42,7 @@ function* requestGetFilterEventType() {
 const getMonthCalendar = async(payload) => {
     const { year, month, facilityActive } = payload;
     const url = `${config.baseUrl}/events/facility/${facilityActive.id}/${year}/${month + 1}`;
-    
+
     return await Api.get({ url })
                 .then(response => response.data)
 }
